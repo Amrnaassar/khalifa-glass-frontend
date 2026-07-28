@@ -1,0 +1,59 @@
+<section class="faq-page section">
+
+    <div class="container">
+
+        <app-section-header [subtitle]="'faq.header.subtitle' | translate" [title]="'faq.header.title' | translate"
+            [text]="'faq.header.text' | translate" />
+
+
+        <div class="faq">
+
+            @for (item of faqItems; track item.id) {
+
+            <div class="faq__item" [class.active]="activeFaq === item.id">
+
+                <button class="faq__question" (click)="toggleFaq(item.id)">
+
+                    <span>
+                        {{ item.question | translate }}
+                    </span>
+
+                    <i class="fa-solid fa-plus"></i>
+
+                </button>
+
+
+                <div class="faq__answer">
+
+                    <p>
+                        {{ item.answer | translate }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            }
+
+        </div>
+
+
+        <div class="faq-cta">
+
+            <h3>
+                {{ 'faq.cta.title' | translate }}
+            </h3>
+
+            <p>
+                {{ 'faq.cta.description' | translate }}
+            </p>
+
+            <a (click)="goToContact()" class="btn btn--primary">
+                {{ 'hero.buttons.contact' | translate }}
+            </a>
+
+        </div>
+
+    </div>
+
+</section>

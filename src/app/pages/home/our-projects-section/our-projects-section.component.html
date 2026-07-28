@@ -1,0 +1,48 @@
+<section class="projects section">
+    <div class="container">
+
+        <app-section-header 
+            [subtitle]="'projects.header.subtitle' | translate"
+            [title]="'projects.header.title' | translate"/>
+
+        <div class="projects__grid">
+
+            <!-- Project -->
+
+            @for (project of projects; track $index) {
+                <article class="project-card">
+
+                    <div class="project-card__image">
+
+                        <img [src]="project.img" [alt]="project.title | translate">
+
+                    </div>
+
+                    <div class="project-card__content">
+
+                        <span class="project-card__category">
+                            {{ getCategoryName(project.catId) | translate }}
+                        </span>
+
+                        <h3 class="project-card__title">
+                            {{ project.title | translate }}
+                        </h3>
+
+                    </div>
+
+                </article>
+            }
+
+        </div>
+
+
+        <div class="projects__button">
+
+            <a routerLink="/Projects" class="btn btn--primary">
+                {{ 'projects.viewAll' | translate }}
+            </a>
+
+        </div>
+
+    </div>
+</section>

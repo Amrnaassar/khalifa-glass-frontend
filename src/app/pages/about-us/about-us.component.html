@@ -1,0 +1,96 @@
+<section class="about-company section">
+
+    <div class="container">
+
+        <div class="about-company__card">
+
+            <div class="about-company__content">
+
+                <!-- Left -->
+
+                <div class="about-company__info">
+
+                    <span class="about-company__subtitle">
+                        {{ 'about.subtitle' | translate }}
+                    </span>
+
+                    <h2 class="about-company__title">
+                        {{ 'about.title' | translate }}
+                    </h2>
+
+                    <p class="about-company__description">
+                        {{ 'about.description' | translate }}
+                    </p>
+
+                    <ul class="about-company__features">
+
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            {{ 'about.features.expertTeam' | translate }}
+                        </li>
+
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            {{ 'about.features.highQualityMaterials' | translate }}
+                        </li>
+
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            {{ 'about.features.modernTechnology' | translate }}
+                        </li>
+
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            {{ 'about.features.customerSatisfaction' | translate }}
+                        </li>
+
+                    </ul>
+
+                    <button class="btn btn--primary">
+                        {{ 'about.readMore' | translate }}
+                    </button>
+
+                </div>
+
+                <!-- Right -->
+
+                <div class="about-company__image">
+
+                    <img src="assets/images/hero/hero1.png"
+                        [alt]="'about.imageAlt' | translate">
+
+                </div>
+
+            </div>
+
+            <!-- Stats -->
+
+            <div class="about-company__stats">
+
+                <div class="stat-card">
+                    <h3>250+</h3>
+                    <span>{{ 'stats.projectsCompleted' | translate }}</span>
+                </div>
+
+                <div class="stat-card">
+                    <h3>120+</h3>
+                    <span>{{ 'stats.happyClients' | translate }}</span>
+                </div>
+
+                <div class="stat-card">
+                    <h3>15+</h3>
+                    <span>{{ 'stats.yearsExperience' | translate }}</span>
+                </div>
+
+                <div class="stat-card">
+                    <h3>50+</h3>
+                    <span>{{ 'aboutCompany.teamMembers' | translate }}</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

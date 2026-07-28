@@ -1,0 +1,32 @@
+/* ===========================================================
+   Mega Glass Global Styles
+   =========================================================== */
+
+/* Abstracts */
+@use './abstracts/variables';
+@use './abstracts/mixins';
+@use './abstracts/animations';
+
+/* Base */
+@use './base/reset';
+@use './base/typography';
+@use './base/theme';
+
+/* Components */
+@use './components/buttons';
+@use './abstracts/variables.scss' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+
+
+
+body {
+  font-family: $font-en;
+}
+
+
+body.arabic {
+  font-family: $font-ar;
+}

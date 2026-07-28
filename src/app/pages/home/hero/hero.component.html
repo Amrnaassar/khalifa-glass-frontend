@@ -1,0 +1,57 @@
+<section class="hero">
+
+  <button class="hero__nav hero__nav--prev" (click)="prev()">
+    <i class="fas fa-chevron-left"></i>
+  </button>
+
+  <div
+    class="hero__content"
+    [class.animating]="isAnimating"
+    [class.next]="direction === 'next'"
+    [class.prev]="direction === 'prev'">
+
+    <!-- Left -->
+    <div class="hero__left">
+
+      <span class="hero__badge">
+        {{ 'hero.badge' | translate }}
+      </span>
+
+      <h1 class="hero__title">
+        {{ 'hero.titlePrefix' | translate }}
+        <span>{{ items[index].title| translate }}</span>
+      </h1>
+
+      <p class="hero__description">
+        {{ items[index].text | translate }}
+      </p>
+
+      <div class="hero__actions">
+        <a routerLink="/Services">
+          <button class="btn btn--primary">
+            {{ 'hero.buttons.services' | translate }}
+          </button>
+        </a>
+
+        <a >
+          <button class="btn btn--outline" (click)="goToContact()">
+            {{ 'hero.buttons.contact' | translate }}
+            <i class="fas fa-phone"></i>
+          </button>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Right -->
+    <div class="hero__right">
+      <img [src]="items[index].img" [alt]="'hero.imageAlt' | translate">
+    </div>
+
+  </div>
+
+  <button class="hero__nav hero__nav--next" (click)="next()">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+
+</section>

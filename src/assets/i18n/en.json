@@ -1,0 +1,378 @@
+{
+  "topbar": {
+    "workingHours": "Sat - Thu: 8:00 AM - 6:00 PM",
+    "logout": "Logout",
+    "login": "Login"
+  },
+  "navbar": {
+    "companyName": "Khalifa Glass",
+    "companyDescription": "Premium Glass & Aluminum Solutions",
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "projects": "Projects",
+    "gallery": "Gallery",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "quote": "Get Quote"
+  },
+  "hero": {
+    "badge": "PREMIUM GLASS SOLUTIONS",
+    "titlePrefix": "We Create",
+    "imageAlt": "Khalifa Glass",
+    "buttons": {
+      "services": "Our Services",
+      "contact": "Contact Us"
+    },
+    "slides": {
+      "slide1": {
+        "title": "Transparent Future",
+        "text": "We provide premium glass and aluminium solutions with innovative designs, superior quality, and professional installation for every project."
+      },
+      "slide2": {
+        "title": "Elegant Glass Designs",
+        "text": "From luxury villas to modern office spaces, we deliver stylish glass systems that combine beauty, durability, and functionality."
+      },
+      "slide3": {
+        "title": "Built to Last",
+        "text": "Our experienced team uses high-quality materials and advanced technology to create reliable glass and aluminium solutions tailored to your needs."
+      }
+    }
+  },
+  "stats": {
+    "yearsExperience": "Years Experience",
+    "happyClients": "Happy Clients",
+    "projectsCompleted": "Projects Completed",
+    "awardsWon": "Awards Won"
+  },
+  "about": {
+    "subtitle": "ABOUT khalifa GLASS",
+    "title": "We Are The Leading Glass & Aluminium Company In Riyadh",
+    "description": "At khalifa Glass, we combine innovation, quality and craftsmanship to deliver exceptional glass and aluminium solutions for residential, commercial and industrial projects.",
+    "readMore": "Read More",
+    "imageAlt": "About khalifa Glass",
+    "experience": "Years Of <br> Experience",
+    "features": {
+      "expertTeam": "Expert Team",
+      "highQualityMaterials": "High Quality Materials",
+      "modernTechnology": "Modern Technology",
+      "customerSatisfaction": "Customer Satisfaction"
+    }
+  },
+  "services": {
+    "header": {
+      "premiumTitle": "Our Premium Services",
+      "subtitle": "OUR SERVICES",
+      "title": "OUR SERVICES"
+    },
+    "viewAll": "View All Services",
+    "items": {
+      "glassService1": "Glass Installation",
+      "glassService2": "Glass Maintenance",
+      "glassService3": "Glass Partitions",
+      "glassService4": "Office Glass",
+      "glassService5": "Mirror Installation",
+      "glassService6": "Shower Glass",
+      "glassService7": "Glass Doors",
+      "glassService8": "Emergency Repair"
+    }
+  },
+  "projects": {
+    "header": {
+      "exploreTitle": "Explore Our Projects",
+      "description": "Browse our latest glass and aluminium projects across residential, commercial and office spaces.",
+      "subtitle": "Featured Projects",
+      "title": "Our Recent Projects"
+    },
+    "viewAll": "View All Projects",
+    "items": {
+      "skylineTower": {
+        "title": "Skyline Tower",
+        "location": "Riyadh, Saudi Arabia"
+      },
+      "corporateOffice": {
+        "title": "Corporate Office",
+        "location": "Riyadh"
+      },
+      "luxuryVilla": {
+        "title": "Luxury Villa",
+        "location": "Jeddah"
+      },
+      "businessCenter": {
+        "title": "Business Center",
+        "location": ""
+      }
+    }
+  },
+  "categories": {
+    "commercial": "Commercial",
+    "office": "Office",
+    "residential": "Residential",
+    "business": "Business",
+    "villa": "Villa"
+  },
+  "common": {
+    "all": "All",
+    "loadMore": "Load More",
+    "loadLess": "Load Less"
+  },
+  "aboutCompany": {
+    "teamMembers": "Team Members"
+  },
+  "gallery": {
+    "header": {
+      "subtitle": "Our Gallery",
+      "title": "Explore Our Work"
+    },
+    "filters": {
+      "interiors": "Interiors",
+      "exteriors": "Exteriors",
+      "offices": "Offices",
+      "residential": "Residential"
+    }
+  },
+  "faq": {
+    "header": {
+      "subtitle": "FAQ",
+      "title": "Frequently Asked Questions",
+      "text": "Find answers to common questions"
+    },
+    "questions": {
+      "installation": {
+        "question": "How long does glass installation take?",
+        "answer": "Installation time depends on the project size and requirements."
+      },
+      "warranty": {
+        "question": "Do you provide warranty?",
+        "answer": "Yes, we provide warranty on our glass installation services."
+      },
+      "quote": {
+        "question": "How can I request a quote?",
+        "answer": "You can request a quote through our contact page."
+      },
+      "pricing": {
+        "question": "How is the price calculated?",
+        "answer": "Prices depend on glass type, size, and installation requirements."
+      },
+      "support": {
+        "question": "Do you provide maintenance support?",
+        "answer": "Yes, our team provides after-installation support."
+      }
+    },
+    "cta": {
+      "title": "Do you have another question?",
+      "description": "Contact us and our team will help you find the right answer."
+    }
+  },
+  "contact": {
+    "header": {
+      "subtitle": "Contact Us",
+      "title": "Let's Talk About Your Project",
+      "text": "Have a question or need a quotation? We'd love to hear from you."
+    },
+    "form": {
+      "fullName": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "message": "Your Message",
+      "send": "Send Message",
+      "sending": "Sending..."
+    },
+    "info": {
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "workingHours": "Working Hours",
+      "location": "Riyadh, Saudi Arabia"
+    },
+    "validation": {
+      "fullNameRequired": "Full name is required.",
+      "fullNameMin": "Full name must be at least 3 characters.",
+      "emailRequired": "Email is required.",
+      "emailInvalid": "Please enter a valid email.",
+      "phoneRequired": "Phone number is required.",
+      "phoneInvalid": "Please enter a valid Saudi mobile number.",
+      "subjectRequired": "Subject is required.",
+      "subjectMin": "Subject must be at least 5 characters.",
+      "messageRequired": "Message is required.",
+      "messageMin": "Message must be at least 10 characters."
+    },
+    "QUOTE": {
+      "SUBTITLE": "Get a Quote",
+      "TITLE": "Request Your Free Quote",
+      "TEXT": "Tell us about your project and our team will prepare a customized quotation as soon as possible.",
+      "PERSONAL_INFO": "Personal Information",
+      "FULL_NAME": "Full Name *",
+      "EMAIL": "Email Address *",
+      "PHONE": "Phone Number *",
+      "LOCATION": "Project Location *",
+      "PLACEHOLDER_FULL_NAME": "Enter your full name",
+      "PLACEHOLDER_EMAIL": "Enter your email",
+      "PLACEHOLDER_LOCATION": "City / Emirate",
+      "PROJECT_INFO": "Project Information",
+      "SERVICE": "Required Service *",
+      "SELECT_SERVICE": "Select Service",
+      "PROJECT_TYPE": "Project Type *",
+      "SELECT_TYPE": "Select Type",
+      "BUDGET": "Estimated Budget",
+      "CONTACT_METHOD": "Preferred Contact",
+      "WHATSAPP": "WhatsApp",
+      "PHONE_CALL": "Phone Call",
+      "EMAIL_ONLY": "Email",
+      "BUDGET1": "Under AED 5,000",
+      "BUDGET2": "AED 5,000 - 15,000",
+      "BUDGET3": "AED 15,000 - 50,000",
+      "BUDGET4": "Above AED 50,000",
+      "PROJECT_DESCRIPTION": "Project Description",
+      "DESCRIBE_PROJECT": "Tell us about your project *",
+      "PLACEHOLDER_DESCRIPTION": "Describe your project requirements...",
+      "PROJECT_IMAGES": "Project Images",
+      "UPLOAD_IMAGES": "Upload Images",
+      "UPLOAD_TYPES": "JPG, PNG or WEBP",
+      "SUBMIT": "Request Free Quote",
+      "WHY_US": "Why Choose Khalifa Glass?",
+      "FEATURE1": "Free Consultation",
+      "FEATURE2": "Fast Response",
+      "FEATURE3": "Professional Installation",
+      "FEATURE5": "Warranty Included",
+      "IMMEDIATE_HELP": "Need Immediate Assistance?",
+      "CONTACT_DIRECTLY": "Contact our team directly.",
+      "WHATSAPP_CHAT": "WhatsApp Chat",
+      "PREVIOUS_QUOTES": "Your Previous Quotes",
+      "PREVIOUS_QUOTES_TEXT": "These are your previous active quotation requests.",
+      "STATUS": "Status",
+      "SUBMITTED": "Submitted",
+      "NO_PREVIOUS_QUOTES": "No Previous Quotes",
+      "NO_PREVIOUS_QUOTES_TEXT": "You haven't submitted any quotation requests yet.",
+      "SELECT_BUDGET": "Select Budget",
+      "VALIDATION": {
+        "FULL_NAME_REQUIRED": "Full name is required.",
+        "FULL_NAME_MIN": "Full name must be at least 3 characters.",
+        "EMAIL_REQUIRED": "Email is required.",
+        "EMAIL_INVALID": "Please enter a valid email.",
+        "PHONE_REQUIRED": "Phone number is required.",
+        "PHONE_INVALID": "Enter a valid phone number.",
+        "LOCATION_REQUIRED": "Location is required.",
+        "LOCATION_MIN": "Location must be at least 3 characters.",
+        "SELECT_SERVICE": "Please select a service.",
+        "SELECT_PROJECT_TYPE": "Please select a project type.",
+        "SELECT_BUDGET": "Please select your budget.",
+        "DESCRIPTION_REQUIRED": "Project description is required.",
+        "DESCRIPTION_MIN": "Description must be at least 10 characters."
+      }
+    }
+  },
+  "footer": {
+    "logoAlt": "Khalifa Glass",
+    "companyName": "Khalifa Glass",
+    "companySlogan": "Premium Glass & Aluminum Solutions",
+    "description": "Khalifa Glass provides premium glass and aluminium solutions for residential, commercial and industrial projects with quality, innovation and professional workmanship.",
+    "quickLinks": {
+      "title": "Quick Links"
+    },
+    "services": {
+      "title": "Services"
+    },
+    "contact": {
+      "title": "Contact Info",
+      "address": "Riyadh, Saudi Arabia",
+      "workingHours": "Sat - Thu : 8 AM - 6 PM"
+    },
+    "copyright": "© 2026 Khalifa Glass. All Rights Reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsConditions": "Terms & Conditions"
+  },
+  "NOT_FOUND": {
+    "LABEL": "404 Page",
+    "TITLE": "Page Not Found",
+    "TEXT": "Sorry, the page you are looking for doesn't exist or has been moved.",
+    "BUTTON": "Return Home"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "intro": "At KhalifaGlass, we respect your privacy and are committed to protecting your personal information.",
+    "collect": {
+      "title": "Information We Collect",
+      "text": "We may collect your name, email address, phone number, and project details when you use our services or request a quotation."
+    },
+    "use": {
+      "title": "How We Use Your Information",
+      "text": "We use your information to provide quotations, communicate with you, improve our services, and manage your requests."
+    },
+    "security": {
+      "title": "Data Security",
+      "text": "We take appropriate security measures to protect your personal information from unauthorized access."
+    },
+    "contact": {
+      "title": "Contact Us",
+      "text": "If you have any questions regarding this Privacy Policy, please contact us."
+    }
+  },
+  "terms": {
+    "title": "Terms & Conditions",
+    "intro": "By using KhalifaGlass website, you agree to these terms and conditions.",
+    "services": {
+      "title": "Our Services",
+      "text": "Our glass installation and maintenance services are provided according to project requirements and final agreement."
+    },
+    "quote": {
+      "title": "Quotation Requests",
+      "text": "Submitting a quotation request does not guarantee acceptance. Final prices and details are confirmed after reviewing project requirements."
+    },
+    "payment": {
+      "title": "Payments",
+      "text": "Payment terms, schedules, and amounts are agreed upon before starting any project."
+    },
+    "property": {
+      "title": "Intellectual Property",
+      "text": "All website content, images, logos, and designs belong to KhalifaGlass and cannot be used without permission."
+    },
+    "liability": {
+      "title": "Limitation of Liability",
+      "text": "KhalifaGlass is not responsible for damages resulting from misuse of the website or services."
+    },
+    "changes": {
+      "title": "Changes to Terms",
+      "text": "We may update these terms and conditions from time to time to improve our services."
+    },
+    "footer": "Last updated: July 2026"
+  },
+  "seo": {
+    "home": {
+      "title": "Khalifa Glass | Glass & Aluminium Company in Riyadh Saudi Arabia",
+      "description": "Khalifa Glass provides professional glass installation and aluminium solutions for residential, commercial and industrial projects in Riyadh and across Saudi Arabia.",
+      "keywords": "glass company Riyadh, glass installation Riyadh, aluminium company Saudi Arabia, glass facade, tempered glass"
+    },
+    "about": {
+      "title": "About Khalifa Glass | Glass & Aluminium Experts in Riyadh",
+      "description": "Learn about Khalifa Glass, a professional company specialized in glass and aluminium solutions for residential, commercial and industrial projects.",
+      "keywords": "glass company Riyadh, aluminium company Saudi Arabia, glass experts"
+    },
+    "services": {
+      "title": "Glass & Aluminium Services in Riyadh | Khalifa Glass",
+      "description": "We provide glass installation, glass partitions, shower glass, glass doors and maintenance services in Riyadh Saudi Arabia.",
+      "keywords": "glass installation Riyadh, glass partitions, shower glass Riyadh, glass doors, aluminium works"
+    },
+    "projects": {
+      "title": "Glass & Aluminium Projects | Khalifa Glass Riyadh",
+      "description": "Explore Khalifa Glass projects including villas, offices and commercial buildings across Riyadh and Saudi Arabia.",
+      "keywords": "glass projects Riyadh, aluminium projects, glass facade Riyadh"
+    },
+    "gallery": {
+      "title": "Glass Projects Gallery | Khalifa Glass",
+      "description": "View our latest glass and aluminium works, designs and completed projects.",
+      "keywords": "glass design gallery, glass works, aluminium designs"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions | Khalifa Glass",
+      "description": "Find answers about glass installation, maintenance, quotations and services provided by Khalifa Glass.",
+      "keywords": "glass installation questions, glass maintenance Riyadh"
+    },
+    "contact": {
+      "title": "Contact Khalifa Glass | Request A Free Quote",
+      "description": "Contact Khalifa Glass in Riyadh to request a quotation for glass and aluminium installation services.",
+      "keywords": "contact glass company Riyadh, glass quotation, aluminium services Saudi Arabia"
+    }
+  }
+}

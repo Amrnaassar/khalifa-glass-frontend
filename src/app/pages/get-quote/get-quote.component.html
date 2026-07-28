@@ -1,0 +1,434 @@
+<section class="quote section">
+
+    <div class="container">
+
+        <app-section-header [subtitle]="'QUOTE.SUBTITLE' | translate" [title]="'QUOTE.TITLE' | translate"
+            [text]="'QUOTE.TEXT' | translate">
+        </app-section-header>
+
+        <div class="quote__wrapper">
+
+            <!-- Quote Form -->
+
+            <div class="quote__form">
+
+                <form [formGroup]="quoteForm" (ngSubmit)="submit()">
+
+                    <!-- Personal Information -->
+
+                    <div class="form-section">
+
+                        <h3 class="form-section__title">
+                            {{ 'QUOTE.PERSONAL_INFO' | translate }}
+                        </h3>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label>{{ 'QUOTE.FULL_NAME' | translate }}</label>
+
+                                <input type="text" formControlName="fullName"
+                                    [placeholder]="'QUOTE.PLACEHOLDER_FULL_NAME' | translate"
+                                    [class.is-invalid]="f.fullName.touched && f.fullName.invalid">
+
+                                @if (f.fullName.touched && f.fullName.invalid) {
+
+                                <small class="text-danger">
+
+                                    @if (f.fullName.errors?.['required']) {
+                                    {{ 'QUOTE.VALIDATION.FULL_NAME_REQUIRED' | translate }}
+                                    }
+
+                                    @if (f.fullName.errors?.['minlength']) {
+                                    {{ 'QUOTE.VALIDATION.FULL_NAME_MIN' | translate }}
+                                    }
+
+                                </small>
+
+                                }
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>{{ 'QUOTE.EMAIL' | translate }}</label>
+
+                                <input type="email" formControlName="email"
+                                    [placeholder]="'QUOTE.PLACEHOLDER_EMAIL' | translate"
+                                    [class.is-invalid]="f.email.touched && f.email.invalid">
+
+                                @if (f.email.touched && f.email.invalid) {
+
+                                <small class="text-danger">
+                                    @if (f.email.errors?.['required']) {
+                                    {{ 'QUOTE.VALIDATION.EMAIL_REQUIRED' | translate }}
+                                    }
+
+                                    @if (f.email.errors?.['email']) {
+                                    {{ 'QUOTE.VALIDATION.EMAIL_INVALID' | translate }}
+                                    }
+
+                                </small>
+
+                                }
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>{{ 'QUOTE.PHONE' | translate }}</label>
+
+                                <input type="tel" formControlName="phone" placeholder="+966"
+                                    [class.is-invalid]="f.phone.touched && f.phone.invalid">
+
+                                @if (f.phone.touched && f.phone.invalid) {
+
+                                <small class="text-danger">
+
+                                    @if (f.phone.errors?.['required']) {
+                                    {{ 'QUOTE.VALIDATION.PHONE_REQUIRED' | translate }}
+                                    }
+
+                                    @if (f.phone.errors?.['pattern']) {
+                                    {{ 'QUOTE.VALIDATION.PHONE_INVALID' | translate }}
+                                    }
+
+                                </small>
+
+                                }
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>{{ 'QUOTE.LOCATION' | translate }}</label>
+
+                                <input type="text" formControlName="location"
+                                    [placeholder]="'QUOTE.PLACEHOLDER_LOCATION' | translate"
+                                    [class.is-invalid]="f.location.touched && f.location.invalid">
+
+                                @if (f.location.touched && f.location.invalid) {
+
+                                <small class="text-danger">
+
+                                    @if (f.location.errors?.['required']) {
+                                    {{ 'QUOTE.VALIDATION.LOCATION_REQUIRED' | translate }}
+                                    }
+
+                                    @if (f.location.errors?.['minlength']) {
+                                    {{ 'QUOTE.VALIDATION.LOCATION_MIN' | translate }}
+                                    }
+
+                                </small>
+
+                                }
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Project Information -->
+
+                    <div class="form-section">
+
+                        <h3 class="form-section__title">
+                            {{ 'QUOTE.PROJECT_INFO' | translate }}
+                        </h3>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label>{{ 'QUOTE.SERVICE' | translate }}</label>
+
+                                <select formControlName="service"
+                                    [class.is-invalid]="f.service.touched && f.service.invalid">
+
+                                    <option value="">
+                                        {{ 'QUOTE.SELECT_SERVICE' | translate }}
+                                    </option>
+
+                                    @for (service of services; track $index) {
+                                    <option>{{ service.name | translate }}</option>
+                                    }
+
+                                </select>
+
+                                @if (f.service.touched && f.service.invalid) {
+                                <small class="text-danger">
+                                    {{ 'QUOTE.VALIDATION.SELECT_SERVICE' | translate }}
+                                </small>
+                                }
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>{{ 'QUOTE.PROJECT_TYPE' | translate }}</label>
+
+                                <select formControlName="projectType"
+                                    [class.is-invalid]="f.projectType.touched && f.projectType.invalid">
+
+                                    <option value="">
+                                        {{ 'QUOTE.SELECT_TYPE' | translate }}
+                                    </option>
+
+                                    @for (cat of categories; track $index) {
+                                    <option>{{ cat.name | translate }}</option>
+                                    }
+
+                                </select>
+
+                                @if (f.projectType.touched && f.projectType.invalid) {
+                                <small class="text-danger">
+                                    {{ 'QUOTE.VALIDATION.SELECT_PROJECT_TYPE' | translate }}
+                                </small>
+                                }
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>{{ 'QUOTE.BUDGET' | translate }}</label>
+
+                                <select formControlName="budget"
+                                    [class.is-invalid]="f.budget.touched && f.budget.invalid">
+
+                                    <option value="">
+                                        {{ 'QUOTE.SELECT_BUDGET' | translate }}
+                                    </option>
+                                    <option>{{ 'QUOTE.BUDGET1' | translate }}</option>
+                                    <option>{{ 'QUOTE.BUDGET2' | translate }}</option>
+                                    <option>{{ 'QUOTE.BUDGET3' | translate }}</option>
+                                    <option>{{ 'QUOTE.BUDGET4' | translate }}</option>
+
+                                </select>
+
+                                @if (f.budget.touched && f.budget.invalid) {
+                                <small class="text-danger">
+                                    {{ 'QUOTE.VALIDATION.SELECT_BUDGET' | translate }}
+                                </small>
+                                }
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>{{ 'QUOTE.CONTACT_METHOD' | translate }}</label>
+
+                                <select formControlName="contactMethod"
+                                    [class.is-invalid]="f.contactMethod.touched && f.contactMethod.invalid">
+
+                                    <option>{{ 'QUOTE.WHATSAPP' | translate }}</option>
+                                    <option>{{ 'QUOTE.PHONE_CALL' | translate }}</option>
+                                    <option>{{ 'QUOTE.EMAIL_ONLY' | translate }}</option>
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Project Description -->
+
+                    <div class="form-section">
+
+                        <h3 class="form-section__title">
+                            {{ 'QUOTE.PROJECT_DESCRIPTION' | translate }}
+                        </h3>
+
+                        <div class="form-group">
+
+                            <label>
+                                {{ 'QUOTE.DESCRIBE_PROJECT' | translate }}
+                            </label>
+
+                            <textarea rows="7" formControlName="message"
+                                [placeholder]="'QUOTE.PLACEHOLDER_DESCRIPTION' | translate"
+                                [class.is-invalid]="f.message.touched && f.message.invalid"></textarea>
+
+
+                            @if (f.message.touched && f.message.invalid) {
+
+                            <small class="text-danger">
+
+                                @if (f.message.errors?.['required']) {
+                                {{ 'QUOTE.VALIDATION.DESCRIPTION_REQUIRED' | translate }}
+                                }
+
+                                @if (f.message.errors?.['minlength']) {
+                                {{ 'QUOTE.VALIDATION.DESCRIPTION_MIN' | translate }}
+                                }
+
+                            </small>
+
+                            }
+
+                        </div>
+                    </div>
+
+                    <!-- Upload -->
+                    <div class="form-section">
+
+                        <h3 class="form-section__title">
+                            {{ 'QUOTE.PROJECT_IMAGES' | translate }}
+                        </h3>
+
+                        <div class="upload-gallery">
+
+                            <!-- الصور -->
+                            <div class="image-card" *ngFor="let image of imagePreviews; let i = index">
+
+                                <img [src]="image" alt="Preview">
+
+                                <button type="button" class="delete-btn" (click)="removeImage(i)">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </div>
+
+                            <!-- زر الإضافة -->
+                            <label class="upload-box">
+
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                                <h4>
+                                    {{ 'QUOTE.UPLOAD_IMAGES' | translate }}
+                                </h4>
+
+                                <p>
+                                    {{ 'QUOTE.UPLOAD_TYPES' | translate }}
+                                </p>
+
+                                <input type="file" multiple accept="image/*" (change)="onFileSelected($event)" hidden>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="btn btn--primary quote__submit">
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                        {{ 'QUOTE.SUBMIT' | translate }}
+
+                    </button>
+
+                </form>
+
+            </div>
+
+            <!-- Sidebar -->
+
+            <aside class="quote__sidebar">
+
+                <div class="quote-card">
+
+                    <h3>
+                        {{ 'QUOTE.WHY_US' | translate }}
+                    </h3>
+
+                    <ul>
+
+                        <li><i class="fa-solid fa-circle-check"></i>{{ 'QUOTE.FEATURE1' | translate }}</li>
+                        <li><i class="fa-solid fa-circle-check"></i>{{ 'QUOTE.FEATURE2' | translate }}</li>
+                        <li><i class="fa-solid fa-circle-check"></i>{{ 'QUOTE.FEATURE3' | translate }}</li>
+                        <li><i class="fa-solid fa-circle-check"></i>{{ 'QUOTE.FEATURE2' | translate }}</li>
+                        <li><i class="fa-solid fa-circle-check"></i>{{ 'QUOTE.FEATURE5' | translate }}</li>
+
+                    </ul>
+
+                </div>
+
+                <div class="quote-card">
+
+                    <h3>
+                        {{ 'QUOTE.IMMEDIATE_HELP' | translate }}
+                    </h3>
+
+                    <p>
+                        {{ 'QUOTE.CONTACT_DIRECTLY' | translate }}
+                    </p>
+
+                    <a class="floating-btn floating-btn--call" href="tel:+966567257944">
+                        <i class="fa-solid fa-phone"></i>
+                        +966 56 725 7944
+                    </a>
+                    <a class="floating-btn floating-btn--whatsapp"
+                        href="https://wa.me/966567257944?text=Hello%20Khalifa%20Glass,%20I%20would%20like%20to%20request%20a%20quotation."
+                        target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        {{ 'QUOTE.WHATSAPP_CHAT' | translate }}
+                    </a>
+
+                </div>
+
+                <div class="quote-card">
+
+                    @if (userQuotes) {
+
+                    <h3>{{ 'QUOTE.PREVIOUS_QUOTES' | translate }}</h3>
+
+                    <p>
+                        {{ 'QUOTE.PREVIOUS_QUOTES_TEXT' | translate }}
+                    </p>
+
+                    @for (q of userQuotes; track $index) {
+
+                    <div class="quote-info">
+
+                        <div class="quote-info__item">
+                            <i class="fa-solid fa-hourglass-half"></i>
+
+                            <span>{{ 'QUOTE.STATUS' | translate }}</span>
+
+                            <strong>{{q.status}}</strong>
+                        </div>
+
+                        <div class="quote-info__item">
+                            <i class="fa-regular fa-calendar"></i>
+
+                            <span>{{ 'QUOTE.SUBMITTED' | translate }}</span>
+
+                            <strong>{{q.createdAt | date:'dd MMM yyyy'}}</strong>
+                        </div>
+
+                        <div class="quote-info__item">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                            <span>{{ 'QUOTE.SERVICE' | translate }}</span>
+
+                            <strong>{{q.service}}</strong>
+                        </div>
+
+                    </div>
+
+                    }
+
+                    } @else {
+
+                    <h3>{{ 'QUOTE.NO_PREVIOUS_QUOTES' | translate }}</h3>
+
+                    <p>
+                        {{ 'QUOTE.NO_PREVIOUS_QUOTES_TEXT' | translate }}
+                    </p>
+
+                    }
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </div>
+
+</section>

@@ -1,0 +1,86 @@
+/* ===========================================================
+   Mega Glass Design System
+   =========================================================== */
+
+/* ========= Colors ========= */
+
+$primary: #0F5132;
+$secondary:#17b26a;
+$dark-green: #14532D;
+$light-green: #D1E7DD;
+
+$white: #FFFFFF;
+$gray: #F8F9FA;
+$light-gray: #E9ECEF;
+$dark: #212529;
+$text-color: #495057;
+
+
+/* ========= Backgrounds ========= */
+
+$body-bg: #FFFFFF;
+$section-bg: #F8F9FA;
+
+
+/* ========= Glass Effect ========= */
+
+$glass-bg: rgba(255,255,255,.18);
+$glass-border: rgba(255,255,255,.25);
+$glass-blur: blur(16px);
+
+
+/* ========= Border Radius ========= */
+
+$radius-sm: 8px;
+$radius-md: 16px;
+$radius-lg: 24px;
+$radius-xl: 32px;
+
+
+/* ========= Language Fons ========= */
+
+$font-en: 'Inter', sans-serif;
+$font-ar: 'Cairo', sans-serif;
+/* ========= Shadows ========= */
+
+$shadow-sm: 0 5px 15px rgba(0,0,0,.08);
+
+$shadow-md: 0 12px 30px rgba(0,0,0,.12);
+
+$shadow-lg: 0 20px 45px rgba(0,0,0,.18);
+
+
+/* ========= Transition ========= */
+
+$transition: all .35s ease;
+
+
+/* ========= Container ========= */
+
+$container-width: 1320px;
+
+
+/* ========= Header ========= */
+
+$header-height: 85px;
+$topbar-height: 42px;
+
+
+/* ========= Z-index ========= */
+
+$z-navbar: 1000;
+$z-dropdown: 1050;
+$z-modal: 1100;
+$z-loader: 9999;
+
+
+/* ========= Typography ========= */
+
+$font-family:
+'Poppins',
+'Tajawal',
+sans-serif;
+
+$font-size-base: 16px;
+
+$line-height: 1.7;

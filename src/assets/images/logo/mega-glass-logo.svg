@@ -1,0 +1,18 @@
+<svg width="680" height="250" viewBox="0 0 680 250" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Mega Glass logo</title>
+<desc>A faceted diamond glass-pane icon in deep green, beside the wordmark Mega Glass.</desc>
+<g>
+<polygon points="130,130 130,50 50,130" fill="#2f9d68"/>
+<polygon points="130,130 50,130 130,210" fill="#14532D"/>
+<polygon points="130,130 130,210 210,130" fill="#0F5132"/>
+<polygon points="130,130 210,130 130,50" fill="#1f7a4c"/>
+<line x1="130" y1="50" x2="130" y2="210" stroke="#ffffff" stroke-width="2.5" opacity="0.85"/>
+<line x1="50" y1="130" x2="210" y2="130" stroke="#ffffff" stroke-width="2.5" opacity="0.85"/>
+<polygon points="130,50 210,130 130,210 50,130" fill="none" stroke="#0F5132" stroke-width="2"/>
+<line x1="88" y1="92" x2="112" y2="68" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+</g>
+<text x="250" y="116" font-family="Poppins, Arial, sans-serif" font-size="46" font-weight="700" fill="#0F5132" letter-spacing="1">MEGA</text>
+<text x="250" y="166" font-family="Poppins, Arial, sans-serif" font-size="46" font-weight="700" fill="#0F5132" letter-spacing="1">GLASS</text>
+<rect x="250" y="178" width="72" height="4" fill="#198754"/>
+<text x="250" y="201" font-family="Poppins, Arial, sans-serif" font-size="13" font-weight="500" fill="#198754" letter-spacing="2.5">GLASS &amp; ALUMINIUM SOLUTIONS</text>
+</svg>

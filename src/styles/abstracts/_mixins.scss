@@ -1,0 +1,68 @@
+@use 'variables' as *;
+
+/* ==========================================
+   Flex Center
+========================================== */
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==========================================
+   Flex Between
+========================================== */
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ==========================================
+   Glass Effect
+========================================== */
+
+@mixin glass {
+  background: $glass-bg;
+  backdrop-filter: $glass-blur;
+  -webkit-backdrop-filter: $glass-blur;
+  border: 1px solid $glass-border;
+}
+
+/* ==========================================
+   Smooth Transition
+========================================== */
+
+@mixin transition {
+  transition: $transition;
+}
+
+/* ==========================================
+   Responsive Breakpoints
+========================================== */
+
+@mixin mobile {
+  @media (max-width: 576px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}

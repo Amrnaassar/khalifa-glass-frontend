@@ -1,0 +1,47 @@
+<section class="gallery section">
+
+    <div class="container">
+
+        <app-section-header
+            [subtitle]="'gallery.header.subtitle' | translate"
+            [title]="'gallery.header.title' | translate" />
+
+        <!-- Filters -->
+
+        <div class="gallery__filter">
+
+            <button class="active">{{ 'common.all' | translate }}</button>
+            <button>{{ 'gallery.filters.interiors' | translate }}</button>
+            <button>{{ 'gallery.filters.exteriors' | translate }}</button>
+            <button>{{ 'gallery.filters.offices' | translate }}</button>
+            <button>{{ 'gallery.filters.residential' | translate }}</button>
+
+        </div>
+
+        <!-- Gallery -->
+
+        <div class="gallery__grid">
+
+            @for(image of gallery; track image.id){
+
+            <div class="gallery-card" [class.gallery-card--large]="image.large">
+
+                <img [src]="image.image" [alt]="image.title | translate">
+
+                <div class="gallery-card__overlay">
+
+                    <h3>{{ image.title | translate }}</h3>
+
+                    <span>{{ image.category | translate }}</span>
+
+                </div>
+
+            </div>
+
+            }
+
+        </div>
+
+    </div>
+
+</section>

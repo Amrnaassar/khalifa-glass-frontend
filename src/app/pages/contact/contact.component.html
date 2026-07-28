@@ -1,0 +1,363 @@
+<section class="contact-page section">
+
+    <div class="container">
+
+        <app-section-header
+            [subtitle]="'contact.header.subtitle' | translate"
+            [title]="'contact.header.title' | translate"
+            [text]="'contact.header.text' | translate">
+        </app-section-header>
+
+
+        <div class="section-heading">
+
+            <h2 class="section-heading__title">
+                {{ 'contact.header.title' | translate }}
+            </h2>
+
+            <p class="section-heading__text">
+                {{ 'contact.header.text' | translate }}
+            </p>
+
+        </div>
+
+
+        <div class="contact">
+
+
+            <!-- Form -->
+
+            <div class="contact__form">
+
+                <form [formGroup]="contactForm" (ngSubmit)="submit()">
+
+
+                    <div class="form-grid">
+
+
+                        <!-- Full Name -->
+
+                        <div class="form-group">
+
+                            <input
+                                type="text"
+                                formControlName="fullName"
+                                [placeholder]="'contact.form.fullName' | translate"
+                                [class.is-invalid]="f.fullName.touched && f.fullName.invalid">
+
+
+                            @if (f.fullName.touched && f.fullName.invalid) {
+
+                                <small class="text-danger">
+
+                                    @if (f.fullName.errors?.['required']) {
+                                        {{ 'contact.validation.fullNameRequired' | translate }}
+                                    }
+
+                                    @if (f.fullName.errors?.['minlength']) {
+                                        {{ 'contact.validation.fullNameMin' | translate }}
+                                    }
+
+                                </small>
+
+                            }
+
+                        </div>
+
+
+
+                        <!-- Email -->
+
+                        <div class="form-group">
+
+                            <input
+                                type="email"
+                                formControlName="email"
+                                [placeholder]="'contact.form.email' | translate"
+                                [class.is-invalid]="f.email.touched && f.email.invalid">
+
+
+                            @if (f.email.touched && f.email.invalid) {
+
+                                <small class="text-danger">
+
+                                    @if (f.email.errors?.['required']) {
+                                        {{ 'contact.validation.emailRequired' | translate }}
+                                    }
+
+                                    @if (f.email.errors?.['email']) {
+                                        {{ 'contact.validation.emailInvalid' | translate }}
+                                    }
+
+                                </small>
+
+                            }
+
+                        </div>
+
+
+
+                        <!-- Phone -->
+
+                        <div class="form-group">
+
+                            <input
+                                type="tel"
+                                formControlName="phone"
+                                placeholder="+966"
+                                [class.is-invalid]="f.phone.touched && f.phone.invalid">
+
+
+                            @if (f.phone.touched && f.phone.invalid) {
+
+                                <small class="text-danger">
+
+                                    @if (f.phone.errors?.['required']) {
+                                        {{ 'contact.validation.phoneRequired' | translate }}
+                                    }
+
+                                    @if (f.phone.errors?.['pattern']) {
+                                        {{ 'contact.validation.phoneInvalid' | translate }}
+                                    }
+
+                                </small>
+
+                            }
+
+                        </div>
+
+
+
+                        <!-- Subject -->
+
+                        <div class="form-group">
+
+                            <input
+                                type="text"
+                                formControlName="subject"
+                                [placeholder]="'contact.form.subject' | translate"
+                                [class.is-invalid]="f.subject.touched && f.subject.invalid">
+
+
+                            @if (f.subject.touched && f.subject.invalid) {
+
+                                <small class="text-danger">
+
+                                    @if (f.subject.errors?.['required']) {
+                                        {{ 'contact.validation.subjectRequired' | translate }}
+                                    }
+
+                                    @if (f.subject.errors?.['minlength']) {
+                                        {{ 'contact.validation.subjectMin' | translate }}
+                                    }
+
+                                </small>
+
+                            }
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+                    <!-- Message -->
+
+                    <div class="form-group">
+
+
+                        <textarea
+                            rows="6"
+                            formControlName="message"
+                            [placeholder]="'contact.form.message' | translate"
+                            [class.is-invalid]="f.message.touched && f.message.invalid">
+                        </textarea>
+
+
+
+                        @if (f.message.touched && f.message.invalid) {
+
+                            <small class="text-danger">
+
+
+                                @if (f.message.errors?.['required']) {
+                                    {{ 'contact.validation.messageRequired' | translate }}
+                                }
+
+
+                                @if (f.message.errors?.['minlength']) {
+                                    {{ 'contact.validation.messageMin' | translate }}
+                                }
+
+
+                            </small>
+
+                        }
+
+
+                    </div>
+
+
+
+
+                    <button
+                        class="btn btn--primary"
+                        type="submit"
+                        [disabled]="isLoading">
+
+
+                        {{ 
+                            isLoading 
+                            ? ('contact.form.sending' | translate) 
+                            : ('contact.form.send' | translate) 
+                        }}
+
+
+                    </button>
+
+
+                </form>
+
+
+            </div>
+
+
+
+
+
+            <!-- Info -->
+
+
+            <div class="contact__info">
+
+
+                <div class="info-card">
+
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+
+                    <div>
+
+
+                        <h4>
+                            {{ 'contact.info.address' | translate }}
+                        </h4>
+
+
+                        <p>
+                            {{ 'contact.info.location' | translate }}
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+                <div class="info-card">
+
+
+                    <i class="fa-solid fa-phone"></i>
+
+
+                    <div>
+
+
+                        <h4>
+                            {{ 'contact.info.phone' | translate }}
+                        </h4>
+
+
+                        <p>
+
+                            <a href="tel:+966567257944">
+                                +966 56 725 7944
+                            </a>
+
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+                <div class="info-card">
+
+
+                    <i class="fa-solid fa-envelope"></i>
+
+
+                    <div>
+
+
+                        <h4>
+                            {{ 'contact.info.email' | translate }}
+                        </h4>
+
+
+                        <p>
+
+                            <a href="mailto:khalifaglass73@gmail.com">
+                                khalifaglass73&#64;gmail.com
+                            </a>
+
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+                <div class="info-card">
+
+
+                    <i class="fa-solid fa-clock"></i>
+
+
+                    <div>
+
+
+                        <h4>
+                            {{ 'contact.info.workingHours' | translate }}
+                        </h4>
+
+
+                        <p>
+                            {{ 'topbar.workingHours' | translate }}
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>

@@ -1,0 +1,67 @@
+<section class="projects-page section">
+
+    <div class="container">
+
+        <app-section-header [subtitle]="'projects.header.subtitle' | translate"
+            [title]="'projects.header.exploreTitle' | translate"
+            [text]="'projects.header.description' | translate"></app-section-header>
+
+
+
+        <!-- Filter -->
+
+        <div class="projects-filter">
+
+            <button class="projects-filter__btn active">
+                {{ 'common.all' | translate }}
+            </button>
+
+            @for (cat of categories; track $index) {
+            <button class="projects-filter__btn">
+                {{ cat.name | translate }}
+            </button>
+            }
+
+        </div>
+
+        <!-- Grid -->
+
+        <div class="projects-page__grid">
+
+            @for (proj of displayedProjects; track $index) {
+            <article class="project">
+
+                <div class="project__image">
+
+                    <img [src]="proj.img" [alt]="proj.title | translate">
+
+                </div>
+
+                <div class="project__overlay">
+
+                    <h3>
+                        {{ proj.title | translate }}
+                    </h3>
+
+                    <p>
+                        {{ proj.location | translate }}
+                    </p>
+
+                </div>
+
+            </article>
+            }
+
+        </div>
+
+        <div class="projects-page__more">
+
+            <button class="btn btn--primary" (click)="loadProject()">
+                {{ showAll ? ('common.loadLess' | translate) : ('common.loadMore' | translate) }}
+            </button>
+
+        </div>
+
+    </div>
+
+</section>

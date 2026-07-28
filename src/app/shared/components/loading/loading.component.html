@@ -1,0 +1,28 @@
+<div class="loader-backdrop" *ngIf="loading$ | async">
+  <div class="loader">
+
+    <div class="loader__circle">
+
+      <div class="loader__ring"></div>
+
+      <div class="loader__logo">
+        <img
+          src="assets/icons/khalifa-icon.png"
+          alt="Khalifa Glass">
+      </div>
+
+    </div>
+
+    <div class="loader__text">
+      <h5>Khalifa Glass</h5>
+      <span>Loading...</span>
+    </div>
+
+    <div class="loader__dots">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  </div>
+</div>

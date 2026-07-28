@@ -1,0 +1,333 @@
+@use "../../../styles/abstracts/variables" as *;
+@use "../../../styles/abstracts/mixins" as *;
+
+
+.legal-page {
+
+    padding: 120px 0 80px;
+    background: $section-bg;
+    min-height: calc(100vh - $header-height);
+
+
+    .container {
+
+        max-width: $container-width;
+        margin: auto;
+        padding: 0 20px;
+    }
+
+
+
+    &__wrapper {
+
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+
+    }
+
+
+
+    &__header {
+
+        text-align: center;
+        max-width: 850px;
+        margin: auto;
+
+
+        h1 {
+
+            color: $primary;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+
+            animation: fadeInUp .7s ease;
+
+        }
+
+
+        p {
+
+            color: $text-color;
+            font-size: 18px;
+            line-height: $line-height;
+
+            animation: fadeIn .8s ease;
+
+        }
+
+
+    }
+
+
+
+    &__content {
+
+
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 30px;
+
+
+        animation: fadeInUp .8s ease;
+
+
+
+        @include laptop {
+
+            grid-template-columns: 1fr;
+
+        }
+
+
+    }
+
+
+
+    &__card {
+
+        background: $white;
+
+        padding: 35px;
+
+        border-radius: $radius-lg;
+
+        box-shadow: $shadow-sm;
+
+        border: 1px solid $light-gray;
+
+        @include transition;
+
+
+        &:hover {
+
+            transform: translateY(-8px);
+
+            box-shadow: $shadow-md;
+
+            border-color: $light-green;
+
+        }
+
+
+
+        h2 {
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+
+            color: $primary;
+
+            font-size: 24px;
+
+            margin-bottom: 15px;
+
+
+            &::before {
+
+                content: "";
+
+                width: 8px;
+                height: 35px;
+
+                background: $secondary;
+
+                border-radius: 20px;
+
+            }
+
+        }
+
+
+
+        p {
+
+            color: $text-color;
+
+            font-size: $font-size-base;
+
+            line-height: $line-height;
+
+        }
+
+
+    }
+
+
+
+    &__footer {
+
+
+        margin-top: 20px;
+
+        padding: 25px;
+
+        border-radius: $radius-md;
+
+        background: linear-gradient(
+            135deg,
+            $primary,
+            $dark-green
+        );
+
+
+        color: $white;
+
+        text-align: center;
+
+
+        p {
+
+            color: $light-green;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+            @include transition;
+
+
+            &:hover {
+
+                color: $white;
+
+            }
+
+        }
+
+    }
+
+
+
+}
+
+
+/* =====================================
+   Responsive
+===================================== */
+
+
+@include tablet {
+
+
+    .legal-page {
+
+
+        padding: 100px 0 60px;
+
+
+
+        &__header {
+
+
+            h1 {
+
+                font-size: 32px;
+
+            }
+
+
+            p {
+
+                font-size: 16px;
+
+            }
+
+        }
+
+
+
+        &__card {
+
+
+            padding: 25px;
+
+
+
+            h2 {
+
+                font-size: 20px;
+
+            }
+
+
+        }
+
+
+    }
+
+
+}
+
+
+
+@include mobile {
+
+
+    .legal-page {
+
+
+        padding: 90px 0 50px;
+
+
+
+        .container {
+
+            padding: 0 15px;
+
+        }
+
+
+
+        &__header {
+
+
+            h1 {
+
+                font-size: 28px;
+
+            }
+
+
+        }
+
+
+
+        &__card {
+
+
+            padding: 20px;
+
+            border-radius: $radius-md;
+
+
+            h2 {
+
+
+                font-size: 18px;
+
+
+                &::before {
+
+                    height: 25px;
+
+                }
+
+            }
+
+
+            p {
+
+                font-size: 14px;
+
+            }
+
+        }
+
+
+    }
+
+}

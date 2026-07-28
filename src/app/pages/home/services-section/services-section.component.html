@@ -1,0 +1,39 @@
+<section class="services">
+
+    <div class="container">
+
+        <app-section-header 
+            [subtitle]="'services.header.subtitle' | translate"
+            [title]="'services.header.title' | translate" />
+
+        <div class="services__grid">
+
+            @for (item of services; track $index) {
+            <div class="service-card">
+
+                <div class="service-card__icon">
+                    <img [src]="item.icon" [alt]="item.name | translate">
+                </div>
+
+                <h3 class="service-card__title">
+                    {{ item.name | translate }}
+                </h3>
+
+            </div>
+            }
+
+        </div>
+
+        <div class="services__button">
+
+            <a routerLink="/Services" routerLinkActive="true">
+                <button class="btn btn--primary">
+                    {{ 'services.viewAll' | translate }}
+                </button>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>

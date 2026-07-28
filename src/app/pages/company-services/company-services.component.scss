@@ -1,0 +1,208 @@
+
+
+@use '../../../styles/abstracts/variables' as *;
+@use '../../../styles/abstracts/mixins' as *;
+
+.services {
+
+    padding: 100px 0;
+    background: $section-bg;
+
+   
+
+    &__grid {
+
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 24px;
+
+        margin-bottom: 45px;
+    }
+
+    &__button {
+
+        @include flex-center;
+    }
+
+}
+
+.service-card {
+
+    background: #fff;
+
+    border-radius: 18px;
+
+   // padding: 35px 20px;
+
+    text-align: center;
+
+    border: 1px solid #edf0f2;
+
+    @include transition;
+
+    cursor: pointer;
+
+    &:hover {
+
+        transform: translateY(-8px);
+
+        box-shadow: 0 18px 35px rgba(0, 0, 0, .08);
+
+        border-color: rgba($primary, .15);
+
+        .service-card__icon {
+
+            transform: scale(1.08);
+
+            img {
+
+                animation: pulse .8s;
+            }
+
+        }
+
+        .service-card__title {
+
+            color: $primary;
+        }
+
+    }
+
+    &__icon {
+
+        width: 200px;
+
+        height: 200px;
+
+        margin: 0 auto 22px;
+
+        @include flex-center;
+
+        @include transition;
+
+        img {
+
+            width: 150px;
+
+            height: 150px;
+
+            object-fit: contain;
+
+            @include transition;
+        }
+
+    }
+
+    &__title {
+
+        font-size: 16px;
+
+        font-weight: 600;
+
+        color: $text-color;
+
+        line-height: 1.5;
+
+        @include transition;
+    }
+
+}
+
+@include desktop {
+
+    .services {
+
+        &__grid {
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 18px;
+        }
+
+    }
+
+}
+
+@include laptop {
+
+    .services {
+
+        padding: 80px 0;
+
+        &__title {
+
+            font-size: 34px;
+        }
+
+        &__grid {
+
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+    }
+
+}
+
+@include tablet {
+
+    .services {
+
+        padding: 70px 0;
+
+        &__header {
+
+            margin-bottom: 40px;
+        }
+
+        &__title {
+
+            font-size: 30px;
+        }
+
+        &__grid {
+
+            gap: 18px;
+        }
+
+    }
+
+    .service-card {
+
+        padding: 30px 18px;
+
+        &__icon {
+
+            width: 64px;
+            height: 64px;
+
+            img {
+
+                width: 42px;
+                height: 42px;
+            }
+
+        }
+
+    }
+
+}
+
+@include mobile {
+
+    .services {
+
+        &__grid {
+
+            grid-template-columns: 1fr;
+        }
+
+        &__title {
+
+            font-size: 26px;
+        }
+
+    }
+
+}

@@ -1,0 +1,130 @@
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="container">
+
+    <div class="topbar__left">
+        <a href="tel:+966567257944">
+          <i  class="fas fa-phone"></i>
+          <span dir="ltr">+966 56 725 7944</span>
+        </a>
+
+      <a href="mailto:khalifaglass72@gmail.com">
+        <i class="fas fa-envelope"></i>
+        khalifaglass72gmail.com
+      </a>
+
+      <span>
+        <i class="fas fa-clock"></i>
+        {{ 'topbar.workingHours' | translate }}
+      </span>
+    </div>
+
+    <div class="topbar__right">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+
+      <span (click)="toggleLanguage()">
+        {{ languageService.isArabic() ? 'EN' : 'AR' }}
+      </span>
+      <span (click)="logged()">
+        {{ (isLogged() ? 'topbar.logout' : 'topbar.login') | translate }}
+      </span>
+    </div>
+
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" [class.scrolled]="isScrolled">
+
+  <div class="container">
+
+    <!-- Logo -->
+    <a routerLink="/Home" routerLinkActive="active" class="navbar__logo">
+
+      <img src="assets/images/logo/khalifa-logo.png" [alt]="'navbar.companyName' | translate">
+
+      <div class="navbar__logo-content">
+        <h3 class="navbar__logo-title">
+          {{ 'navbar.companyName' | translate }}
+        </h3>
+
+        <p class="navbar__logo-desc">
+          {{ 'navbar.companyDescription' | translate }}
+        </p>
+      </div>
+    </a>
+
+    <!-- Burger -->
+    <div class="navbar__burger" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Navigation -->
+    <ul class="navbar__menu" [class.active]="menuOpen">
+
+      <li>
+        <a routerLink="/Home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+          (click)="menuOpen=false">
+          {{ 'navbar.home' | translate }}
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/About-Us" routerLinkActive="active" (click)="menuOpen=false">
+          {{ 'navbar.about' | translate }}
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/Services" routerLinkActive="active" (click)="menuOpen=false">
+          {{ 'navbar.services' | translate }}
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/Projects" routerLinkActive="active" (click)="menuOpen=false">
+          {{ 'navbar.projects' | translate }}
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/Gallery" routerLinkActive="active" (click)="menuOpen=false">
+          {{ 'navbar.gallery' | translate }}
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/FAQ" routerLinkActive="active" (click)="menuOpen=false">
+          {{ 'navbar.faq' | translate }}
+        </a>
+      </li>
+
+      <li>
+        <a  (click)="goToContact();menuOpen=false">
+          {{ 'navbar.contact' | translate }}
+        </a>
+      </li>
+
+    </ul>
+
+    <!-- Actions -->
+    <div class="navbar__actions">
+
+      <button class="btn-language" (click)="toggleLanguage()">
+        {{ languageService.isArabic() ? 'EN' : 'AR' }}
+      </button>
+
+      <button class="btn btn--primary" (click)="goToQuote()">
+        {{ 'navbar.quote' | translate }}
+      </button>
+
+      <div id="googleBtn"></div>
+
+    </div>
+
+  </div>
+</nav>

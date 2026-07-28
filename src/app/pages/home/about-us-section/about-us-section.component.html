@@ -1,0 +1,73 @@
+<section class="about">
+  <div class="container">
+
+    <div class="about__wrapper">
+
+      <!-- Left Content -->
+
+      <div class="about__content">
+
+        <span class="about__subtitle">
+          {{ 'about.subtitle' | translate }}
+        </span>
+
+        <h2 class="about__title">
+          {{ 'about.title' | translate }}
+        </h2>
+
+        <p class="about__description">
+          {{ 'about.description' | translate }}
+        </p>
+
+        <ul class="about__features">
+
+          <li>
+            <i class="fas fa-check-circle"></i>
+            {{ 'about.features.expertTeam' | translate }}
+          </li>
+
+          <li>
+            <i class="fas fa-check-circle"></i>
+            {{ 'about.features.highQualityMaterials' | translate }}
+          </li>
+
+          <li>
+            <i class="fas fa-check-circle"></i>
+            {{ 'about.features.modernTechnology' | translate }}
+          </li>
+
+          <li>
+            <i class="fas fa-check-circle"></i>
+            {{ 'about.features.customerSatisfaction' | translate }}
+          </li>
+
+        </ul>
+
+        <a routerLink="/About-Us" routerLinkActive="true">
+          <button class="btn btn--primary">
+            {{ 'about.readMore' | translate }}
+          </button>
+        </a>
+
+      </div>
+
+      <!-- Image -->
+
+      <div class="about__image">
+
+        <img src="assets/images/hero/hero1.png" [alt]="'about.imageAlt' | translate">
+
+        <div class="experience-card">
+
+          <h3>10+</h3>
+
+          <span [innerHTML]="'about.experience' | translate"></span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
