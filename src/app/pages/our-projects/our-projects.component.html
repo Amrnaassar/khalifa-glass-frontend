@@ -12,12 +12,13 @@
 
         <div class="projects-filter">
 
-            <button class="projects-filter__btn active">
+            <button class="projects-filter__btn" [class.active]="selectedCategoryId === 0" (click)="filterProjects(0)">
                 {{ 'common.all' | translate }}
             </button>
 
-            @for (cat of categories; track $index) {
-            <button class="projects-filter__btn">
+            @for (cat of categories; track cat.id) {
+            <button class="projects-filter__btn" [class.active]="selectedCategoryId === cat.id"
+                (click)="filterProjects(cat.id)">
                 {{ cat.name | translate }}
             </button>
             }

@@ -197,7 +197,8 @@
       "subjectMin": "Subject must be at least 5 characters.",
       "messageRequired": "Message is required.",
       "messageMin": "Message must be at least 10 characters."
-    },
+    }
+  },
     "QUOTE": {
       "SUBTITLE": "Get a Quote",
       "TITLE": "Request Your Free Quote",
@@ -262,7 +263,7 @@
         "DESCRIPTION_MIN": "Description must be at least 10 characters."
       }
     }
-  },
+  ,
   "footer": {
     "logoAlt": "Khalifa Glass",
     "companyName": "Khalifa Glass",

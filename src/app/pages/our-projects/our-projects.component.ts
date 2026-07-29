@@ -8,35 +8,50 @@ import { SectionHeaderComponent } from '../../shared/components/section-header/s
 
 @Component({
   selector: 'app-our-projects',
-  imports: [SectionHeaderComponent,CommonModule,TranslatePipe],
+  imports: [SectionHeaderComponent, CommonModule, TranslatePipe],
   templateUrl: './our-projects.component.html',
   styleUrl: './our-projects.component.scss'
 })
 export class OurProjectsComponent {
 
-  projects:ICompanyProjects[]
-  categories:ICompanyCategory[];
-  showAll:boolean=false;
+  projects: ICompanyProjects[]
+  categories: ICompanyCategory[];
+  showAll: boolean = false;
+  selectedCategoryId: number = 0;
 
-  constructor(private _ProjectService:CompanyProjectsService,private _categoriesService:CompanyCategoryService){
-    this.projects=this._ProjectService.getAllProjects();
-    this.categories=this._categoriesService.getAllCategory();
+  constructor(private _ProjectService: CompanyProjectsService, private _categoriesService: CompanyCategoryService) {
+    this.projects = this._ProjectService.getAllProjects();
+    this.categories = this._categoriesService.getAllCategory();
   }
 
-  getCategoryName(id:number):string{
-    let cat:ICompanyCategory | undefined= this.categories.find((item)=>item.id==id);
-    return cat? cat.name:"";
+
+  getCategoryName(id: number): string {
+    let cat: ICompanyCategory | undefined = this.categories.find((item) => item.id == id);
+    return cat ? cat.name : "";
+  }
+  filterProjects(categoryId: number) {
+    this.selectedCategoryId = categoryId;
+    this.showAll = false; // كل مرة يرجع لأول 3
   }
 
   get displayedProjects() {
-  return this.showAll
-    ? this.projects
-    : this.projects.slice(0, 3);
-}
 
-loadProject() {
-  this.showAll = !this.showAll;
-}
+    const filteredProjects =
+      this.selectedCategoryId === 0
+        ? this.projects
+        : this.projects.filter(
+          project => project.catId === this.selectedCategoryId
+        );
 
-  
+    return this.showAll
+      ? filteredProjects
+      : filteredProjects.slice(0, 3);
+  }
+
+
+  loadProject() {
+    this.showAll = !this.showAll;
+  }
+
+
 }

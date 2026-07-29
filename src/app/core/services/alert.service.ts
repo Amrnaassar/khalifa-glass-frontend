@@ -7,7 +7,6 @@ import { GoogleAuthService } from './google-auth.service';
 })
 export class AlertService {
 
-
   constructor(private googleAuthService:GoogleAuthService){}
   
     loginRequired(): void {
@@ -19,11 +18,12 @@ export class AlertService {
         text: 'Please login with Google to continue.',
   
         icon: 'info',
+
+        iconColor:'#0F5132',
   
         confirmButtonText: 'Login with Google',
   
         confirmButtonColor: '#0F5132',
-  
   
         showCancelButton: true,
   

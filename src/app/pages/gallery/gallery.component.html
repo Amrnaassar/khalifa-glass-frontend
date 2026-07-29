@@ -10,11 +10,16 @@
 
         <div class="gallery__filter">
 
-            <button class="active">{{ 'common.all' | translate }}</button>
-            <button>{{ 'gallery.filters.interiors' | translate }}</button>
-            <button>{{ 'gallery.filters.exteriors' | translate }}</button>
-            <button>{{ 'gallery.filters.offices' | translate }}</button>
-            <button>{{ 'gallery.filters.residential' | translate }}</button>
+           <button  [class.active]="selectedCategoryId === 0" (click)="filterGallery(0)">
+                {{ 'common.all' | translate }}
+            </button>
+
+            @for (cat of categories; track cat.id) {
+            <button [class.active]="selectedCategoryId === cat.id"
+                (click)="filterGallery(cat.id)">
+                {{ cat.name | translate }}
+            </button>
+            }
 
         </div>
 
@@ -22,7 +27,7 @@
 
         <div class="gallery__grid">
 
-            @for(image of gallery; track image.id){
+            @for(image of displayedGallery; track image.id){
 
             <div class="gallery-card" [class.gallery-card--large]="image.large">
 
@@ -32,7 +37,7 @@
 
                     <h3>{{ image.title | translate }}</h3>
 
-                    <span>{{ image.category | translate }}</span>
+                    {{ (getCategoryName(image.catId) )| translate }}
 
                 </div>
 
