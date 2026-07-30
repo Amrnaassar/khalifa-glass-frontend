@@ -1,6 +1,7 @@
 export const API = {
 
-  BASE_URL: 'https://localhost:7272/api',
+  BASE_URL:'https://localhost:7272/',
+  BASE_API_URL: 'https://localhost:7272/api',
 
   AUTH: {
 
@@ -16,7 +17,12 @@ export const API = {
 
     MY_QUOTES: '/Quotes/my-quotes',
 
-    ALL_QUOTES: '/Quotes'
+    GET_ALL: '/Quotes',
+
+    UPDATE_STATUS: '/Quotes',
+
+    DELETE: '/Quotes'
+
 
   },
   USER: {

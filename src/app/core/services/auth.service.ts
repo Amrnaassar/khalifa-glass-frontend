@@ -22,10 +22,10 @@ export class AuthService {
 
   private storage = inject(StorageService);
 
-  private router= inject(Router);
+  private router = inject(Router);
 
-  private alertService =inject(AlertService);
-  
+  private alertService = inject(AlertService);
+
   private userState = new BehaviorSubject<any>(null);
 
   user$ = this.userState.asObservable();
@@ -48,7 +48,7 @@ export class AuthService {
 
     return this.http
       .post<LoginResponse>(
-        API.BASE_URL + API.AUTH.LOGIN,
+        API.BASE_API_URL + API.AUTH.LOGIN,
         body
       )
       .pipe(
@@ -89,7 +89,7 @@ export class AuthService {
 
     return this.http
       .post<RefreshTokenResponse>(
-        API.BASE_URL + API.AUTH.REFRESH_TOKEN,
+        API.BASE_API_URL + API.AUTH.REFRESH_TOKEN,
         body
       )
       .pipe(
@@ -115,7 +115,6 @@ export class AuthService {
 
   private setCurrentUser(token: string): void {
 
-
     const payload = JSON.parse(
       atob(token.split('.')[1])
     );
@@ -127,13 +126,61 @@ export class AuthService {
 
       email: payload.email,
 
-      name: payload.unique_name
+      name: payload.name,
+
+      role: payload[
+        'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+      ]
 
     });
 
+  }
+
+  getCurrentUser() {
+
+    const token = this.storage.getAccessToken();
+
+    if (!token) {
+      return null;
+    }
+
+
+    const payload = JSON.parse(
+      atob(token.split('.')[1])
+    );
+
+
+    return {
+
+      id: payload.sub,
+
+      email: payload.email,
+
+      name: payload.name,
+
+      role:
+        payload[
+        'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+        ]
+
+    };
 
   }
 
+  getRole(): string | null {
+
+    const user = this.getCurrentUser();
+
+    return user?.role ?? null;
+
+  }
+
+
+  isAdmin(): boolean {
+
+    return this.getRole() === 'Admin';
+
+  }
 
 
   // ============================
@@ -142,21 +189,21 @@ export class AuthService {
 
   logout(): void {
 
-  this.storage.clearTokens();
+    this.storage.clearTokens();
 
-  this.userState.next(null);
+    this.userState.next(null);
 
-  this.router.navigate(['/Home'])
-    .then(()=>{
+    this.router.navigate(['/Home'])
+      .then(() => {
 
-      this.alertService.success(
-        'Logged Out Successfully',
-        'Thank you for visiting Khalifa Glass.'
-      );
+        this.alertService.success(
+          'Logged Out Successfully',
+          'Thank you for visiting Khalifa Glass.'
+        );
 
-    });
+      });
 
-}
+  }
 
 
   // ============================
@@ -170,20 +217,47 @@ export class AuthService {
   }
 
   // ============================
-// Navigate If Logged
-// ============================
+  // Navigate If Logged
+  // ============================
 
-goIfLogged(url: string): void {
+  checkLogin(url: string): void {
 
-  if (this.isLoggedIn()) {
+    if (this.isLoggedIn()) {
 
-    this.router.navigate([url]);
+      this.router.navigate([url]);
+
+    } else {
+
+      localStorage.setItem('redirectUrl', url);
+
+      this.alertService.loginRequired();
+
+    }
+
+  }
+
+  goToQuote(): void {
+
+  if (!this.isLoggedIn()) {
+
+    localStorage.setItem(
+      'redirectUrl',
+      '/Get-Quote'
+    );
+
+    this.alertService.loginRequired();
+
+    return;
+  }
+
+
+  if (this.isAdmin()) {
+
+    this.router.navigate(['/admin/quotes']);
 
   } else {
 
-    localStorage.setItem('redirectUrl', url);
-
-    this.alertService.loginRequired();
+    this.router.navigate(['/Get-Quote']);
 
   }
 

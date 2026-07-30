@@ -1,0 +1,318 @@
+<section class="quotes-page">
+
+    <div class="container">
+
+        <!-- FILTER -->
+        <div class="quotes-filter">
+
+            @for(status of statuses; track status.id){
+
+            <button class="quotes-filter__btn" [class.active]="selectedStatus === status.id"
+                (click)="filterQuotes(status.id)">
+
+                {{status.name}}
+
+            </button>
+
+            }
+
+        </div>
+
+
+        <!-- EMPTY STATE -->
+        @if(filteredQuotes.length === 0){
+
+        <div class="quotes-empty">
+
+            <i class="fas fa-inbox"></i>
+
+            <h3>No Quote Requests Found</h3>
+
+            <p>There are no requests in this category.</p>
+
+        </div>
+
+        }
+
+
+        <!-- QUOTES GRID -->
+        <div class="quotes-grid">
+
+            @for(quote of filteredQuotes; track quote.id){
+
+            <div class="quote-card">
+
+                <!-- HEADER -->
+                <div class="quote-card__header">
+
+                    <div>
+
+                        <h3>{{quote.fullName}}</h3>
+
+                        <span>{{quote.email}}</span>
+
+                    </div>
+
+                    <!-- STATUS -->
+
+                    <div class="status-dropdown">
+
+                        <button class="status-dropdown__button" [class.pending]="quote.status===0"
+                            [class.viewed]="quote.status===1" [class.contacted]="quote.status===2"
+                            [class.completed]="quote.status===3" [class.cancelled]="quote.status===4"
+                            (click)="toggleStatusMenu(quote.id)">
+
+                            {{ getStatus(quote.status) }}
+
+                            <i class="fas" [class.fa-angle-down]="openStatusMenu!==quote.id"
+                                [class.fa-angle-up]="openStatusMenu===quote.id">
+                            </i>
+
+                        </button>
+
+                        @if(openStatusMenu===quote.id){
+
+                        <div class="status-dropdown__menu">
+
+                            @for(status of statuses.slice(1); track status.id){
+
+                            <button [class.active]="status.id===quote.status"
+                                (click)="changeStatus(quote.id,status.id)">
+
+                                {{status.name}}
+
+                                @if(status.id===quote.status){
+
+                                <i class="fas fa-check"></i>
+
+                                }
+
+                            </button>
+
+                            }
+
+                        </div>
+
+                        }
+
+                    </div>
+
+                </div>
+
+
+                <!-- BODY -->
+                <div class="quote-card__body">
+
+                    <div>
+
+                        <i class="fas fa-tools"></i>
+
+                        <span>{{quote.service}}</span>
+
+                    </div>
+
+                    <div>
+
+                        <i class="fas fa-money-bill-wave"></i>
+
+                        <span>{{quote.budget}}</span>
+
+                    </div>
+
+                    <div>
+
+                        <i class="fas fa-map-marker-alt"></i>
+
+                        <span>{{quote.location}}</span>
+
+                    </div>
+                    <div>
+
+                        <i class="fas fa-phone"></i>
+
+                        <span>{{quote.phone}}</span>
+
+                    </div>
+
+                    <div>
+
+                        <i class="far fa-calendar-alt"></i>
+
+                        <span>{{quote.createdAt | date:'mediumDate'}}</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MESSAGE -->
+                <div class="quote-card__message">
+
+                    <p>{{quote.message}}</p>
+
+                </div>
+
+                <!-- ACTIONS -->
+                <div class="quote-card__actions">
+
+                    <button class="view-btn" (click)="openDetails(quote)">
+
+                        <i class="fas fa-eye"></i>
+
+                        View
+
+                    </button>
+
+
+                    <button class="delete-btn" (click)="deleteQuote(quote.id)">
+
+                        <i class="fas fa-trash-alt"></i>
+
+                        Delete
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            }
+
+        </div>
+
+    </div>
+
+
+    <!-- DETAILS MODAL -->
+
+    @if(showDetails && selectedQuote){
+
+    <div class="quote-modal" (click)="closeDetails()">
+
+        <div class="quote-modal__content" (click)="$event.stopPropagation()">
+
+            <button class="quote-modal__close" (click)="closeDetails()">
+
+                <i class="fas fa-times"></i>
+
+            </button>
+
+            <h2>Quote Details</h2>
+
+
+            <div class="quote-modal__info">
+
+                <p>
+
+                    <strong>Name:</strong>
+
+                    {{selectedQuote.fullName}}
+
+                </p>
+
+                <p>
+
+                    <strong>Email:</strong>
+
+                    {{selectedQuote.email}}
+
+                </p>
+
+                <p>
+
+                    <strong>Phone:</strong>
+
+                    {{selectedQuote.phone}}
+
+                </p>
+
+                <p>
+
+                    <strong>Location:</strong>
+
+                    {{selectedQuote.location}}
+
+                </p>
+
+                <p>
+
+                    <strong>Service:</strong>
+
+                    {{selectedQuote.service}}
+
+                </p>
+
+                <p>
+
+                    <strong>Project:</strong>
+
+                    {{selectedQuote.projectType}}
+
+                </p>
+
+                <p>
+
+                    <strong>Budget:</strong>
+
+                    {{selectedQuote.budget}}
+
+                </p>
+
+            </div>
+
+
+            <div class="quote-modal__message">
+
+                <h4>Message</h4>
+
+                <p>{{selectedQuote.message}}</p>
+
+            </div>
+
+
+            @if(getImages(selectedQuote.imagePaths).length){
+
+            <div class="quote-modal__images">
+
+                <h4>Images</h4>
+
+                <div class="images-grid">
+
+                    @for(image of getImages(selectedQuote.imagePaths); track image){
+
+                    <img [src]="baseUrl + image" alt="Quote Image" (click)="openImage(image)">
+
+                    }
+
+                </div>
+
+            </div>
+
+            }
+
+        </div>
+
+    </div>
+
+    }
+
+
+    <!-- IMAGE PREVIEW -->
+
+    @if(showImagePreview && selectedImage){
+
+    <div class="image-preview" (click)="closeImage()">
+
+        <button class="image-preview__close" (click)="closeImage()">
+
+            <i class="fas fa-times"></i>
+
+        </button>
+
+        <img [src]="baseUrl + selectedImage" alt="Preview" (click)="$event.stopPropagation()">
+
+    </div>
+
+    }
+
+</section>

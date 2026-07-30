@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment.development';
 import { API } from '../constants/api.constants';
   import { CreateQuoteRequest } from '../models/create-quote-request.model';
 import { UserQuote } from '../models/user-quote.model';
+import { Quote } from '../models/quote.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,11 +36,46 @@ export class QuoteService {
       formData.append('Images', image);
     });
 
-    return this.http.post(API.BASE_URL + API.QUOTES.CREATE, formData);
+    return this.http.post(API.BASE_API_URL + API.QUOTES.CREATE, formData);
   }
 
 
   getMyQuotes():Observable<UserQuote[]>{
-        return this.http.get<UserQuote[]>(API.BASE_URL + API.QUOTES.MY_QUOTES);
+        return this.http.get<UserQuote[]>(API.BASE_API_URL + API.QUOTES.MY_QUOTES);
   }
+
+   getAllQuotes(): Observable<Quote[]> {
+
+    return this.http.get<Quote[]>(
+      API.BASE_API_URL + API.QUOTES.GET_ALL
+    );
+
+  }
+
+
+
+  updateStatus(
+    id: string,
+    status: number
+  ): Observable<any> {
+
+    return this.http.put(
+      `${API.BASE_API_URL}${API.QUOTES.UPDATE_STATUS}/${id}/status`,
+      {
+        status
+      }
+    );
+
+  }
+
+
+
+  deleteQuote(id: string): Observable<any> {
+
+    return this.http.delete(
+      `${API.BASE_API_URL}${API.QUOTES.DELETE}/${id}`
+    );
+
+  }
+
 }

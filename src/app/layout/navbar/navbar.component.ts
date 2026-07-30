@@ -22,11 +22,11 @@ export class NavbarComponent {
 
 
   goToQuote(): void {
-    this.authService.goIfLogged('/Get-Quote');
+    this.authService.goToQuote();
   }
+  
   goToContact():void{
-        this.authService.goIfLogged('/Contact');
-
+        this.authService.checkLogin('/Contact');
   }
 
   logged() {
@@ -36,7 +36,7 @@ export class NavbarComponent {
     }
 
     else
-      this.authService.goIfLogged('/Home');
+      this.authService.checkLogin('/Home');
 
   }
 

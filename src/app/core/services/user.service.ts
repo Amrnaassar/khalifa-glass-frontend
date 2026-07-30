@@ -12,6 +12,6 @@ export class UserService {
   private http = inject(HttpClient);
 
   getCurrentUser(): Observable<User> {
-    return this.http.get<User>(API.BASE_URL + API.USER.ME);
+    return this.http.get<User>(API.BASE_API_URL + API.USER.ME);
   }
 }

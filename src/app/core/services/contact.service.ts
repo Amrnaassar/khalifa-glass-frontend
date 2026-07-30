@@ -23,6 +23,6 @@ export class ContactService {
   constructor(private http: HttpClient) {}
 
   sendMessage(data: ContactRequest): Observable<ContactResponse> {
-    return this.http.post<ContactResponse>(API.BASE_URL+API.CONTACT, data);
+    return this.http.post<ContactResponse>(API.BASE_API_URL+API.CONTACT, data);
   }
 }

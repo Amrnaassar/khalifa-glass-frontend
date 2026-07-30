@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { SectionHeaderComponent } from "../../shared/components/section-header/section-header.component";
 import { TranslatePipe } from '@ngx-translate/core';
 import { AuthService } from '../../core/services/auth.service';
+import { SectionHeaderComponent } from '../../shared/components/section-header/section-header.component';
 
 @Component({
   selector: 'app-faq',
@@ -50,7 +50,7 @@ export class FAQComponent {
   }
 
   goToContact(): void {
-     this.authService.goIfLogged('/Contact');
+     this.authService.checkLogin('/Contact');
   }
 
 
