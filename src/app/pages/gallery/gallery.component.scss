@@ -1,34 +1,52 @@
 @use "../../../styles/abstracts/variables" as *;
 @use "../../../styles/abstracts/mixins" as *;
 
+
 .gallery {
 
     padding: 100px 0;
+
     background: $section-bg;
+
+
 
     &__filter {
 
         display: flex;
+
         justify-content: center;
+
         gap: 12px;
+
         flex-wrap: wrap;
 
         margin: 50px 0;
 
+
+
         button {
 
             border: none;
+
             background: $gray;
+
             padding: 10px 22px;
-            border-radius: 30px;
+
+            border-radius: $radius-xl;
+
             cursor: pointer;
 
+            font-weight: 500;
+
             @include transition;
+
+
 
             &:hover,
             &.active {
 
                 background: $primary;
+
                 color: $white;
 
             }
@@ -37,21 +55,27 @@
 
     }
 
+
+
     &__grid {
 
         display: grid;
 
-        grid-template-columns: repeat(4,1fr);
+        grid-template-columns: repeat(4, 1fr);
 
         grid-auto-rows: 220px;
 
         gap: 20px;
 
+
+
         @include laptop {
 
-            grid-template-columns: repeat(2,1fr);
+            grid-template-columns: repeat(2, 1fr);
 
         }
+
+
 
         @include tablet {
 
@@ -62,6 +86,10 @@
     }
 
 }
+
+
+
+
 
 .gallery-card {
 
@@ -77,57 +105,85 @@
 
     animation: fadeInUp .8s ease both;
 
+
+
     img {
 
         width: 100%;
+
         height: 100%;
+
         object-fit: cover;
 
         @include transition;
 
     }
 
+
+
     &--large {
 
         grid-column: span 2;
+
         grid-row: span 2;
 
-        @include tablet{
+
+
+        @include tablet {
 
             grid-column: span 1;
+
             grid-row: span 1;
 
         }
 
     }
 
+
+
     &__overlay {
 
         position: absolute;
+
         inset: 0;
 
+
         background: linear-gradient(
+
             to top,
+
             rgba(0,0,0,.75),
+
             rgba(0,0,0,.05)
+
         );
 
+
         display: flex;
+
         justify-content: flex-end;
+
         flex-direction: column;
 
+
         padding: 25px;
+
 
         opacity: 0;
 
         @include transition;
 
+
+
         h3 {
 
             color: $white;
+
             margin-bottom: 6px;
 
         }
+
+
 
         span {
 
@@ -137,13 +193,18 @@
 
     }
 
+
+
     &:hover {
+
 
         img {
 
             transform: scale(1.08);
 
         }
+
+
 
         .gallery-card__overlay {
 

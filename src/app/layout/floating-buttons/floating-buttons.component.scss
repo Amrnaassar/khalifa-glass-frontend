@@ -1,6 +1,7 @@
 @use '../../../styles/abstracts/variables' as *;
 @use '../../../styles/abstracts/mixins' as *;
 
+
 .floating-btn {
 
     position: fixed;
@@ -22,9 +23,11 @@
 
     box-shadow: $shadow-lg;
 
-    z-index: 9999;
+    z-index: $z-modal;
 
     @include transition;
+
+    animation: fadeIn 0.5s ease;
 
     span {
 
@@ -33,38 +36,54 @@
         right: 78px;
 
         background: $primary;
+
         color: $white;
 
         padding: 10px 16px;
 
-        border-radius: 30px;
+        border-radius: $radius-xl;
 
-        font-size: large;
+        font-size: .95rem;
+
+        font-weight: 600;
+
         white-space: nowrap;
 
         opacity: 0;
+
         visibility: hidden;
+
+        transform: translateX(10px);
 
         @include transition;
 
     }
 
+
     &:hover {
 
         transform: translateY(-5px) scale(1.08);
 
+        box-shadow: $shadow-lg;
+
+
         span {
 
             opacity: 1;
+
             visibility: visible;
+
+            transform: translateX(0);
 
         }
 
     }
 
+
     @include mobile {
 
         width: 56px;
+
         height: 56px;
 
         font-size: 30px;
@@ -74,6 +93,8 @@
     }
 
 }
+
+
 
 /* WhatsApp */
 
@@ -85,6 +106,7 @@
 
     animation: pulse 2s infinite;
 
+
     &:hover {
 
         background: #1EBE5B;
@@ -92,6 +114,8 @@
     }
 
 }
+
+
 
 /* Call */
 
@@ -102,6 +126,7 @@
     background: $primary;
 
     animation: floating 3s ease-in-out infinite;
+
 
     &:hover {
 

@@ -76,36 +76,38 @@ export class AuthService {
 
   refreshToken(): Observable<RefreshTokenResponse> {
 
+  const refreshToken =
+    this.storage.getRefreshToken();
 
-    const refreshToken =
-      this.storage.getRefreshToken();
-
-    const body: RefreshTokenRequest = {
-
-      refreshToken
-
-    };
+  const body: RefreshTokenRequest = {
+    refreshToken
+  };
 
 
-    return this.http
-      .post<RefreshTokenResponse>(
-        API.BASE_API_URL + API.AUTH.REFRESH_TOKEN,
-        body
-      )
-      .pipe(
+  return this.http
+    .post<RefreshTokenResponse>(
+      API.BASE_API_URL + API.AUTH.REFRESH_TOKEN,
+      body
+    )
+    .pipe(
 
-        tap(response => {
+      tap(response => {
 
-          this.storage.saveTokens(
-            response.accessToken,
-            response.refreshToken
-          );
+        this.storage.saveTokens(
+          response.accessToken,
+          response.refreshToken
+        );
 
-        })
 
-      );
+        this.setCurrentUser(
+          response.accessToken
+        );
 
-  }
+      })
+
+    );
+
+}
 
 
 

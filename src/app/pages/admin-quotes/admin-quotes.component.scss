@@ -2,7 +2,6 @@
 @use "../../../styles/abstracts/mixins" as *;
 
 
-
 .quotes-page {
 
     padding: 100px 0;
@@ -10,6 +9,7 @@
     background: $section-bg;
 
 }
+
 
 
 // FILTER
@@ -32,9 +32,7 @@
 
         padding: 12px 28px;
 
-        border: none;
-
-        border-radius: 50px;
+        border-radius: $radius-xl;
 
         background: $white;
 
@@ -50,16 +48,7 @@
 
 
 
-        &:hover {
-
-            background: $primary;
-
-            color: $white;
-
-        }
-
-
-
+        &:hover,
         &.active {
 
             background: $primary;
@@ -71,6 +60,7 @@
     }
 
 }
+
 
 
 // GRID
@@ -100,6 +90,7 @@
     }
 
 }
+
 
 
 
@@ -160,15 +151,15 @@
 
             font-size: 14px;
 
-            color: #777;
+            color: $text-color;
 
         }
 
     }
 
 
-    &__body {
 
+    &__body {
 
         display: flex;
 
@@ -202,22 +193,17 @@
 
         }
 
-
     }
-
-
-
-
 
 
 
     &__message {
 
-        background: #f8f9fa;
+        background: $gray;
 
         padding: 15px;
 
-        border-radius: 12px;
+        border-radius: $radius-sm;
 
         margin-bottom: 25px;
 
@@ -229,7 +215,7 @@
 
             line-height: 1.6;
 
-            color: #666;
+            color: $text-color;
 
             display: -webkit-box;
 
@@ -245,11 +231,7 @@
 
 
 
-
-
-
     &__actions {
-
 
         display: flex;
 
@@ -263,16 +245,13 @@
 
             padding: 10px;
 
-            border: none;
-
-            border-radius: 10px;
+            border-radius: $radius-sm;
 
             cursor: pointer;
 
             font-weight: 500;
 
             @include transition;
-
 
         }
 
@@ -300,7 +279,7 @@
 
             background: #dc3545;
 
-            color: white;
+            color: $white;
 
 
 
@@ -312,22 +291,23 @@
 
         }
 
-
     }
 
-
 }
+
+
+
 
 
 .status-dropdown {
 
     position: relative;
 
+
+
     &__button {
 
-        border: none;
-
-        border-radius: 30px;
+        border-radius: $radius-xl;
 
         padding: 9px 15px;
 
@@ -345,95 +325,141 @@
 
         font-weight: 600;
 
-        transition: .25s;
+        @include transition;
 
-        i{
 
-            margin-left:12px;
+
+        i {
+
+            margin-left: 12px;
+
         }
 
-        &.pending{
-            background:#fff3cd;
-            color:#856404;
+
+
+        &.pending {
+
+            background: #fff3cd;
+
+            color: #856404;
+
         }
 
-        &.viewed{
-            background:#cff4fc;
-            color:#055160;
+
+
+        &.viewed {
+
+            background: #cff4fc;
+
+            color: #055160;
+
         }
 
-        &.contacted{
-            background:#d1e7dd;
-            color:#0f5132;
+
+
+        &.contacted {
+
+            background: $light-green;
+
+            color: $dark-green;
+
         }
 
-        &.completed{
-            background:#198754;
-            color:#fff;
+
+
+        &.completed {
+
+            background: $secondary;
+
+            color: $white;
+
         }
 
-        &.cancelled{
-            background:#f8d7da;
-            color:#842029;
+
+
+        &.cancelled {
+
+            background: #f8d7da;
+
+            color: #842029;
+
         }
+
     }
 
-    &__menu{
 
-        position:absolute;
 
-        top:calc(100% + 10px);
+    &__menu {
 
-        right:0;
+        position: absolute;
 
-        width:180px;
+        top: calc(100% + 10px);
 
-        background:#fff;
+        right: 0;
 
-        border-radius:15px;
+        width: 180px;
 
-        overflow:hidden;
+        background: $white;
 
-        box-shadow:0 15px 40px rgba(0,0,0,.15);
+        border-radius: $radius-md;
 
-        animation:fadeInUp .2s;
+        overflow: hidden;
 
-        z-index:50;
+        box-shadow: $shadow-lg;
 
-        button{
+        animation: fadeInUp .2s;
 
-            width:100%;
+        z-index: $z-dropdown;
 
-            border:none;
 
-            background:none;
 
-            padding:14px 18px;
+        button {
 
-            display:flex;
+            width: 100%;
 
-            justify-content:space-between;
+            border: none;
 
-            align-items:center;
+            background: none;
 
-            cursor:pointer;
+            padding: 14px 18px;
 
-            transition:.2s;
+            display: flex;
 
-            &:hover{
+            justify-content: space-between;
 
-                background:#f4f6f8;
+            align-items: center;
+
+            cursor: pointer;
+
+            @include transition;
+
+
+
+            &:hover {
+
+                background: $gray;
+
             }
 
-            &.active{
 
-                color:$primary;
 
-                font-weight:700;
+            &.active {
+
+                color: $primary;
+
+                font-weight: 700;
+
             }
+
         }
+
     }
+
 }
+
+
+
+
 
 // EMPTY STATE
 
@@ -465,11 +491,14 @@
 
     p {
 
-        color: #777;
+        color: $text-color;
 
     }
 
 }
+
+
+
 
 
 .quote-modal {
@@ -478,19 +507,20 @@
 
     inset: 0;
 
-    width:100vw;
+    width: 100vw;
 
-    height:100vh;
+    height: 100vh;
 
     background: rgba(0,0,0,.65);
 
-    display:flex;
+    display: flex;
 
-    justify-content:center;
+    justify-content: center;
 
-    align-items:center;
+    align-items: center;
 
-    z-index:99999;
+    z-index: $z-modal;
+
 
 
     &__content {
@@ -514,6 +544,7 @@
         animation: fadeInUp .3s ease;
 
 
+
         h2 {
 
             color: $primary;
@@ -523,7 +554,6 @@
         }
 
     }
-
 
 
 
@@ -539,11 +569,9 @@
 
         height: 40px;
 
-        border: none;
-
         border-radius: 50%;
 
-        color: red;
+        color: #dc3545;
 
         display: flex;
 
@@ -557,10 +585,7 @@
 
         z-index: 10;
 
-
     }
-
-
 
 
 
@@ -584,20 +609,17 @@
 
 
 
-
-
     &__message {
 
         margin-top: 30px;
 
-        background: #f8f9fa;
+        background: $gray;
 
         padding: 20px;
 
-        border-radius: 15px;
+        border-radius: $radius-md;
 
     }
-
 
 
 
@@ -611,6 +633,8 @@
 
 
 
+
+
 .images-grid {
 
     display: grid;
@@ -618,6 +642,7 @@
     grid-template-columns: repeat(3, 1fr);
 
     gap: 15px;
+
 
 
     img {
@@ -628,11 +653,12 @@
 
         object-fit: cover;
 
-        border-radius: 12px;
+        border-radius: $radius-sm;
 
         cursor: pointer;
 
-        transition: .3s;
+        @include transition;
+
 
 
         &:hover {
@@ -645,26 +671,29 @@
 
 }
 
+
+
+
+
 .image-preview {
 
+    position: fixed;
 
-    position:fixed;
+    inset: 0;
 
-    inset:0;
+    width: 100vw;
 
-    width:100vw;
+    height: 100vh;
 
-    height:100vh;
+    background: rgba(0,0,0,.9);
 
-    background:rgba(0,0,0,.9);
+    display: flex;
 
-    display:flex;
+    justify-content: center;
 
-    justify-content:center;
+    align-items: center;
 
-    align-items:center;
-
-    z-index:100000;
+    z-index: 100000;
 
 
 
@@ -674,18 +703,19 @@
 
     }
 
+
+
     img {
 
         max-width: 90%;
 
         max-height: 90%;
 
-        border-radius: 20px;
+        border-radius: $radius-md;
 
         animation: fadeInUp .3s ease;
 
     }
-
 
 
 
@@ -701,11 +731,9 @@
 
         height: 45px;
 
-        border: none;
-
         border-radius: 50%;
 
-        color: red;
+        color: #dc3545;
 
         display: flex;
 
@@ -719,8 +747,6 @@
 
         z-index: 20;
 
-
     }
-
 
 }

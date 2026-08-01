@@ -76,10 +76,68 @@ export class StorageService {
 
   isLoggedIn(): boolean {
 
-    if (!this.isBrowser) return false;
+  if (!this.isBrowser) return false;
 
-    return this.getAccessToken() !== '';
+
+  const token = this.getAccessToken();
+
+
+  if (!token) {
+    return false;
   }
+
+
+  try {
+
+    const payload = JSON.parse(
+      atob(token.split('.')[1])
+    );
+
+
+    const expiry = payload.exp * 1000;
+
+
+    return Date.now() < expiry;
+
+
+  } catch {
+
+    return false;
+
+  }
+
+}
+
+isTokenExpired(): boolean {
+
+  const token = this.getAccessToken();
+
+
+  if(!token){
+    return true;
+  }
+
+
+  try {
+
+    const payload = JSON.parse(
+      atob(token.split('.')[1])
+    );
+
+
+    const expiry = payload.exp * 1000;
+
+
+    return Date.now() >= expiry;
+
+
+  } catch {
+
+    return true;
+
+  }
+
+}
 
   // ===============================
   // Cookie Helpers

@@ -1,25 +1,37 @@
 @use "../../../styles/abstracts/variables" as *;
 @use "../../../styles/abstracts/mixins" as *;
 
+
 .projects-page {
 
     padding: 100px 0;
+
     background: $section-bg;
 
-    
+
+
     &__grid {
 
+
         display: grid;
+
         grid-template-columns: repeat(3,1fr);
+
         gap: 30px;
 
+
+
         @include desktop {
+
 
             grid-template-columns: repeat(2,1fr);
 
         }
 
+
+
         @include tablet {
+
 
             grid-template-columns: 1fr;
 
@@ -27,9 +39,15 @@
 
     }
 
+
+
+
+
     &__more {
 
+
         margin-top: 60px;
+
         text-align: center;
 
     }
@@ -37,45 +55,73 @@
 }
 
 
+
+
+
 .projects-filter {
 
+
     display: flex;
+
     justify-content: center;
+
     flex-wrap: wrap;
+
     gap: 15px;
+
+
 
     margin-bottom: 55px;
 
+
+
     &__btn {
+
 
         padding: 12px 28px;
 
         border: none;
 
-        border-radius: 50px;
+        border-radius: $radius-xl;
+
+
 
         background: $white;
 
         color: $dark;
 
+
+
         cursor: pointer;
 
         font-weight: 500;
 
+
+
         box-shadow: $shadow-sm;
+
+
 
         @include transition;
 
+
+
         &:hover {
 
+
             background: $primary;
+
             color: $white;
 
         }
 
+
+
         &.active {
 
+
             background: $primary;
+
             color: $white;
 
         }
@@ -85,7 +131,11 @@
 }
 
 
+
+
+
 .project {
+
 
     position: relative;
 
@@ -99,13 +149,21 @@
 
     cursor: pointer;
 
+
+
     &__image {
+
 
         img {
 
+
             width: 100%;
+
             height: 340px;
+
             object-fit: cover;
+
+
 
             @include transition;
 
@@ -113,56 +171,230 @@
 
     }
 
+
+
+
+
     &__overlay {
+
 
         position: absolute;
 
         inset: 0;
 
+
+
         display: flex;
+
         justify-content: flex-end;
+
         flex-direction: column;
+
+
 
         padding: 30px;
 
+
+
         background: linear-gradient(
+
             to top,
+
             rgba(#000,.82),
+
             rgba(#000,.1)
+
         );
+
+
 
         color: $white;
 
+
+
         h3 {
+
+
             color: $secondary;
+
             margin: 10px 0 5px;
+
             font-size: 28px;
 
         }
 
+
+
         p {
+
+
             color: $white;
+
             opacity: .8;
 
         }
 
     }
 
+
+
+
+
     &:hover {
 
+
+
         img {
+
 
             transform: scale(1.1);
 
         }
 
+
+
+
+
         .project__overlay {
 
+
             background: linear-gradient(
+
                 to top,
+
                 rgba($primary,.95),
+
                 rgba($primary,.25)
+
             );
+
+        }
+
+    }
+
+}
+
+
+
+
+
+@include tablet {
+
+
+    .projects-page {
+
+
+        padding: 70px 0;
+
+    }
+
+
+
+
+
+    .project {
+
+
+        &__image {
+
+
+            img {
+
+                height: 280px;
+
+            }
+
+        }
+
+
+
+        &__overlay {
+
+
+            padding: 25px;
+
+
+
+            h3 {
+
+                font-size: 24px;
+
+            }
+
+        }
+
+    }
+
+}
+
+
+
+
+
+@include mobile {
+
+
+    .projects-page {
+
+
+        padding: 60px 0;
+
+    }
+
+
+
+
+
+    .projects-filter {
+
+
+        margin-bottom: 35px;
+
+
+
+        &__btn {
+
+
+            padding: 10px 20px;
+
+            font-size: 14px;
+
+        }
+
+    }
+
+
+
+
+
+    .project {
+
+
+        &__image {
+
+
+            img {
+
+                height: 240px;
+
+            }
+
+        }
+
+
+
+        &__overlay {
+
+
+            padding: 20px;
+
+
+
+            h3 {
+
+                font-size: 20px;
+
+            }
 
         }
 

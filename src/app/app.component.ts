@@ -23,6 +23,7 @@ import { AuthService } from './core/services/auth.service';
 import { AlertService } from './core/services/alert.service';
 
 import { LoadingComponent } from './shared/components/loading/loading.component';
+import { StorageService } from './core/services/storage.service';
 
 
 @Component({
@@ -49,11 +50,28 @@ export class AppComponent implements OnInit, AfterViewInit {
   private alertService = inject(AlertService);
   private authService = inject(AuthService);
   private router = inject(Router);
-
+  private storage = inject(StorageService);
 
   ngOnInit(): void {
 
     if (isPlatformBrowser(this.platformId)) {
+
+
+      const refreshToken =
+        this.storage.getRefreshToken();
+
+
+      if (
+        refreshToken &&
+        this.storage.isTokenExpired()
+      ) {
+
+        this.authService
+          .refreshToken()
+          .subscribe();
+
+      }
+
 
       if (this.lang.isArabic()) {
 

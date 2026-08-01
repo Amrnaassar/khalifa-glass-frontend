@@ -5,60 +5,90 @@
 .legal-page {
 
     padding: 120px 0 80px;
+
     background: $section-bg;
-    min-height: calc(100vh - $header-height);
+
+    min-height: calc(100vh - #{$header-height});
+
 
 
     .container {
 
         max-width: $container-width;
+
         margin: auto;
+
         padding: 0 20px;
+
     }
+
+
 
 
 
     &__wrapper {
 
+
         display: flex;
+
         flex-direction: column;
+
         gap: 35px;
 
     }
 
 
 
+
+
     &__header {
 
+
         text-align: center;
+
         max-width: 850px;
+
         margin: auto;
+
 
 
         h1 {
 
+
             color: $primary;
+
             font-size: 42px;
+
             font-weight: 700;
+
             margin-bottom: 20px;
+
+
 
             animation: fadeInUp .7s ease;
 
         }
 
 
+
         p {
 
+
             color: $text-color;
+
             font-size: 18px;
+
             line-height: $line-height;
+
+
 
             animation: fadeIn .8s ease;
 
         }
 
-
     }
+
+
 
 
 
@@ -66,8 +96,11 @@
 
 
         display: grid;
+
         grid-template-columns: repeat(2,1fr);
+
         gap: 30px;
+
 
 
         animation: fadeInUp .8s ease;
@@ -76,16 +109,19 @@
 
         @include laptop {
 
+
             grid-template-columns: 1fr;
 
         }
-
 
     }
 
 
 
+
+
     &__card {
+
 
         background: $white;
 
@@ -97,10 +133,14 @@
 
         border: 1px solid $light-gray;
 
+
+
         @include transition;
 
 
+
         &:hover {
+
 
             transform: translateY(-8px);
 
@@ -112,11 +152,17 @@
 
 
 
+
+
         h2 {
 
+
             display: flex;
+
             align-items: center;
+
             gap: 12px;
+
 
 
             color: $primary;
@@ -126,16 +172,21 @@
             margin-bottom: 15px;
 
 
+
             &::before {
+
 
                 content: "";
 
                 width: 8px;
+
                 height: 35px;
+
+
 
                 background: $secondary;
 
-                border-radius: 20px;
+                border-radius: $radius-xl;
 
             }
 
@@ -143,7 +194,10 @@
 
 
 
+
+
         p {
+
 
             color: $text-color;
 
@@ -153,8 +207,9 @@
 
         }
 
-
     }
+
+
 
 
 
@@ -167,11 +222,18 @@
 
         border-radius: $radius-md;
 
+
+
         background: linear-gradient(
+
             135deg,
+
             $primary,
+
             $dark-green
+
         );
+
 
 
         color: $white;
@@ -179,7 +241,9 @@
         text-align: center;
 
 
+
         p {
+
 
             color: $light-green;
 
@@ -187,10 +251,14 @@
 
             font-weight: 600;
 
+
+
             @include transition;
 
 
+
             &:hover {
+
 
                 color: $white;
 
@@ -200,14 +268,10 @@
 
     }
 
-
-
 }
 
 
-/* =====================================
-   Responsive
-===================================== */
+
 
 
 @include tablet {
@@ -223,20 +287,26 @@
         &__header {
 
 
+
             h1 {
+
 
                 font-size: 32px;
 
             }
 
 
+
             p {
+
 
                 font-size: 16px;
 
             }
 
         }
+
+
 
 
 
@@ -249,18 +319,18 @@
 
             h2 {
 
+
                 font-size: 20px;
 
             }
 
-
         }
-
 
     }
 
-
 }
+
+
 
 
 
@@ -276,23 +346,29 @@
 
         .container {
 
+
             padding: 0 15px;
 
         }
 
 
 
+
+
         &__header {
 
 
+
             h1 {
+
 
                 font-size: 28px;
 
             }
 
-
         }
+
+
 
 
 
@@ -304,13 +380,16 @@
             border-radius: $radius-md;
 
 
+
             h2 {
 
 
                 font-size: 18px;
 
 
+
                 &::before {
+
 
                     height: 25px;
 
@@ -319,14 +398,17 @@
             }
 
 
+
+
+
             p {
+
 
                 font-size: 14px;
 
             }
 
         }
-
 
     }
 
