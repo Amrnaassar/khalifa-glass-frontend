@@ -1,8 +1,8 @@
-import { HttpInterceptorFn } from '@angular/common/http';
-import { StorageService } from '../services/storage.service';
-import { inject } from '@angular/core';
-import { catchError, switchMap, throwError } from 'rxjs';
-import { AuthService } from '../services/auth.service';
+import { HttpInterceptorFn } from "@angular/common/http";
+import { inject } from "@angular/core";
+import { catchError, switchMap, throwError } from "rxjs";
+import { AuthService } from "../services/auth.service";
+import { StorageService } from "../services/storage.service";
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
@@ -23,11 +23,9 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   if (token) {
 
     authRequest = req.clone({
-
       setHeaders: {
         Authorization: `Bearer ${token}`
       }
-
     });
 
   }
@@ -37,12 +35,15 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
     catchError(error => {
 
-      if(error.status === 401) {
+
+      if (error.status === 401) {
+
 
         return authService.refreshToken()
           .pipe(
 
             switchMap(response => {
+
 
               const newRequest = req.clone({
 
@@ -55,11 +56,26 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
               });
 
+
               return next(newRequest);
+
+
+            }),
+
+
+            catchError(refreshError => {
+
+
+              authService.logout();
+
+
+              return throwError(() => refreshError);
+
 
             })
 
           );
+
 
       }
 
@@ -69,5 +85,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     })
 
   );
+
 
 };

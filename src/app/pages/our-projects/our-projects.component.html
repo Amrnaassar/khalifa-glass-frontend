@@ -19,7 +19,7 @@
             @for (cat of categories; track cat.id) {
             <button class="projects-filter__btn" [class.active]="selectedCategoryId === cat.id"
                 (click)="filterProjects(cat.id)">
-                {{ cat.name | translate }}
+               {{ getCategoryName(cat) }}
             </button>
             }
 
@@ -29,23 +29,23 @@
 
         <div class="projects-page__grid">
 
-            @for (proj of displayedProjects; track $index) {
+            @for (project of displayedProjects; track $index) {
             <article class="project">
 
                 <div class="project__image">
 
-                    <img [src]="proj.img" [alt]="proj.title | translate">
+                    <img [src]="project.imageUrl" [alt]="getProjectTitle(project)">
 
                 </div>
 
                 <div class="project__overlay">
 
                     <h3>
-                        {{ proj.title | translate }}
+                        {{getProjectTitle(project)}}
                     </h3>
 
                     <p>
-                        {{ proj.location | translate }}
+                        {{ getProjectDesc(project) }}
                     </p>
 
                 </div>

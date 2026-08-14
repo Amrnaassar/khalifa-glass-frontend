@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Component,
   inject,
   OnInit,
@@ -39,17 +38,13 @@ import { StorageService } from './core/services/storage.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
 
   title = 'Khalifa Glass';
 
   private lang = inject(LanguageService);
   private platformId = inject(PLATFORM_ID);
-
-  private googleAuthService = inject(GoogleAuthService);
-  private alertService = inject(AlertService);
   private authService = inject(AuthService);
-  private router = inject(Router);
   private storage = inject(StorageService);
 
   ngOnInit(): void {
@@ -68,7 +63,21 @@ export class AppComponent implements OnInit, AfterViewInit {
 
         this.authService
           .refreshToken()
-          .subscribe();
+          .subscribe({
+
+            next: () => {
+
+              console.log('Token refreshed successfully');
+
+            },
+
+            error: () => {
+
+              this.storage.clearTokens();
+
+            }
+
+          });
 
       }
 
@@ -90,57 +99,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
 
-  ngAfterViewInit(): void {
-
-    if (isPlatformBrowser(this.platformId)) {
-
-      this.googleAuthService.initialize(
-        (idToken: string) => {
-
-          this.authService.login(idToken)
-            .subscribe({
-
-              next: () => {
-
-                const redirectUrl = localStorage.getItem('redirectUrl');
-
-                if (redirectUrl) {
-
-                  localStorage.removeItem('redirectUrl');
-
-                  this.router.navigate([redirectUrl])
-                    .then(() => {
-
-                      this.alertService.success(
-                        'Login Successful',
-                        'Welcome back'
-                      );
-
-                    });
-
-                }
-
-              },
-
-
-              error: (err) => {
-
-                this.alertService.error(
-                  'Login Failed',
-                  'Something went wrong. Please try again.'
-                );
-
-                console.log(err);
-
-              }
-
-            });
-
-        }
-      );
-
-    }
-
-  }
+ 
 
 }

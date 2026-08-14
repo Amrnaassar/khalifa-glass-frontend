@@ -315,6 +315,8 @@ export class AdminQuotesComponent {
 
   openDetails(quote: Quote): void {
 
+
+    console.log(quote.imagePaths);
     this.selectedQuote = quote;
 
     this.showDetails = true;

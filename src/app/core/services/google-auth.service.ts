@@ -1,6 +1,12 @@
-import { Injectable, NgZone, inject } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
-import { LoadingService } from './loading.service';
+import {
+  Injectable,
+  NgZone,
+  PLATFORM_ID,
+  inject
+} from '@angular/core';
+
+import { isPlatformBrowser } from '@angular/common';
+import { environment } from '../../../environments/environment';
 
 declare const google: any;
 
@@ -9,68 +15,291 @@ declare const google: any;
 })
 export class GoogleAuthService {
 
-
   private ngZone = inject(NgZone);
+  private platformId = inject(PLATFORM_ID);
 
-  initialized: boolean = false; 
+  private initialized = false;
+
+  private googleReadyPromise: Promise<void> | null = null;
 
 
-  initialize(
-    callback: (token: string) => void
-  ): void {
-    if (this.initialized) {
-      return;
+  // ============================
+  // Load Google Identity Services
+  // ============================
+
+  private loadGoogleScript(): Promise<void> {
+
+    if (!isPlatformBrowser(this.platformId)) {
+
+      return Promise.reject(
+        new Error(
+          'Google Login is only available in browser'
+        )
+      );
+
     }
-     this.initialized = true;
+
+
+    if (
+      typeof google !== 'undefined' &&
+      google.accounts?.id
+    ) {
+
+      return Promise.resolve();
+
+    }
+
+
+    if (this.googleReadyPromise) {
+
+      return this.googleReadyPromise;
+
+    }
+
+
+    this.googleReadyPromise =
+      new Promise<void>((resolve, reject) => {
+
+        const existingScript =
+          document.querySelector(
+            'script[src="https://accounts.google.com/gsi/client"]'
+          );
+
+
+        if (existingScript) {
+
+          const checkGoogle = () => {
+
+            if (
+              typeof google !== 'undefined' &&
+              google.accounts?.id
+            ) {
+
+              resolve();
+
+            } else {
+
+              setTimeout(
+                checkGoogle,
+                100
+              );
+
+            }
+
+          };
+
+          checkGoogle();
+
+          return;
+        }
+
+
+        const script =
+          document.createElement('script');
+
+        script.src =
+          'https://accounts.google.com/gsi/client';
+
+        script.async = true;
+
+        script.defer = true;
+
+
+        script.onload = () => {
+
+          if (
+            typeof google !== 'undefined' &&
+            google.accounts?.id
+          ) {
+
+            resolve();
+
+          } else {
+
+            reject(
+              new Error(
+                'Google Identity Services loaded but google.accounts.id is unavailable'
+              )
+            );
+
+          }
+
+        };
+
+
+        script.onerror = () => {
+
+          reject(
+            new Error(
+              'Failed to load Google Identity Services'
+            )
+          );
+
+        };
+
+
+        document.head.appendChild(script);
+
+      });
+
+
+    return this.googleReadyPromise;
+
+  }
+
+
+  // ============================
+  // Initialize Google
+  // ============================
+
+  async initialize(
+    callback: (token: string) => void
+  ): Promise<void> {
+
+    await this.loadGoogleScript();
+
+
+    if (this.initialized) {
+
+      return;
+
+    }
+
+
     google.accounts.id.initialize({
 
-      
       client_id: environment.clientIdGoogle,
 
       callback: (response: any) => {
 
         this.ngZone.run(() => {
 
-          callback(response.credential);
+          if (response?.credential) {
+
+            callback(
+              response.credential
+            );
+
+          }
 
         });
+
       }
 
     });
 
 
+    this.initialized = true;
+
   }
 
 
+  // ============================
+  // Open Google Login
+  // ============================
 
-  renderButton(element: HTMLElement): void {
+  async openGoogleLogin(): Promise<boolean> {
+
+    try {
+
+      await this.loadGoogleScript();
 
 
-    google.accounts.id.renderButton(
+      if (!this.initialized) {
 
-      element,
+        console.warn(
+          'Google Auth has not been initialized.'
+        );
 
-      {
-        theme: 'outline',
-        size: 'large',
-        width: 300
+        return false;
+
       }
 
-    );
 
+      google.accounts.id.prompt(
+        (notification: any) => {
+
+          if (
+            notification?.isNotDisplayed?.()
+          ) {
+
+            console.warn(
+              'Google One Tap was not displayed.'
+            );
+
+          }
+
+          if (
+            notification?.isSkippedMoment?.()
+          ) {
+
+            console.warn(
+              'Google One Tap was skipped.'
+            );
+
+          }
+
+        }
+      );
+
+
+      return true;
+
+    } catch (error) {
+
+      console.error(
+        'Google Login failed:',
+        error
+      );
+
+      return false;
+
+    }
 
   }
 
 
+  // ============================
+  // Render Google Button
+  // ============================
 
-  // تشغيل Google Login من الـ Alert
+  async renderButton(
+    element: HTMLElement
+  ): Promise<void> {
 
-  openGoogleLogin(): void {
+    try {
 
-    google.accounts.id.prompt();
+      await this.loadGoogleScript();
 
+
+      if (!this.initialized) {
+
+        return;
+
+      }
+
+
+      google.accounts.id.renderButton(
+
+        element,
+
+        {
+          theme: 'outline',
+          size: 'large',
+          width: 300
+        }
+
+      );
+
+    } catch (error) {
+
+      console.error(
+        'Google button rendering failed:',
+        error
+      );
+
+    }
 
   }
-
 
 }

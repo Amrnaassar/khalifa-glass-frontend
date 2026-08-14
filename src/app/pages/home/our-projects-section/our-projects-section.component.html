@@ -1,48 +1,59 @@
 <section class="projects section">
-    <div class="container">
 
-        <app-section-header 
-            [subtitle]="'projects.header.subtitle' | translate"
-            [title]="'projects.header.title' | translate"/>
+  <div class="container">
 
-        <div class="projects__grid">
-
-            <!-- Project -->
-
-            @for (project of projects; track $index) {
-                <article class="project-card">
-
-                    <div class="project-card__image">
-
-                        <img [src]="project.img" [alt]="project.title | translate">
-
-                    </div>
-
-                    <div class="project-card__content">
-
-                        <span class="project-card__category">
-                            {{ getCategoryName(project.catId) | translate }}
-                        </span>
-
-                        <h3 class="project-card__title">
-                            {{ project.title | translate }}
-                        </h3>
-
-                    </div>
-
-                </article>
-            }
-
-        </div>
+    <app-section-header
+      [subtitle]="'projects.header.subtitle' | translate"
+      [title]="'projects.header.title' | translate">
+    </app-section-header>
 
 
-        <div class="projects__button">
+    <div class="projects__grid">
 
-            <a routerLink="/Projects" class="btn btn--primary">
-                {{ 'projects.viewAll' | translate }}
-            </a>
+      @for (project of projects; track project.id) {
 
-        </div>
+        <article class="project-card">
+
+          <div class="project-card__image">
+
+            <img
+              [src]="project.imageUrl"
+              [alt]="getProjectTitle(project)"
+            >
+
+          </div>
+
+
+          <div class="project-card__content">
+
+            <span class="project-card__category">
+              {{ getProjectCategory(project) }}
+            </span>
+
+            <h3 class="project-card__title">
+              {{ getProjectTitle(project) }}
+            </h3>
+
+          </div>
+
+        </article>
+
+      }
 
     </div>
+
+
+    <div class="projects__button">
+
+      <a
+        routerLink="/Projects"
+        class="btn btn--primary"
+      >
+        {{ 'projects.viewAll' | translate }}
+      </a>
+
+    </div>
+
+  </div>
+
 </section>

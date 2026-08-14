@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { API } from '../constants/api.constants';
 import { StorageService } from './storage.service';
@@ -8,28 +9,21 @@ import { LoginResponse } from '../models/login-response.model';
 import { LoginRequest } from '../models/login-request.model';
 import { RefreshTokenResponse } from '../models/refresh-response.model';
 import { RefreshTokenRequest } from '../models/refresh-request.model';
-import { Router } from '@angular/router';
 import { AlertService } from './alert.service';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-
   private http = inject(HttpClient);
-
   private storage = inject(StorageService);
-
   private router = inject(Router);
-
   private alertService = inject(AlertService);
 
   private userState = new BehaviorSubject<any>(null);
 
   user$ = this.userState.asObservable();
-
 
 
   // ============================
@@ -38,13 +32,9 @@ export class AuthService {
 
   login(idToken: string): Observable<LoginResponse> {
 
-
     const body: LoginRequest = {
-
       idToken
-
     };
-
 
     return this.http
       .post<LoginResponse>(
@@ -69,46 +59,42 @@ export class AuthService {
   }
 
 
-
   // ============================
   // Refresh Token
   // ============================
 
   refreshToken(): Observable<RefreshTokenResponse> {
 
-  const refreshToken =
-    this.storage.getRefreshToken();
+    const refreshToken =
+      this.storage.getRefreshToken();
 
-  const body: RefreshTokenRequest = {
-    refreshToken
-  };
+    const body: RefreshTokenRequest = {
+      refreshToken
+    };
 
+    return this.http
+      .post<RefreshTokenResponse>(
+        API.BASE_API_URL + API.AUTH.REFRESH_TOKEN,
+        body
+      )
+      .pipe(
 
-  return this.http
-    .post<RefreshTokenResponse>(
-      API.BASE_API_URL + API.AUTH.REFRESH_TOKEN,
-      body
-    )
-    .pipe(
+        tap(response => {
 
-      tap(response => {
+          this.storage.saveTokens(
+            response.accessToken,
+            response.refreshToken
+          );
 
-        this.storage.saveTokens(
-          response.accessToken,
-          response.refreshToken
-        );
+          this.setCurrentUser(
+            response.accessToken
+          );
 
+        })
 
-        this.setCurrentUser(
-          response.accessToken
-        );
+      );
 
-      })
-
-    );
-
-}
-
+  }
 
 
   // ============================
@@ -117,10 +103,13 @@ export class AuthService {
 
   private setCurrentUser(token: string): void {
 
+    if (!token) {
+      return;
+    }
+
     const payload = JSON.parse(
       atob(token.split('.')[1])
     );
-
 
     this.userState.next({
 
@@ -130,13 +119,15 @@ export class AuthService {
 
       name: payload.name,
 
-      role: payload[
-        'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
-      ]
+      role:
+        payload[
+          'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+        ]
 
     });
 
   }
+
 
   getCurrentUser() {
 
@@ -146,11 +137,9 @@ export class AuthService {
       return null;
     }
 
-
     const payload = JSON.parse(
       atob(token.split('.')[1])
     );
-
 
     return {
 
@@ -162,12 +151,13 @@ export class AuthService {
 
       role:
         payload[
-        'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
+          'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
         ]
 
     };
 
   }
+
 
   getRole(): string | null {
 
@@ -218,6 +208,7 @@ export class AuthService {
 
   }
 
+
   // ============================
   // Navigate If Logged
   // ============================
@@ -228,41 +219,163 @@ export class AuthService {
 
       this.router.navigate([url]);
 
+      return;
+    }
+
+
+    this.storage.setLocalStorge(
+      'redirectUrl',
+      url
+    );
+
+
+    this.alertService.loginRequired(
+      (idToken: string) => {
+
+        this.login(idToken)
+          .subscribe({
+
+            next: () => {
+
+              const redirectUrl =
+                this.storage.getLocalStorge(
+                  'redirectUrl'
+                );
+
+
+              if (redirectUrl) {
+
+                this.storage.removeLocalStorge(
+                  'redirectUrl'
+                );
+
+
+                this.router
+                  .navigate([redirectUrl])
+                  .then(() => {
+
+                    this.alertService.success(
+                      'Login Successful',
+                      'Welcome back'
+                    );
+
+                  });
+
+              }
+
+            },
+
+
+            error: (err) => {
+
+              console.error(
+                'Login failed:',
+                err
+              );
+
+              this.alertService.error(
+                'Login Failed',
+                'Something went wrong. Please try again.'
+              );
+
+            }
+
+          });
+
+      }
+    );
+
+  }
+
+
+  // ============================
+  // Go To Quote
+  // ============================
+
+  goToQuote(): void {
+
+    if (!this.isLoggedIn()) {
+
+      this.storage.setLocalStorge(
+        'redirectUrl',
+        '/Get-Quote'
+      );
+
+
+      this.alertService.loginRequired(
+        (idToken: string) => {
+
+          this.login(idToken)
+            .subscribe({
+
+              next: () => {
+
+                const redirectUrl =
+                  this.storage.getLocalStorge(
+                    'redirectUrl'
+                  );
+
+
+                if (redirectUrl) {
+
+                  this.storage.removeLocalStorge(
+                    'redirectUrl'
+                  );
+
+
+                  this.router
+                    .navigate([redirectUrl])
+                    .then(() => {
+
+                      this.alertService.success(
+                        'Login Successful',
+                        'Welcome back'
+                      );
+
+                    });
+
+                }
+
+              },
+
+
+              error: (err) => {
+
+                console.error(
+                  'Login failed:',
+                  err
+                );
+
+                this.alertService.error(
+                  'Login Failed',
+                  'Something went wrong. Please try again.'
+                );
+
+              }
+
+            });
+
+        }
+      );
+
+      return;
+    }
+
+
+    if (this.isAdmin()) {
+
+      this.router.navigate([
+        '/admin/quotes'
+      ]);
+
     } else {
 
-      localStorage.setItem('redirectUrl', url);
-
-      this.alertService.loginRequired();
+      this.router.navigate([
+        '/Get-Quote'
+      ]);
 
     }
 
   }
-
-  goToQuote(): void {
-
-  if (!this.isLoggedIn()) {
-
-    localStorage.setItem(
-      'redirectUrl',
-      '/Get-Quote'
-    );
-
-    this.alertService.loginRequired();
-
-    return;
-  }
-
-
-  if (this.isAdmin()) {
-
-    this.router.navigate(['/admin/quotes']);
-
-  } else {
-
-    this.router.navigate(['/Get-Quote']);
-
-  }
-
-}
 
 }

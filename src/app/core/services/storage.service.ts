@@ -76,68 +76,98 @@ export class StorageService {
 
   isLoggedIn(): boolean {
 
-  if (!this.isBrowser) return false;
+    if (!this.isBrowser) return false;
 
 
-  const token = this.getAccessToken();
+    const token = this.getAccessToken();
 
 
-  if (!token) {
-    return false;
-  }
+    if (!token) {
+      return false;
+    }
 
 
-  try {
+    try {
 
-    const payload = JSON.parse(
-      atob(token.split('.')[1])
-    );
-
-
-    const expiry = payload.exp * 1000;
+      const payload = JSON.parse(
+        atob(token.split('.')[1])
+      );
 
 
-    return Date.now() < expiry;
+      const expiry = payload.exp * 1000;
 
 
-  } catch {
-
-    return false;
-
-  }
-
-}
-
-isTokenExpired(): boolean {
-
-  const token = this.getAccessToken();
+      return Date.now() < expiry;
 
 
-  if(!token){
-    return true;
-  }
+    } catch {
 
+      return false;
 
-  try {
-
-    const payload = JSON.parse(
-      atob(token.split('.')[1])
-    );
-
-
-    const expiry = payload.exp * 1000;
-
-
-    return Date.now() >= expiry;
-
-
-  } catch {
-
-    return true;
+    }
 
   }
 
-}
+  isTokenExpired(): boolean {
+
+    const token = this.getAccessToken();
+
+
+    if (!token) {
+      return true;
+    }
+
+
+    try {
+
+      const payload = JSON.parse(
+        atob(token.split('.')[1])
+      );
+
+
+      const expiry = payload.exp * 1000;
+
+
+      return Date.now() >= expiry;
+
+
+    } catch {
+
+      return true;
+
+    }
+
+  }
+
+
+
+  setLocalStorge(item: string, value: string) {
+
+    
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem(item, value);
+    }
+
+  }
+
+  getLocalStorge(value: string) {
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem(value);
+    }
+    return null;
+  }
+
+  removeLocalStorge(value: string) {
+
+    
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem(value);
+    }
+
+  }
+
+
+
 
   // ===============================
   // Cookie Helpers

@@ -1,7 +1,7 @@
 export const API = {
 
-  BASE_URL:'https://localhost:7272/',
-  BASE_API_URL: 'https://localhost:7272/api',
+  BASE_URL:'https://khalifaglass-api-b4e6h6dhckaag4hb.centralindia-01.azurewebsites.net/',
+  BASE_API_URL: 'https://khalifaglass-api-b4e6h6dhckaag4hb.centralindia-01.azurewebsites.net/api',
 
   AUTH: {
 
@@ -9,6 +9,15 @@ export const API = {
 
     REFRESH_TOKEN: '/Auth/refresh-token'
 
+  },
+  GALLERTY: {
+    GET_ALL:'/Gallery'
+  },
+  CATEGORY:{
+    GET_ALL:'/ProjectCategories'
+  },
+  PROJECTS:{
+    GEL_ALL:'/Projects'
   },
 
   QUOTES: {

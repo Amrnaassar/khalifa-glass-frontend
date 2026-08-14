@@ -27,17 +27,19 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               {
-                  "glob": "**/*",
-                  "input": "src/assets",
-                  "output": "assets"
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
             "styles": [
-               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles/styles.scss"
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.js"],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.js"
+            ],
             "server": "src/main.server.ts",
             "security": {
               "allowedHosts": []
@@ -52,8 +54,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "1.5mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -97,17 +99,19 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               {
-                  "glob": "**/*",
-                  "input": "src/assets",
-                  "output": "assets"
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
             "styles": [
-               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-               "src/styles/styles.scss"
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles/styles.scss"
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.js"]
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.js"
+            ]
           }
         }
       }

@@ -177,7 +177,7 @@
                                     </option>
 
                                     @for (cat of categories; track $index) {
-                                    <option>{{ cat.name | translate }}</option>
+                                    <option>{{ getCategoryName(cat)}}</option>
                                     }
 
                                 </select>

@@ -17,7 +17,7 @@
             @for (cat of categories; track cat.id) {
             <button [class.active]="selectedCategoryId === cat.id"
                 (click)="filterGallery(cat.id)">
-                {{ cat.name | translate }}
+                {{ getCategorytitle(cat) }}
             </button>
             }
 
@@ -29,15 +29,14 @@
 
             @for(image of displayedGallery; track image.id){
 
-            <div class="gallery-card" [class.gallery-card--large]="image.large">
+            <div class="gallery-card" [class.gallery-card--large]="image.isLarge">
 
-                <img [src]="image.image" [alt]="image.title | translate">
+                <img [src]="image.imageUrl" [alt]="image.title | translate">
 
                 <div class="gallery-card__overlay">
 
                     <h3>{{ image.title | translate }}</h3>
-
-                    {{ (getCategoryName(image.catId) )| translate }}
+                    {{ (getCategoryName(image.categoryId) )| translate }}
 
                 </div>
 

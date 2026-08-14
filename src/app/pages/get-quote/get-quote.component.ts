@@ -10,6 +10,7 @@ import { UserQuote } from '../../core/models/user-quote.model';
 import { CompanyCategoryService, ICompanyCategory } from '../../shared/services/company-category.service';
 import { CompanyServicesService, ICompanyService } from '../../shared/services/company-services.service';
 import { SectionHeaderComponent } from '../../shared/components/section-header/section-header.component';
+import { LanguageService } from '../../core/services/language.service';
 @Component({
   selector: 'app-get-quote',
   standalone: true,
@@ -74,10 +75,11 @@ export class GetQuoteComponent implements OnInit {
     private quoteService: QuoteService,
     private alertService: AlertService,
     private ourServices: CompanyServicesService,
-    private categoryService: CompanyCategoryService
+    private categoryService: CompanyCategoryService,
+    private language:LanguageService
   ) {
     this.services = this.ourServices.getAllServices();
-    this.categories = this.categoryService.getAllCategory();
+    
   }
 
   ngOnInit(): void {
@@ -96,6 +98,21 @@ export class GetQuoteComponent implements OnInit {
     this.quoteService.getMyQuotes().subscribe({
       next: (q) => this.userQuotes = q
     });
+
+    this.categoryService.getAllCategory().subscribe({
+      next: (res) => {
+        this.categories = res;
+      },
+      error: (err) => {
+        console.error('Failed to load categories:', err);
+      }
+    });
+  }
+
+   getCategoryName(category: ICompanyCategory): string {
+    return this.language.isArabic()
+      ? category.nameAr
+      : category.nameEn;
   }
   // =============================
   // Upload Images

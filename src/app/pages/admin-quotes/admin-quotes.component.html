@@ -280,7 +280,7 @@
 
                     @for(image of getImages(selectedQuote.imagePaths); track image){
 
-                    <img [src]="baseUrl + image" alt="Quote Image" (click)="openImage(image)">
+                    <img [src]="image" alt="Quote Image" (click)="openImage(image)">
 
                     }
 
@@ -309,7 +309,7 @@
 
         </button>
 
-        <img [src]="baseUrl + selectedImage" alt="Preview" (click)="$event.stopPropagation()">
+        <img [src]="selectedImage" alt="Preview" (click)="$event.stopPropagation()">
 
     </div>
 

@@ -1,6 +1,7 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class LanguageService {
 
   private translate = inject(TranslateService);
+  private storage = inject(StorageService);
+
   private document = inject(DOCUMENT);
   private platformId = inject(PLATFORM_ID);
 
@@ -22,7 +25,7 @@ export class LanguageService {
     let lang: 'en' | 'ar' = 'en';
 
     if (isPlatformBrowser(this.platformId)) {
-      const saved = localStorage.getItem('language') as 'en' | 'ar' | null;
+      const saved = this.storage.getLocalStorge('language') as 'en' | 'ar' | null;
 
       if (saved) {
         lang = saved;
@@ -35,36 +38,36 @@ export class LanguageService {
     this.setLanguage(lang);
   }
 
- setLanguage(lang: 'en' | 'ar'): void {
+  setLanguage(lang: 'en' | 'ar'): void {
 
-  this.translate.use(lang);
+    this.translate.use(lang);
 
-  this.currentLanguage.set(lang);
+    this.currentLanguage.set(lang);
 
-  if (isPlatformBrowser(this.platformId)) {
+    if (isPlatformBrowser(this.platformId)) {
 
-    // تغيير الاتجاه
-    this.document.documentElement.setAttribute('lang', lang);
-    this.document.documentElement.setAttribute(
-      'dir',
-      lang === 'ar' ? 'rtl' : 'ltr'
-    );
+      // تغيير الاتجاه
+      this.document.documentElement.setAttribute('lang', lang);
+      this.document.documentElement.setAttribute(
+        'dir',
+        lang === 'ar' ? 'rtl' : 'ltr'
+      );
 
-    // اجبار المتصفح يعيد حساب الـ layout
-    setTimeout(() => {
-      this.document.body.style.direction =
-        lang === 'ar' ? 'rtl' : 'ltr';
-    });
+      // اجبار المتصفح يعيد حساب الـ layout
+      setTimeout(() => {
+        this.document.body.style.direction =
+          lang === 'ar' ? 'rtl' : 'ltr';
+      });
 
-    if (lang === 'ar') {
-      this.document.body.classList.add('arabic');
-    } else {
-      this.document.body.classList.remove('arabic');
+      if (lang === 'ar') {
+        this.document.body.classList.add('arabic');
+      } else {
+        this.document.body.classList.remove('arabic');
+      }
+
+      this.storage.setLocalStorge('language', lang);
     }
-
-    localStorage.setItem('language', lang);
   }
-}
 
   toggleLanguage(): void {
     this.setLanguage(
