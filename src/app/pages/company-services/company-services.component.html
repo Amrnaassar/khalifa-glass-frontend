@@ -2,8 +2,7 @@
 
     <div class="container">
 
-        <app-section-header
-            [subtitle]="'services.header.subtitle' | translate"
+        <app-section-header [subtitle]="'services.header.subtitle' | translate"
             [title]="'services.header.premiumTitle' | translate" />
 
         <div class="services__grid">
@@ -26,9 +25,11 @@
 
         <div class="services__button">
 
-            <button class="btn btn--primary">
+            @if (hasMoreServices) {
+            <button class="btn btn--primary" (click)="showAllServices()">
                 {{ 'services.viewAll' | translate }}
             </button>
+            }
 
         </div>
 

@@ -24,31 +24,22 @@
 
                     <ul class="about-company__features">
 
+                        @for (feature of displayedFeatures; track feature) {
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            {{ 'about.features.expertTeam' | translate }}
+                            {{ feature | translate }}
                         </li>
-
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            {{ 'about.features.highQualityMaterials' | translate }}
-                        </li>
-
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            {{ 'about.features.modernTechnology' | translate }}
-                        </li>
-
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            {{ 'about.features.customerSatisfaction' | translate }}
-                        </li>
+                        }
 
                     </ul>
 
-                    <button class="btn btn--primary">
+                    @if (hasMoreFeatures) {
+                    <button class="btn btn--primary" (click)="loadMoreFeatures()">
+
                         {{ 'about.readMore' | translate }}
+
                     </button>
+                    }
 
                 </div>
 
@@ -56,8 +47,7 @@
 
                 <div class="about-company__image">
 
-                    <img src="assets/images/hero/hero1.png"
-                        [alt]="'about.imageAlt' | translate">
+                    <img src="assets/images/hero/hero1.png" [alt]="'about.imageAlt' | translate">
 
                 </div>
 

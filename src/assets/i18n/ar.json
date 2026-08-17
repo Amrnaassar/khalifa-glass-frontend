@@ -53,10 +53,14 @@
     "imageAlt": "عن خليفة لزجاج",
     "experience": "سنوات من <br/> الخبرة",
     "features": {
-      "expertTeam": "فريق متخصص",
+      "expertTeam": "فريق عمل متخصص",
       "highQualityMaterials": "مواد عالية الجودة",
       "modernTechnology": "تقنيات حديثة",
-      "customerSatisfaction": "رضا العملاء"
+      "customerSatisfaction": "رضا العملاء",
+      "competitivePrices": "أسعار تنافسية",
+      "onTimeDelivery": "التزام بالمواعيد",
+      "customDesign": "حلول وتصاميم مخصصة",
+      "afterSalesSupport": "دعم ما بعد البيع"
     }
   },
   "services": {

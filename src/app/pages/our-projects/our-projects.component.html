@@ -19,7 +19,7 @@
             @for (cat of categories; track cat.id) {
             <button class="projects-filter__btn" [class.active]="selectedCategoryId === cat.id"
                 (click)="filterProjects(cat.id)">
-               {{ getCategoryName(cat) }}
+                {{ getCategoryName(cat) }}
             </button>
             }
 
@@ -55,13 +55,18 @@
 
         </div>
 
+        @if (hasMoreProjects) {
         <div class="projects-page__more">
 
             <button class="btn btn--primary" (click)="loadProject()">
-                {{ showAll ? ('common.loadLess' | translate) : ('common.loadMore' | translate) }}
+                {{ showAll
+                ? ('common.loadLess' | translate)
+                : ('common.loadMore' | translate)
+                }}
             </button>
 
         </div>
+        }
 
     </div>
 

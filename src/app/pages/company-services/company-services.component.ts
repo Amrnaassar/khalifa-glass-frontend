@@ -6,7 +6,7 @@ import { SectionHeaderComponent } from '../../shared/components/section-header/s
 
 @Component({
   selector: 'app-company-services',
-  imports: [SectionHeaderComponent,TranslatePipe],
+  imports: [SectionHeaderComponent, TranslatePipe],
   templateUrl: './company-services.component.html',
   styleUrl: './company-services.component.scss'
 })
@@ -14,6 +14,20 @@ export class CompanyServicesComponent {
   services: ICompanyService[]
   constructor(private _companyService: CompanyServicesService) {
     this.services = this._companyService.getAllServices();
+  }
+
+  visibleServices = 8;
+
+  get displayedServices() {
+    return this.services.slice(0, this.visibleServices);
+  }
+
+  get hasMoreServices(): boolean {
+    return this.visibleServices < this.services.length;
+  }
+
+  showAllServices(): void {
+    this.visibleServices = this.services.length;
   }
 
 }

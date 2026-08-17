@@ -30,11 +30,11 @@ export class OurProjectsComponent implements OnInit {
   }
 
   getCategoryName(category: ICompanyCategory): string {
-  return this.language.isArabic()
-    ? category.nameAr
-    : category.nameEn;
-}
-  
+    return this.language.isArabic()
+      ? category.nameAr
+      : category.nameEn;
+  }
+
   filterProjects(categoryId: number) {
     this.selectedCategoryId = categoryId;
     this.showAll = false; // كل مرة يرجع لأول 3
@@ -53,23 +53,33 @@ export class OurProjectsComponent implements OnInit {
       ? filteredProjects
       : filteredProjects.slice(0, 3);
   }
+  
+  get hasMoreProjects(): boolean {
+    const filteredProjects =
+      this.selectedCategoryId === 0
+        ? this.projects
+        : this.projects.filter(
+          project => project.categoryId === this.selectedCategoryId
+        );
 
+    return filteredProjects.length > 3;
+  }
   getProjectCategory(project: ICompanyProjects): string {
     return this.language.isArabic()
       ? project.categoryNameAr
       : project.categoryNameEn;
   }
   getProjectTitle(project: ICompanyProjects): string {
-  return this.language.isArabic()
-    ? project.titleAr
-    : project.titleEn;
-}
+    return this.language.isArabic()
+      ? project.titleAr
+      : project.titleEn;
+  }
   getProjectDesc(project: ICompanyProjects): string {
     return this.language.isArabic()
       ? project.descriptionAr
       : project.descriptionEn;
   }
-  
+
 
   loadData() {
     this._ProjectService.getAllProjects().subscribe({
