@@ -49,7 +49,7 @@ export class GalleryComponent implements OnInit {
     this.catService.getAllCategory().subscribe({
       next: (res) => {
         this.categories = res;
-        console.log(res);
+      
       },
       error: (err) => {
         console.log(err);
