@@ -185,7 +185,7 @@ export class AuthService {
 
     this.userState.next(null);
 
-    this.router.navigate(['/Home'])
+    this.router.navigate(['/'])
       .then(() => {
 
         this.alertService.success(
@@ -298,7 +298,7 @@ export class AuthService {
 
       this.storage.setLocalStorge(
         'redirectUrl',
-        '/Get-Quote'
+        '/get-quote'
       );
 
 
@@ -371,7 +371,7 @@ export class AuthService {
     } else {
 
       this.router.navigate([
-        '/Get-Quote'
+        '/get-quote'
       ]);
 
     }

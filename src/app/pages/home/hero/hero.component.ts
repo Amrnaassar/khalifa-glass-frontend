@@ -59,7 +59,7 @@ export class HeroComponent {
   }
  
   goToContact(): void {
-     this.authService.checkLogin('/Contact');
+     this.authService.checkLogin('/contact');
   }
 
   private animate(changeIndex: Function) {

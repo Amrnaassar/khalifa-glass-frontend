@@ -26,17 +26,17 @@ export class NavbarComponent {
   }
   
   goToContact():void{
-        this.authService.checkLogin('/Contact');
+        this.authService.checkLogin('/contact');
   }
 
   logged() {
     if (this.isLogged()) {
       this.authService.logout();
-      this.router.navigate(['/Home']);
+      this.router.navigate(['/']);
     }
 
     else
-      this.authService.checkLogin('/Home');
+      this.authService.checkLogin('/');
 
   }
 

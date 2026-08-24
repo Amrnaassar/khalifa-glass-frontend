@@ -42,7 +42,7 @@
   <div class="container">
 
     <!-- Logo -->
-    <a routerLink="/Home" routerLinkActive="active" class="navbar__logo">
+    <a routerLink="/" routerLinkActive="active" class="navbar__logo">
 
       <img src="assets/icons/khalifa-icon.webp" width="48" height="48" [alt]="'navbar.companyName' | translate">
 
@@ -68,38 +68,38 @@
     <ul class="navbar__menu" [class.active]="menuOpen">
 
       <li>
-        <a routerLink="/Home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
           (click)="menuOpen=false">
           {{ 'navbar.home' | translate }}
         </a>
       </li>
 
       <li>
-        <a routerLink="/About-Us" routerLinkActive="active" (click)="menuOpen=false">
+        <a routerLink="/about-us" routerLinkActive="active" (click)="menuOpen=false">
           {{ 'navbar.about' | translate }}
         </a>
       </li>
 
       <li>
-        <a routerLink="/Services" routerLinkActive="active" (click)="menuOpen=false">
+        <a routerLink="/services" routerLinkActive="active" (click)="menuOpen=false">
           {{ 'navbar.services' | translate }}
         </a>
       </li>
 
       <li>
-        <a routerLink="/Projects" routerLinkActive="active" (click)="menuOpen=false">
+        <a routerLink="/projects" routerLinkActive="active" (click)="menuOpen=false">
           {{ 'navbar.projects' | translate }}
         </a>
       </li>
 
       <li>
-        <a routerLink="/Gallery" routerLinkActive="active" (click)="menuOpen=false">
+        <a routerLink="/gallery" routerLinkActive="active" (click)="menuOpen=false">
           {{ 'navbar.gallery' | translate }}
         </a>
       </li>
 
       <li>
-        <a routerLink="/FAQ" routerLinkActive="active" (click)="menuOpen=false">
+        <a routerLink="/faq" routerLinkActive="active" (click)="menuOpen=false">
           {{ 'navbar.faq' | translate }}
         </a>
       </li>

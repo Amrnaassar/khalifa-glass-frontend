@@ -17,6 +17,6 @@ export class FooterComponent {
     this.services = companyService.getAllServices();
   }
   goToContact() {
-    this.authService.checkLogin('/Contact');
+    this.authService.checkLogin('/contact');
   }
 }

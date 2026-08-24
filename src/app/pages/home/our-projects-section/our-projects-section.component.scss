@@ -9,49 +9,6 @@
     background: $section-bg;
 
 
-
-    .section-heading {
-
-        text-align: center;
-
-        margin-bottom: 60px;
-
-
-
-        &__subtitle {
-
-            display: inline-block;
-
-            color: $secondary;
-
-            font-size: 14px;
-
-            font-weight: 600;
-
-            text-transform: uppercase;
-
-            letter-spacing: 2px;
-
-            margin-bottom: 12px;
-
-        }
-
-
-
-        &__title {
-
-            font-size: 40px;
-
-            color: $text-color;
-
-            font-weight: 700;
-
-        }
-
-    }
-
-
-
     &__grid {
 
         display: grid;

@@ -50,7 +50,7 @@ export class FAQComponent {
   }
 
   goToContact(): void {
-     this.authService.checkLogin('/Contact');
+     this.authService.checkLogin('/contact');
   }
 
 

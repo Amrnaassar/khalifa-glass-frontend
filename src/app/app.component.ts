@@ -6,7 +6,6 @@ import {
 } from '@angular/core';
 
 import {
-  Router,
   RouterOutlet
 } from '@angular/router';
 
@@ -17,9 +16,7 @@ import { FloatingButtonsComponent } from './layout/floating-buttons/floating-but
 import { LanguageService } from './core/services/language.service';
 import { isPlatformBrowser } from '@angular/common';
 
-import { GoogleAuthService } from './core/services/google-auth.service';
 import { AuthService } from './core/services/auth.service';
-import { AlertService } from './core/services/alert.service';
 
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { StorageService } from './core/services/storage.service';
