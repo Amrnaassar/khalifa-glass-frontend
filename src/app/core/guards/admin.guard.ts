@@ -6,8 +6,6 @@ export const adminGuard: CanActivateFn = () => {
 
   const auth = inject(AuthService);
 
-  console.log(auth.getCurrentUser());
-
   return auth.isAdmin();
 
 };

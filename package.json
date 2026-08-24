@@ -1,5 +1,5 @@
 {
-  "name": "mega-glass",
+  "name": "khalifa-glass",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:mega-glass": "node dist/mega-glass/server/server.mjs"
+    "serve:ssr:khalifa-glass": "node dist/khalifa-glass/server/server.mjs"
   },
   "private": true,
   "dependencies": {

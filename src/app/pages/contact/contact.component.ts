@@ -70,7 +70,6 @@ get f() {
     if (this.contactForm.invalid) {
 
       this.contactForm.markAllAsTouched();
-      console.log("invalid submit");
       return;
     }
 
@@ -86,7 +85,6 @@ get f() {
 
         next: (res) => {
 
-          console.log(res);
 
           this.isLoading = false;
 
@@ -102,7 +100,6 @@ get f() {
 
         error: (err) => {
 
-          console.log(err);
 
           this.isLoading = false;
 

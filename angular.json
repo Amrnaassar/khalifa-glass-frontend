@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mega-glass": {
+    "khalifa-glass": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/mega-glass",
+            "outputPath": "dist/khalifa-glass",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -77,10 +77,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "mega-glass:build:production"
+              "buildTarget": "khalifa-glass:build:production"
             },
             "development": {
-              "buildTarget": "mega-glass:build:development"
+              "buildTarget": "khalifa-glass:build:development"
             }
           },
           "defaultConfiguration": "development"

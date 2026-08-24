@@ -65,12 +65,6 @@ export class AppComponent implements OnInit {
           .refreshToken()
           .subscribe({
 
-            next: () => {
-
-              console.log('Token refreshed successfully');
-
-            },
-
             error: () => {
 
               this.storage.clearTokens();
