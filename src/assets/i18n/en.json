@@ -342,6 +342,20 @@
     },
     "footer": "Last updated: July 2026"
   },
+  "emptyState": {
+    "noProjects": {
+      "title": "No projects available",
+      "message": "There are no projects available at the moment."
+    },
+    "noGallery": {
+      "title": "No gallery items available",
+      "message": "There are no gallery items available at the moment."
+    },
+    "noQuotes": {
+      "title": "No quotes found",
+      "message": "You don't have any quotes yet."
+    }
+  },
   "seo": {
     "home": {
       "title": "Khalifa Glass | Glass & Aluminium Company in Riyadh Saudi Arabia",

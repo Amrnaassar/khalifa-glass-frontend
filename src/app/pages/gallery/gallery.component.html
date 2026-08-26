@@ -23,6 +23,7 @@
 
         </div>
 
+        @if (displayedGallery.length > 0) {
         <!-- Gallery -->
 
         <div class="gallery__grid">
@@ -45,6 +46,15 @@
             }
 
         </div>
+    }@else {
+
+  <app-empty-state
+    icon="fa-images"
+    [title]="'emptyState.noGallery.title' | translate"
+    [message]="'emptyState.noGallery.message' | translate"
+  />
+
+}
 
     </div>
 

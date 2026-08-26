@@ -5,11 +5,15 @@ import { QuoteService } from '../../core/services/quote.service';
 import { Quote } from '../../core/models/quote.model';
 import { AlertService } from '../../core/services/alert.service';
 import { API } from '../../core/constants/api.constants';
+import { EmptyStateComponent } from '../../shared/components/empty-state/empty-state.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-admin-quotes',
   standalone: true,
   imports: [
+    EmptyStateComponent,
+    TranslatePipe,
     CommonModule
   ],
   templateUrl: './admin-quotes.component.html',

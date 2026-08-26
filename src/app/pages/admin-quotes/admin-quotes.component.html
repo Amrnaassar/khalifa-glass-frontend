@@ -22,15 +22,8 @@
         <!-- EMPTY STATE -->
         @if(filteredQuotes.length === 0){
 
-        <div class="quotes-empty">
-
-            <i class="fas fa-inbox"></i>
-
-            <h3>No Quote Requests Found</h3>
-
-            <p>There are no requests in this category.</p>
-
-        </div>
+        <app-empty-state icon="fa-duotone fa-thin fa-gears" [title]="'emptyState.noQuotes.title' | translate"
+            [message]="'emptyState.noQuotes.message' | translate" />
 
         }
 

@@ -16,11 +16,13 @@ import { SectionHeaderComponent } from '../../shared/components/section-header/s
 import { LanguageService } from '../../core/services/language.service';
 import { AlertService } from '../../core/services/alert.service';
 import { SeoService } from '../../core/services/seo.service';
+import { EmptyStateComponent } from '../../shared/components/empty-state/empty-state.component';
 
 @Component({
   selector: 'app-our-projects',
   imports: [
     SectionHeaderComponent,
+    EmptyStateComponent,
     CommonModule,
     TranslatePipe
   ],

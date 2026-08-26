@@ -26,7 +26,7 @@
         </div>
 
         <!-- Grid -->
-
+        @if (displayedProjects.length > 0) {
         <div class="projects-page__grid">
 
             @for (project of displayedProjects; track $index) {
@@ -54,6 +54,12 @@
             }
 
         </div>
+        } @else {
+
+        <app-empty-state icon="fa-folder-open" [title]="'emptyState.noProjects.title' | translate"
+            [message]="'emptyState.noProjects.message' | translate" />
+
+        }
 
         @if (hasMoreProjects) {
         <div class="projects-page__more">
