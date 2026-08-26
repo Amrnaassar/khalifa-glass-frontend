@@ -15,6 +15,7 @@ import {
 
 import { LanguageService } from '../../core/services/language.service';
 import { AlertService } from '../../core/services/alert.service';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-gallery',
@@ -36,10 +37,12 @@ export class GalleryComponent implements OnInit {
     private galleryService: GalleryService,
     private catService: CompanyCategoryService,
     private language: LanguageService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private seoService :SeoService
   ) {}
 
   ngOnInit(): void {
+    this.seoService.updateSeo('gallery');
     this.loadData();
   }
 

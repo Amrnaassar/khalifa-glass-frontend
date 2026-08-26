@@ -15,6 +15,7 @@ import {
 import { SectionHeaderComponent } from '../../shared/components/section-header/section-header.component';
 import { LanguageService } from '../../core/services/language.service';
 import { AlertService } from '../../core/services/alert.service';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-our-projects',
@@ -38,10 +39,12 @@ export class OurProjectsComponent implements OnInit {
     private _ProjectService: CompanyProjectsService,
     private _categoriesService: CompanyCategoryService,
     private language: LanguageService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private seoService :SeoService
   ) {}
 
   ngOnInit(): void {
+    this.seoService.updateSeo('projects');
     this.loadData();
   }
 

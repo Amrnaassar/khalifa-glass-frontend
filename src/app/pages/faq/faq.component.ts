@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AuthService } from '../../core/services/auth.service';
 import { SectionHeaderComponent } from '../../shared/components/section-header/section-header.component';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-faq',
@@ -9,9 +10,13 @@ import { SectionHeaderComponent } from '../../shared/components/section-header/s
   templateUrl: './faq.component.html',
   styleUrl: './faq.component.scss'
 })
-export class FAQComponent {
+export class FAQComponent implements OnInit {
+  private seoService = inject(SeoService);
 
-  private authService=inject(AuthService);
+  ngOnInit(): void {
+    this.seoService.updateSeo('faq');
+  }
+  private authService = inject(AuthService);
 
   faqItems = [
     {
@@ -50,7 +55,7 @@ export class FAQComponent {
   }
 
   goToContact(): void {
-     this.authService.checkLogin('/contact');
+    this.authService.checkLogin('/contact');
   }
 
 

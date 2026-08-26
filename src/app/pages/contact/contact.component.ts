@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ContactService } from '../../core/services/contact.service';
 import { AuthService } from '../../core/services/auth.service';
 import { AlertService } from '../../core/services/alert.service';
 import { SectionHeaderComponent } from '../../shared/components/section-header/section-header.component';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-contact',
@@ -17,15 +18,19 @@ import { SectionHeaderComponent } from '../../shared/components/section-header/s
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit{
 
   private fb = inject(FormBuilder);
   constructor(
     private authService: AuthService,
     private contactService: ContactService,
-    private alertService: AlertService) {
+    private alertService: AlertService,
+    private seoService :SeoService
+  ) {}
 
-  }
+  ngOnInit(): void {
+  this.seoService.updateSeo('contact');
+}
   isLoading = false;
 
 
