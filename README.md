@@ -1,459 +1,867 @@
-<<<<<<< HEAD
-# KhalifaGlass
+# 🏢 Khalifa Glass — Frontend
 
-=======
-# Khalifa Glass
->>>>>>> e187c6cd1d637913a8abeb8aefd7cc08f0b93f27
+> **A modern, multilingual Angular frontend for the Khalifa Glass full-stack web application.**
 
-> A production-oriented bilingual corporate website for **Khalifa Glass**, built with Angular, SSR, responsive UI, authentication, quotation management, and a protected admin workflow.
+Khalifa Glass is a modern web application built for a glass & aluminium company, designed to provide customers with a professional digital experience for exploring services, viewing projects, submitting quotation requests, and managing their requests.
 
-[![Angular](https://img.shields.io/badge/Angular-19-DD0031?logo=angular&logoColor=white)](https://angular.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
-[![SCSS](https://img.shields.io/badge/SCSS-Architecture-CC6699?logo=sass&logoColor=white)](https://sass-lang.com/)
-[![SSR](https://img.shields.io/badge/Angular-SSR-orange)](https://angular.dev/guide/ssr)
+The frontend is built with **Angular and TypeScript**, and communicates with a dedicated **ASP.NET Core Web API** for authentication, quotations, project data, media handling, and other backend operations.
 
-## Overview
+This project was built with a focus on **clean architecture, reusable components, responsive design, authentication, performance, accessibility, and real-world frontend/backend integration**.
 
-Khalifa Glass is a bilingual Arabic/English corporate web application designed for a glass and aluminium company.
+---
 
-The project combines a polished marketing website with real application functionality:
+# 🚀 Overview
 
-- Company pages for services, projects, gallery, FAQ, and contact
-- Arabic / English language switching with RTL / LTR support
-- Server-side rendering and prerendering
-- Google Identity Services authentication
-- JWT access tokens and refresh tokens
-- Authenticated quotation requests with image uploads
-- User quotation history
-- Admin-only quotation management
-- Quote status updates and deletion
-- Responsive UI with reusable Angular components
-- SEO metadata and Open Graph support
-- Centralized SCSS design system
-- Loading and alert feedback states
-- API-driven projects, categories, services, and gallery content
+The application goes beyond a traditional company website.
 
-## Screenshots
+It combines a public-facing website with authenticated user functionality and administrative workflows.
 
-> Add real screenshots here before publishing the repository.
+### Main capabilities
 
-| Home | Services |
-|---|---|
-| `docs/screenshots/home.png` | `docs/screenshots/services.png` |
+* 🌍 Arabic & English localization
+* ↔️ Full RTL / LTR support
+* ⚡ Angular SSR & Hydration
+* 🔐 Authentication
+* 🔵 Google Sign-In
+* 🛡️ Route Guards
+* 🔑 JWT authentication flow
+* ♻️ Refresh token handling
+* 📝 Reactive Forms
+* 📋 Online quotation system
+* 📸 Project image uploads
+* 👤 User quotation history
+* 👨‍💼 Admin quotation management
+* 🖼️ Dynamic projects & gallery
+* 📱 Responsive design
+* 🎨 Custom SCSS design system
+* 🔎 SEO metadata
+* 🌐 Open Graph metadata
+* 🔗 REST API integration
 
-| Projects | Quote Request |
-|---|---|
-| `docs/screenshots/projects.png` | `docs/screenshots/get-quote.png` |
+---
 
-| Admin Quotes | Arabic / RTL |
-|---|---|
-| `docs/screenshots/admin-quotes.png` | `docs/screenshots/arabic.png` |
+# 🛠️ Tech Stack
 
-## Architecture
+| Technology                | Purpose                       |
+| ------------------------- | ----------------------------- |
+| **Angular**               | Frontend framework            |
+| **TypeScript**            | Application development       |
+| **SCSS**                  | Styling & design system       |
+| **Angular Router**        | Navigation & route management |
+| **Reactive Forms**        | Forms & validation            |
+| **Angular SSR**           | Server-side rendering         |
+| **Hydration**             | Client-side hydration         |
+| **RxJS**                  | Reactive data handling        |
+| **REST API**              | Backend communication         |
+| **JWT**                   | Authentication                |
+| **Google Authentication** | User sign-in                  |
+| **Font Awesome**          | Icons                         |
+| **Vercel**                | Deployment                    |
 
-```text
+---
+
+# 🏗️ Frontend Architecture
+
+The application is organized to separate application-wide functionality from reusable UI elements and feature-specific pages.
+
+```text id="a8r7dw"
 src/
+│
 ├── app/
+│   │
 │   ├── core/
-│   │   ├── constants/
 │   │   ├── guards/
 │   │   ├── interceptors/
-│   │   ├── models/
-│   │   └── services/
+│   │   ├── services/
+│   │   └── models/
 │   │
-│   ├── layout/
-│   │   ├── navbar/
-│   │   ├── footer/
-│   │   └── floating-buttons/
+│   ├── shared/
+│   │   ├── components/
+│   │   └── services/
 │   │
 │   ├── pages/
 │   │   ├── home/
-│   │   ├── about-us/
-│   │   ├── company-services/
-│   │   ├── our-projects/
+│   │   ├── about/
+│   │   ├── services/
+│   │   ├── projects/
 │   │   ├── gallery/
-│   │   ├── faq/
-│   │   ├── contact/
-│   │   ├── get-quote/
-│   │   ├── admin-quotes/
-│   │   ├── privacy-policy/
-│   │   └── terms-conditions/
+│   │   ├── quotation/
+│   │   ├── profile/
+│   │   └── admin/
 │   │
-│   └── shared/
-│       ├── components/
-│       └── services/
+│   ├── app.component.*
+│   ├── app.routes.ts
+│   └── app.config.ts
 │
 ├── assets/
-│   ├── i18n/
 │   ├── images/
-│   └── icons/
+│   └── ...
 │
-├── environments/
-└── styles/
-    ├── abstracts/
-    ├── base/
-    └── components/
+├── styles/
+│   ├── abstracts/
+│   ├── base/
+│   ├── components/
+│   └── utilities/
+│
+└── main.ts
 ```
 
-### Layer responsibilities
+The application separates **core functionality, shared UI, services, guards, interceptors, models, and feature pages**, making the project easier to maintain and extend.
 
-- **Core** — application-wide services, authentication, guards, interceptors, API models, and constants.
-- **Layout** — global navigation and persistent UI.
-- **Pages** — route-level features and page-specific sections.
-- **Shared** — reusable UI components and content services.
-- **Styles** — centralized design tokens, mixins, animations, theme, and component styles.
+---
 
-## Tech Stack
+# 🎨 UI & Design System
+
+The interface was designed around a modern, premium visual identity suitable for a glass & aluminium company.
+
+The frontend uses a centralized SCSS structure instead of scattering styling across unrelated files.
+
+### Design principles
+
+* Clean layouts
+* Strong visual hierarchy
+* Consistent spacing
+* Reusable UI patterns
+* Responsive behavior
+* Accessible interaction
+* Consistent typography
+* Consistent color usage
+* Mobile-first considerations
+
+The styling architecture is organized into reusable layers:
+
+```text id="qj7c7g"
+styles/
+│
+├── abstracts/
+│   ├── variables
+│   └── ...
+│
+├── base/
+│   ├── reset
+│   ├── typography
+│   └── ...
+│
+├── components/
+│
+├── utilities/
+│
+└── main.scss
+```
+
+This makes it easier to maintain a consistent visual language throughout the application.
+
+---
+
+# 🌍 Arabic & English Support
+
+One of the important requirements of the project was supporting both Arabic and English users.
+
+The interface supports:
+
+```text id="8p5qbc"
+English
+  ↓
+LTR
+
+Arabic
+  ↓
+RTL
+```
+
+The layout direction changes according to the active language.
+
+This affects more than text translation.
+
+The UI also handles:
+
+* Navigation
+* Spacing
+* Alignment
+* Icons
+* Forms
+* Content direction
+* Component layouts
+
+The result is a more natural experience for both Arabic and English users.
+
+---
+
+# ⚡ Server-Side Rendering & Hydration
+
+The application uses **Angular SSR and hydration** to improve the initial rendering experience and provide a stronger foundation for SEO.
+
+The rendering flow can be represented as:
+
+```text id="x8upz5"
+User Request
+     │
+     ▼
+Angular Server
+     │
+     ▼
+HTML Response
+     │
+     ▼
+Browser
+     │
+     ▼
+Angular Hydration
+     │
+     ▼
+Interactive Application
+```
+
+This is particularly useful for public-facing pages where search engine visibility and initial page rendering matter.
+
+---
+
+# 🔐 Authentication
+
+Authentication is integrated between the Angular frontend and the ASP.NET Core API.
+
+The frontend handles the client-side authentication flow while the backend remains responsible for validating credentials and issuing tokens.
+
+### Authentication flow
+
+```text id="o1xwq8"
+User
+ │
+ ├── Email / Password
+ │
+ └── Google Sign-In
+          │
+          ▼
+    Angular Frontend
+          │
+          ▼
+    ASP.NET Core API
+          │
+          ▼
+     JWT Tokens
+          │
+          ▼
+ Protected Application
+```
+
+The frontend includes dedicated authentication services and route protection mechanisms.
+
+---
+
+# 🛡️ Route Guards
+
+Protected pages are guarded so that users cannot access authenticated areas without a valid authentication state.
+
+Examples include:
+
+* Profile
+* User quotations
+* Admin functionality
+
+Conceptually:
+
+```text id="g2w3fq"
+User
+ │
+ ▼
+Protected Route
+ │
+ ▼
+Authentication Guard
+ │
+ ├── Authenticated ──► Allow Access
+ │
+ └── Not Authenticated
+          │
+          ▼
+       Login
+```
+
+This keeps authentication-related navigation logic centralized instead of repeating checks across individual components.
+
+---
+
+# 🔑 HTTP Interceptors
+
+HTTP interceptors are used to centralize authentication-related API communication.
+
+Instead of manually attaching authentication information to every API request, the interceptor handles the request pipeline.
+
+```text id="w0xxj3"
+Angular Service
+      │
+      ▼
+HTTP Request
+      │
+      ▼
+HTTP Interceptor
+      │
+      ├── Attach Token
+      │
+      └── Handle Authentication State
+      │
+      ▼
+ASP.NET Core API
+```
+
+This makes API communication cleaner and easier to maintain.
+
+---
+
+# 📋 Quotation Workflow
+
+Quotation requests are one of the main interactive features of the application.
+
+Customers can submit their project requirements through the frontend and attach relevant images.
+
+### User flow
+
+```text id="8g9nkn"
+Customer
+   │
+   ▼
+Quotation Form
+   │
+   ├── Project Information
+   ├── Contact Information
+   └── Project Images
+   │
+   ▼
+Reactive Form Validation
+   │
+   ▼
+FormData
+   │
+   ▼
+ASP.NET Core API
+```
+
+The frontend handles:
+
+* Form state
+* Validation
+* User feedback
+* Image selection
+* FormData creation
+* API communication
+* Loading states
+* Error handling
+* Success states
+
+---
+
+# 📸 Image Uploads
+
+The quotation flow supports uploading project images.
+
+The frontend prepares the request using `FormData` so text fields and image files can be sent together.
+
+```text id="k6b5ep"
+Form
+ │
+ ├── Text Fields
+ │
+ └── Images
+       │
+       ▼
+    FormData
+       │
+       ▼
+ Angular HTTP Client
+       │
+       ▼
+ ASP.NET Core API
+       │
+       ▼
+ Cloudinary
+```
+
+This allows users to provide visual references for their quotation requests.
+
+---
+
+# 👤 User Experience
+
+Authenticated users have access to their quotation-related information.
+
+The frontend provides functionality for:
+
+* Viewing submitted quotations
+* Checking quotation status
+* Viewing quotation details
+* Managing profile-related information
+* Accessing authenticated areas
+
+The goal is to give users visibility into their requests instead of relying entirely on manual communication.
+
+---
+
+# 👨‍💼 Admin Experience
+
+The frontend also contains administrative functionality for managing quotation requests.
+
+Administrators can interact with quotation data through dedicated UI flows connected to protected backend endpoints.
+
+```text id="o9cyte"
+Admin
+  │
+  ▼
+Admin Route
+  │
+  ▼
+Route Guard
+  │
+  ▼
+ASP.NET Core API
+  │
+  ▼
+Quotation Management
+```
+
+This creates a complete workflow between customer submissions and administrative processing.
+
+---
+
+# 🔗 API Integration
+
+The frontend communicates with a separate ASP.NET Core backend through RESTful APIs.
+
+```text id="v3ck4k"
+┌──────────────────────────────┐
+│       Angular Frontend       │
+│                              │
+│ Components                   │
+│ Services                     │
+│ Guards                       │
+│ Interceptors                 │
+│ Forms                        │
+└──────────────┬───────────────┘
+               │
+               │ REST API
+               ▼
+┌──────────────────────────────┐
+│      ASP.NET Core API        │
+│                              │
+│ Controllers                  │
+│ Services                     │
+│ Authentication               │
+│ Business Logic               │
+└──────────────┬───────────────┘
+               │
+               ▼
+          SQL Server
+```
+
+The frontend is therefore not dependent on hardcoded application data for its main business workflows.
+
+---
+
+# 📱 Responsive Design
+
+The application was designed to work across different screen sizes.
+
+The responsive implementation covers:
+
+* Desktop
+* Laptop
+* Tablet
+* Mobile
+
+Special attention was given to:
+
+* Navigation
+* Hero sections
+* Forms
+* Cards
+* Project galleries
+* Quotation pages
+* Tables / lists
+* Admin interfaces
+
+The goal was to maintain the same overall experience while adapting layouts to smaller screens.
+
+---
+
+# 🧩 Reusable Components
+
+A major focus of the frontend architecture is component reusability.
+
+Instead of rebuilding similar UI elements for every page, reusable components are used for common patterns.
+
+Examples include:
+
+* Navigation
+* Footer
+* Buttons
+* Forms
+* Cards
+* Modals
+* Loading states
+* Alerts
+* Image-related UI
+* Shared layout elements
+
+This reduces duplication and makes future changes easier.
+
+---
+
+# 📝 Reactive Forms
+
+Angular Reactive Forms are used for interactive application forms.
+
+They provide:
+
+* Strong form structure
+* Validation
+* Form state management
+* Error handling
+* Dynamic controls
+* Easier integration with API requests
+
+For example:
+
+```text id="v7s9j1"
+Form
+ │
+ ├── Validation
+ │
+ ├── User Input
+ │
+ ├── Error State
+ │
+ └── Submit
+       │
+       ▼
+     API
+```
+
+This approach keeps form behavior predictable and maintainable.
+
+---
+
+# 🔎 SEO
+
+Because Khalifa Glass is a public-facing business website, SEO was considered as part of the frontend implementation.
+
+The application includes page-level metadata and Open Graph information to improve how pages can appear in search engines and social sharing contexts.
+
+Key considerations include:
+
+* Page titles
+* Meta descriptions
+* Open Graph metadata
+* Semantic HTML
+* Server-side rendering
+* Proper content structure
+
+---
+
+# ⚡ Performance Considerations
+
+The application uses Angular SSR and hydration as part of its rendering strategy.
+
+Other frontend considerations include:
+
+* Reusable components
+* Centralized services
+* Lazy-loaded application areas where appropriate
+* Optimized asset usage
+* Avoiding unnecessary duplication
+* Structured styling
+
+The goal is to keep the application responsive as the project grows.
+
+---
+
+# 🔄 Frontend Data Flow
+
+A typical business request follows this pattern:
+
+```text id="8h7w0s"
+User Interaction
+       │
+       ▼
+Angular Component
+       │
+       ▼
+Angular Service
+       │
+       ▼
+HTTP Interceptor
+       │
+       ▼
+ASP.NET Core API
+       │
+       ▼
+Business Logic
+       │
+       ▼
+Database / External Service
+       │
+       ▼
+API Response
+       │
+       ▼
+Angular Service
+       │
+       ▼
+Component / UI
+```
+
+This keeps UI concerns separate from API communication and backend responsibilities.
+
+---
+
+# 🧠 What I Focused On
+
+This project was not only about creating attractive pages.
+
+The main focus was building a frontend that behaves like part of a real application.
+
+I worked on:
+
+**Component Architecture**
+
+Reusable UI elements instead of duplicated markup.
+
+**Application Architecture**
+
+Separating core services, shared functionality, and feature-specific pages.
+
+**Authentication**
+
+Connecting Google authentication and JWT-based API authentication.
+
+**API Integration**
+
+Connecting Angular services with a dedicated ASP.NET Core backend.
+
+**Forms**
+
+Building validated reactive forms and multipart requests.
+
+**Internationalization**
+
+Supporting Arabic and English with RTL/LTR layouts.
+
+**Performance**
+
+Using SSR and hydration for better rendering and SEO foundations.
+
+**Responsive UX**
+
+Making the application usable across desktop and mobile devices.
+
+---
+
+# 🚀 Deployment
+
+The frontend is deployed on **Vercel**.
+
+### Production
+
+```text id="q4tw9d"
+Angular Application
+        │
+        ▼
+      Vercel
+        │
+        ▼
+Production Website
+```
+
+### Live Application
+
+https://khalifa-glass.vercel.app/
+
+---
+
+# 🔗 Related Repository
+
+The Angular application communicates with the separate Khalifa Glass backend.
+
+### Backend API
+
+https://github.com/Amrnaassar/KhalifaGlassApis
 
 ### Frontend
 
-- Angular
-- TypeScript
-- Standalone Components
-- Angular Router
-- Angular SSR
-- Angular Hydration
-- Reactive Forms
-- RxJS
-- SCSS
-- Bootstrap 5
-- Font Awesome
-- ngx-translate
-- SweetAlert2
+https://github.com/Amrnaassar/khalifa-glass-frontend
 
-### Authentication
+---
 
-- Google Identity Services
-- Backend-based Google authentication
-- JWT access token
-- Refresh token
-- Angular HTTP interceptor
-- Route guards
-- Admin role protection
+# ▶️ Getting Started
 
-### Backend Integration
+## Prerequisites
 
-The frontend communicates with a separate ASP.NET API.
+Make sure you have:
 
-Main application flows include:
+* Node.js
+* npm
+* Angular CLI
+* Git
 
-```text
-Google Login
-    ↓
-Angular
-    ↓
-ASP.NET API
-    ↓
-JWT + Refresh Token
-    ↓
-Authenticated Angular Requests
+---
+
+## 1. Clone the repository
+
+```bash id="c0e6vp"
+git clone https://github.com/Amrnaassar/khalifa-glass-frontend.git
 ```
 
-```text
-Get Quote
-    ↓
-Reactive Form
-    ↓
-FormData + Images
-    ↓
-ASP.NET API
-    ↓
-Quote Storage
-    ↓
-Admin Dashboard
+```bash id="g4b9wl"
+cd khalifa-glass-frontend
 ```
 
-## Main Features
+---
 
-### 🌍 Bilingual Experience
+## 2. Install dependencies
 
-The application supports:
-
-- English
-- Arabic
-- RTL / LTR switching
-- Persistent language preference
-- Browser language detection
-- Translated UI content
-- Translated SEO metadata
-
-### 🔐 Authentication & Authorization
-
-Users authenticate through Google Identity Services.
-
-The application then receives application tokens from the backend and uses:
-
-- Access token authentication
-- Refresh token flow
-- Auth interceptor
-- Authentication guard
-- Admin guard
-- Protected quotation workflow
-- Admin-only quote management
-
-### 📋 Quote Management
-
-Authenticated users can:
-
-- Submit project details
-- Select services and project type
-- Provide budget information
-- Choose preferred contact method
-- Upload project images
-- View previous quotation requests
-
-Admins can:
-
-- View all quotes
-- Filter by status
-- Open quote details
-- Preview uploaded images
-- Change quote status
-- Delete quotes
-
-### 🎨 UI / UX
-
-The UI follows a custom Khalifa Glass design system:
-
-- Green brand palette
-- Glassmorphism elements
-- Soft shadows
-- Rounded cards
-- Responsive layouts
-- Reusable section headers
-- Loading states
-- Alert / confirmation dialogs
-- Mobile navigation
-
-## SEO
-
-The application includes an SEO service responsible for:
-
-- Dynamic page titles
-- Meta descriptions
-- Keywords
-- Open Graph metadata
-- Twitter card metadata
-- Canonical URLs
-- Language-aware SEO content
-
-The project also uses SSR/prerendering to improve crawlability and initial page rendering.
-
-> SEO is still an area planned for final portfolio polish: every public route should have its own complete metadata, canonical strategy, social image, and structured data where appropriate.
-
-## Installation
-
-### Requirements
-
-Recommended local environment:
-
-- Node.js
-- npm
-- Angular CLI compatible with the project version
-
-### Clone
-
-```bash
-git clone https://github.com/YOUR_USERNAME/khalifa-glass.git
-cd khalifa-glass
-```
-
-### Install dependencies
-
-```bash
+```bash id="b5w8vx"
 npm install
 ```
 
-### Run development server
+---
 
-```bash
-npm start
+## 3. Start the development server
+
+```bash id="p3u5f9"
+ng serve
 ```
 
-Open:
+Then open:
 
-```text
-http://localhost:4200/
+```text id="3i5gko"
+http://localhost:4200
 ```
 
-### Production build
+---
 
-```bash
-npm run build
+## 4. Production build
+
+```bash id="f4r7e2"
+ng build
 ```
 
-### SSR
+---
 
-```bash
-npm run build
-npm run serve:ssr:mega-glass
+# ⚙️ Environment Configuration
+
+The frontend communicates with the ASP.NET Core API through environment-specific configuration.
+
+Typical configuration includes:
+
+```text id="2x9q4m"
+API Base URL
+Google Client ID
+Application URLs
+Other public frontend configuration
 ```
 
-## Environment Configuration
+Sensitive backend credentials should never be placed in the Angular application.
 
-Google authentication uses an environment configuration.
+---
 
-Example:
+# 🔒 Security Notes
 
-```ts
-export const environment = {
-  clientIdGoogle: 'YOUR_GOOGLE_CLIENT_ID'
-};
-```
+The frontend follows several principles to reduce unnecessary exposure of sensitive information:
 
-Do not commit private credentials, secrets, API keys, refresh tokens, or production-only configuration to the repository.
+* Backend secrets remain on the server
+* API authentication is handled through the backend
+* Protected routes use guards
+* HTTP requests pass through centralized interceptors
+* API communication is performed over HTTPS in production
+* Authentication state is handled centrally
 
-For a portfolio repository, public browser OAuth client IDs may be visible by design, but their authorized origins and redirect configuration must be restricted correctly in Google Cloud.
+> Frontend applications should never contain database passwords, JWT signing keys, SMTP passwords, Cloudinary secrets, or other backend credentials.
 
-## API Configuration
+---
 
-The frontend currently centralizes API endpoints in:
+# 📌 Key Frontend Features
 
-```text
-src/app/core/constants/api.constants.ts
-```
+| Feature           | Implementation            |
+| ----------------- | ------------------------- |
+| Framework         | Angular                   |
+| Language          | TypeScript                |
+| Styling           | SCSS                      |
+| Rendering         | SSR + Hydration           |
+| Authentication    | JWT + Google              |
+| Route Protection  | Angular Guards            |
+| API Communication | HTTP Client / REST API    |
+| Forms             | Reactive Forms            |
+| Localization      | Arabic + English          |
+| Direction         | RTL + LTR                 |
+| Media Upload      | FormData                  |
+| SEO               | Metadata + Open Graph     |
+| Responsive UI     | Desktop / Tablet / Mobile |
+| Deployment        | Vercel                    |
 
-For the final portfolio version, the API base URL should be moved completely into Angular environment configuration instead of being hardcoded inside application constants.
+---
 
-Recommended structure:
+# 🎯 Project Goals
 
-```text
-src/environments/
-├── environment.ts
-└── environment.development.ts
-```
+The frontend was built around several practical goals:
 
-## Testing
+* Create a modern and professional company website
+* Provide a smooth customer experience
+* Support both Arabic and English users
+* Build reusable Angular components
+* Keep frontend responsibilities separated
+* Integrate cleanly with the ASP.NET Core API
+* Protect authenticated application areas
+* Provide a complete quotation workflow
+* Build a responsive experience
+* Improve SEO and initial rendering
+* Keep the codebase maintainable for future development
 
-The project contains Angular unit-test files for:
+---
 
-- Components
-- Services
-- Guards
-- Interceptors
+# 🚧 Future Improvements
 
-Run:
+Potential improvements for future versions include:
 
-```bash
-npm test
-```
+* Expanded automated testing
+* More granular component testing
+* Improved accessibility auditing
+* Additional performance optimization
+* Enhanced caching strategies
+* Advanced admin dashboard functionality
+* More detailed user notifications
+* CI/CD automation
+* Expanded analytics and monitoring
 
-Before presenting the repository as portfolio-ready, the tests should be expanded beyond creation/spec scaffolding to cover real application behavior.
+---
 
-## Code Quality Goals
+# 👨‍💻 Author
 
-The project is intentionally structured around:
+**Omar Fathi**
 
-- Standalone Angular components
-- Dependency injection with `inject()`
-- Feature-based page organization
-- Centralized API constants
-- Reusable services
-- Reactive forms
-- Typed request/response models
-- Route guards
-- HTTP interceptors
-- SSR-safe browser APIs
-- SCSS design tokens and mixins
+**Full-Stack Angular & .NET Developer**
 
-## Security Notes
+Focused on building modern web applications with:
 
-Authentication and authorization are enforced by the backend; frontend guards are for navigation and UX and must never be considered the security boundary.
+**Angular · TypeScript · ASP.NET Core · C# · Entity Framework Core · SQL Server**
 
-Important production considerations include:
+---
 
-- Backend authorization must remain authoritative.
-- Refresh-token handling should use the safest architecture supported by the backend.
-- Sensitive tokens should not be exposed unnecessarily to JavaScript.
-- API CORS policy should be restricted to trusted origins.
-- Uploaded files must be validated server-side.
-- Image size/type limits must be enforced by the backend.
-- Admin endpoints must require server-side role authorization.
-- Error responses should not expose sensitive backend details.
+# 🔗 Project Links
 
-## Deployment
+### 🌐 Live Application
 
-The project is designed to work with an SSR-capable Node hosting environment.
+https://khalifa-glass.vercel.app/
 
-The complete application can be deployed as:
+### 💻 Frontend Repository
 
-```text
-Browser
-   ↓
-Angular SSR Frontend
-   ↓
-ASP.NET Web API
-   ↓
-SQL Database
-```
+https://github.com/Amrnaassar/khalifa-glass-frontend
 
-The frontend and backend are intentionally separated so that the UI, API, authentication, and data layers can evolve independently.
+### ⚙️ Backend Repository
 
-## Roadmap
+https://github.com/Amrnaassar/KhalifaGlassApis
 
-### High Priority
+---
 
-- [ ] Upgrade Angular from the current v19 baseline to a supported Angular release
-- [ ] Convert route-level pages to lazy-loaded routes
-- [ ] Move API URLs to environment configuration
-- [ ] Remove development-only imports from production services
-- [ ] Replace remaining `any` types with explicit interfaces
-- [ ] Strengthen JWT parsing and authentication state handling
-- [ ] Prevent concurrent refresh-token requests
-- [ ] Improve admin guard navigation behavior
-- [ ] Make Contact publicly accessible unless authentication is intentionally required
-- [ ] Expand unit tests to cover real behavior
-- [ ] Add production error / empty / loading states consistently
+## ⭐ Feedback
 
-### SEO & Accessibility
+If you find the project interesting, feel free to explore the repository and share your feedback.
 
-- [ ] Add page-specific SEO metadata to every public route
-- [ ] Add canonical URLs and social preview images
-- [ ] Add structured data where appropriate
-- [ ] Audit image `alt` attributes
-- [ ] Audit keyboard navigation and focus states
-- [ ] Verify heading hierarchy
-- [ ] Add sitemap / robots configuration for the final production domain
-
-### Performance
-
-- [ ] Optimize all large images
-- [ ] Use modern image formats consistently
-- [ ] Add lazy loading to below-the-fold images
-- [ ] Use route-level lazy loading
-- [ ] Review third-party JavaScript loading
-- [ ] Measure Lighthouse / Core Web Vitals before final publication
-
-## Portfolio Checklist
-
-Before adding this repository to a CV or portfolio:
-
-1. Use the final **Khalifa Glass** branding consistently.
-2. Add 4–6 high-quality screenshots.
-3. Add a short live-demo link.
-4. Add a clear architecture diagram.
-5. Add the backend repository link.
-6. Add a short demo video or GIF if possible.
-7. Make sure the production build passes.
-8. Run the full test suite.
-9. Remove debug `console.log` statements.
-10. Remove dead code and unused imports.
-11. Add proper error and empty states.
-12. Complete SEO and accessibility checks.
-13. Upgrade to a currently supported Angular release.
-14. Make sure no secrets or private credentials are committed.
-
-## Project Status
-
-**Current status:** Feature-rich portfolio project, but still requires a final engineering-polish pass before being presented as the user's flagship repository.
-
-The strongest parts of the project are its real application functionality, authentication flow, bilingual RTL/LTR experience, SSR setup, quotation workflow, admin workflow, and separation of concerns.
-
-The next step is not adding more features. The priority should be **quality, security, testing, performance, SEO, accessibility, and cleanup**.
-
-## License
-
-This project is intended as a portfolio project for Khalifa Glass.
-
-If you want to reuse the source code, contact the author first.
+Built with **Angular + ASP.NET Core** ❤️
