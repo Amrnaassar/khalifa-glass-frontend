@@ -1,867 +1,817 @@
-# 🏢 Khalifa Glass — Frontend
+# MYM Car Rental — Frontend
 
-> **A modern, multilingual Angular frontend for the Khalifa Glass full-stack web application.**
+A modern, responsive, production-ready car rental web application built with **Angular 20, TypeScript, Angular SSR, and Signals**.
 
-Khalifa Glass is a modern web application built for a glass & aluminium company, designed to provide customers with a professional digital experience for exploring services, viewing projects, submitting quotation requests, and managing their requests.
+The application provides a complete customer rental experience together with a dedicated administration dashboard for managing vehicles, categories, users, and bookings.
 
-The frontend is built with **Angular and TypeScript**, and communicates with a dedicated **ASP.NET Core Web API** for authentication, quotations, project data, media handling, and other backend operations.
-
-This project was built with a focus on **clean architecture, reusable components, responsive design, authentication, performance, accessibility, and real-world frontend/backend integration**.
+It integrates with the **MYM Car Rental ASP.NET Core Web API** and is designed with a focus on performance, maintainability, responsive design, accessibility, SEO, authentication, and multilingual support.
 
 ---
 
-# 🚀 Overview
+## 🚗 Overview
 
-The application goes beyond a traditional company website.
+**MYM Car Rental Frontend** is the Angular client application for the MYM Car Rental platform.
 
-It combines a public-facing website with authenticated user functionality and administrative workflows.
+The application provides two main experiences:
 
-### Main capabilities
+### Customer Platform
 
-* 🌍 Arabic & English localization
-* ↔️ Full RTL / LTR support
-* ⚡ Angular SSR & Hydration
-* 🔐 Authentication
-* 🔵 Google Sign-In
-* 🛡️ Route Guards
-* 🔑 JWT authentication flow
-* ♻️ Refresh token handling
-* 📝 Reactive Forms
-* 📋 Online quotation system
-* 📸 Project image uploads
-* 👤 User quotation history
-* 👨‍💼 Admin quotation management
-* 🖼️ Dynamic projects & gallery
-* 📱 Responsive design
-* 🎨 Custom SCSS design system
-* 🔎 SEO metadata
-* 🌐 Open Graph metadata
-* 🔗 REST API integration
+Customers can:
 
----
+* Browse available rental cars
+* Explore featured vehicles
+* View detailed vehicle information
+* Compare rental plans
+* Select pickup and return dates
+* Create rental bookings
+* View their booking history
+* Cancel eligible bookings
+* Authenticate with Google
+* Switch between Arabic and English
 
-# 🛠️ Tech Stack
+### Administration Platform
 
-| Technology                | Purpose                       |
-| ------------------------- | ----------------------------- |
-| **Angular**               | Frontend framework            |
-| **TypeScript**            | Application development       |
-| **SCSS**                  | Styling & design system       |
-| **Angular Router**        | Navigation & route management |
-| **Reactive Forms**        | Forms & validation            |
-| **Angular SSR**           | Server-side rendering         |
-| **Hydration**             | Client-side hydration         |
-| **RxJS**                  | Reactive data handling        |
-| **REST API**              | Backend communication         |
-| **JWT**                   | Authentication                |
-| **Google Authentication** | User sign-in                  |
-| **Font Awesome**          | Icons                         |
-| **Vercel**                | Deployment                    |
+Authorized administrative users can:
+
+* View dashboard statistics
+* Manage rental cars
+* Manage car categories
+* Manage vehicle images
+* Manage users
+* Manage user roles
+* Manage bookings
+* Update booking statuses
 
 ---
 
-# 🏗️ Frontend Architecture
+# ✨ Key Features
 
-The application is organized to separate application-wide functionality from reusable UI elements and feature-specific pages.
+## 🚘 Car Rental Experience
 
-```text id="a8r7dw"
-src/
-│
-├── app/
-│   │
-│   ├── core/
-│   │   ├── guards/
-│   │   ├── interceptors/
-│   │   ├── services/
-│   │   └── models/
-│   │
-│   ├── shared/
-│   │   ├── components/
-│   │   └── services/
-│   │
-│   ├── pages/
-│   │   ├── home/
-│   │   ├── about/
-│   │   ├── services/
-│   │   ├── projects/
-│   │   ├── gallery/
-│   │   ├── quotation/
-│   │   ├── profile/
-│   │   └── admin/
-│   │
-│   ├── app.component.*
-│   ├── app.routes.ts
-│   └── app.config.ts
-│
-├── assets/
-│   ├── images/
-│   └── ...
-│
-├── styles/
-│   ├── abstracts/
-│   ├── base/
-│   ├── components/
-│   └── utilities/
-│
-└── main.ts
+The customer-facing application includes a complete vehicle discovery workflow.
+
+Customers can:
+
+* Browse cars
+* View featured cars
+* Filter and explore vehicle information
+* Open detailed car pages
+* View vehicle specifications
+* View rental pricing
+* Select daily, weekly, or monthly rental plans
+* Select rental dates
+* Continue to the booking workflow
+
+---
+
+## 📅 Multi-Step Booking
+
+The booking experience is divided into clear steps to simplify the rental process.
+
+```text
+Step 1
+Select Rental Dates
+        ↓
+Step 2
+Select Rental Plan
+        ↓
+Step 3
+Review Booking
+        ↓
+Step 4
+Confirm Booking
 ```
 
-The application separates **core functionality, shared UI, services, guards, interceptors, models, and feature pages**, making the project easier to maintain and extend.
+The frontend communicates with the backend API for server-side booking validation and creation.
+
+The backend remains responsible for:
+
+* Availability validation
+* Date validation
+* Price calculation
+* Booking conflicts
+* Final booking creation
+
+This keeps important business rules on the server instead of relying exclusively on client-side validation.
 
 ---
 
-# 🎨 UI & Design System
+# 💰 Rental Plans
 
-The interface was designed around a modern, premium visual identity suitable for a glass & aluminium company.
+The application supports:
 
-The frontend uses a centralized SCSS structure instead of scattering styling across unrelated files.
-
-### Design principles
-
-* Clean layouts
-* Strong visual hierarchy
-* Consistent spacing
-* Reusable UI patterns
-* Responsive behavior
-* Accessible interaction
-* Consistent typography
-* Consistent color usage
-* Mobile-first considerations
-
-The styling architecture is organized into reusable layers:
-
-```text id="qj7c7g"
-styles/
-│
-├── abstracts/
-│   ├── variables
-│   └── ...
-│
-├── base/
-│   ├── reset
-│   ├── typography
-│   └── ...
-│
-├── components/
-│
-├── utilities/
-│
-└── main.scss
+```text
+Daily
+Weekly
+Monthly
 ```
 
-This makes it easier to maintain a consistent visual language throughout the application.
+Rental pricing is retrieved from the backend and displayed according to the selected vehicle and rental plan.
 
----
-
-# 🌍 Arabic & English Support
-
-One of the important requirements of the project was supporting both Arabic and English users.
-
-The interface supports:
-
-```text id="8p5qbc"
-English
-  ↓
-LTR
-
-Arabic
-  ↓
-RTL
-```
-
-The layout direction changes according to the active language.
-
-This affects more than text translation.
-
-The UI also handles:
-
-* Navigation
-* Spacing
-* Alignment
-* Icons
-* Forms
-* Content direction
-* Component layouts
-
-The result is a more natural experience for both Arabic and English users.
-
----
-
-# ⚡ Server-Side Rendering & Hydration
-
-The application uses **Angular SSR and hydration** to improve the initial rendering experience and provide a stronger foundation for SEO.
-
-The rendering flow can be represented as:
-
-```text id="x8upz5"
-User Request
-     │
-     ▼
-Angular Server
-     │
-     ▼
-HTML Response
-     │
-     ▼
-Browser
-     │
-     ▼
-Angular Hydration
-     │
-     ▼
-Interactive Application
-```
-
-This is particularly useful for public-facing pages where search engine visibility and initial page rendering matter.
+The booking interface dynamically calculates the rental duration and displays the relevant pricing information before confirmation.
 
 ---
 
 # 🔐 Authentication
 
-Authentication is integrated between the Angular frontend and the ASP.NET Core API.
+The application includes a complete authentication flow.
 
-The frontend handles the client-side authentication flow while the backend remains responsible for validating credentials and issuing tokens.
+Supported functionality:
 
-### Authentication flow
+* Google Sign-In
+* Current-user initialization
+* JWT authentication
+* Refresh-token flow
+* Logout
+* Protected routes
+* Authentication state management
 
-```text id="o1xwq8"
-User
- │
- ├── Email / Password
- │
- └── Google Sign-In
-          │
-          ▼
-    Angular Frontend
-          │
-          ▼
-    ASP.NET Core API
-          │
-          ▼
-     JWT Tokens
-          │
-          ▼
- Protected Application
-```
-
-The frontend includes dedicated authentication services and route protection mechanisms.
+Authentication is integrated with the backend using secure authentication cookies.
 
 ---
 
-# 🛡️ Route Guards
+# 🛡️ Route Protection
 
-Protected pages are guarded so that users cannot access authenticated areas without a valid authentication state.
+Angular route guards protect authenticated areas of the application.
 
-Examples include:
+Protected customer routes include:
 
-* Profile
-* User quotations
-* Admin functionality
-
-Conceptually:
-
-```text id="g2w3fq"
-User
- │
- ▼
-Protected Route
- │
- ▼
-Authentication Guard
- │
- ├── Authenticated ──► Allow Access
- │
- └── Not Authenticated
-          │
-          ▼
-       Login
+```text
+/booking
+/my-bookings
 ```
 
-This keeps authentication-related navigation logic centralized instead of repeating checks across individual components.
+The administration area is protected through authentication and role-based authorization.
+
+Administrative access is controlled according to the user's role returned by the backend.
 
 ---
 
-# 🔑 HTTP Interceptors
+# 👨‍💼 Admin Dashboard
 
-HTTP interceptors are used to centralize authentication-related API communication.
+The application includes a dedicated administration interface.
 
-Instead of manually attaching authentication information to every API request, the interceptor handles the request pipeline.
-
-```text id="w0xxj3"
-Angular Service
-      │
-      ▼
-HTTP Request
-      │
-      ▼
-HTTP Interceptor
-      │
-      ├── Attach Token
-      │
-      └── Handle Authentication State
-      │
-      ▼
-ASP.NET Core API
+```text
+/admin
 ```
 
-This makes API communication cleaner and easier to maintain.
+The admin area is separated from the customer-facing experience and includes its own layout, navigation, pages, and reusable components.
+
+### Dashboard
+
+Provides an administrative overview with:
+
+* Statistics
+* Platform navigation
+* Quick access to management areas
+
+### Cars Management
+
+Administrators can:
+
+* Create cars
+* Edit cars
+* Delete cars
+* Manage rental prices
+* Manage specifications
+* Upload images
+* Delete images
+* Set primary images
+* Set featured status
+* Activate/deactivate vehicles
+
+### Categories Management
+
+Administrators can:
+
+* Create categories
+* Edit categories
+* Delete categories
+* Manage category information
+* Manage category images
+* Activate/deactivate categories
+
+### Users Management
+
+The user management area supports:
+
+* User listing
+* User details
+* Role management
+* Administrative user operations
+
+### Bookings Management
+
+Administrators can:
+
+* View bookings
+* Open booking details
+* Review customer information
+* Review rental information
+* Manage booking statuses
 
 ---
 
-# 📋 Quotation Workflow
+# 🌍 Internationalization
 
-Quotation requests are one of the main interactive features of the application.
+The application supports both:
 
-Customers can submit their project requirements through the frontend and attach relevant images.
+🇸🇦 **Arabic**
 
-### User flow
+🇬🇧 **English**
 
-```text id="8g9nkn"
-Customer
-   │
-   ▼
-Quotation Form
-   │
-   ├── Project Information
-   ├── Contact Information
-   └── Project Images
-   │
-   ▼
-Reactive Form Validation
-   │
-   ▼
-FormData
-   │
-   ▼
-ASP.NET Core API
+The language system dynamically handles:
+
+* Translated UI content
+* HTML `lang` attribute
+* Text direction
+* RTL/LTR layout
+* Navigation direction
+* Shared translated components
+
+```text
+Arabic
+  ↓
+RTL
+
+English
+  ↓
+LTR
 ```
 
-The frontend handles:
+Translations are maintained using `ngx-translate`.
 
-* Form state
-* Validation
-* User feedback
-* Image selection
-* FormData creation
-* API communication
-* Loading states
-* Error handling
-* Success states
+Translation files:
 
----
-
-# 📸 Image Uploads
-
-The quotation flow supports uploading project images.
-
-The frontend prepares the request using `FormData` so text fields and image files can be sent together.
-
-```text id="k6b5ep"
-Form
- │
- ├── Text Fields
- │
- └── Images
-       │
-       ▼
-    FormData
-       │
-       ▼
- Angular HTTP Client
-       │
-       ▼
- ASP.NET Core API
-       │
-       ▼
- Cloudinary
+```text
+src/assets/i18n/
+├── ar.json
+└── en.json
 ```
 
-This allows users to provide visual references for their quotation requests.
-
----
-
-# 👤 User Experience
-
-Authenticated users have access to their quotation-related information.
-
-The frontend provides functionality for:
-
-* Viewing submitted quotations
-* Checking quotation status
-* Viewing quotation details
-* Managing profile-related information
-* Accessing authenticated areas
-
-The goal is to give users visibility into their requests instead of relying entirely on manual communication.
-
----
-
-# 👨‍💼 Admin Experience
-
-The frontend also contains administrative functionality for managing quotation requests.
-
-Administrators can interact with quotation data through dedicated UI flows connected to protected backend endpoints.
-
-```text id="o9cyte"
-Admin
-  │
-  ▼
-Admin Route
-  │
-  ▼
-Route Guard
-  │
-  ▼
-ASP.NET Core API
-  │
-  ▼
-Quotation Management
-```
-
-This creates a complete workflow between customer submissions and administrative processing.
-
----
-
-# 🔗 API Integration
-
-The frontend communicates with a separate ASP.NET Core backend through RESTful APIs.
-
-```text id="v3ck4k"
-┌──────────────────────────────┐
-│       Angular Frontend       │
-│                              │
-│ Components                   │
-│ Services                     │
-│ Guards                       │
-│ Interceptors                 │
-│ Forms                        │
-└──────────────┬───────────────┘
-               │
-               │ REST API
-               ▼
-┌──────────────────────────────┐
-│      ASP.NET Core API        │
-│                              │
-│ Controllers                  │
-│ Services                     │
-│ Authentication               │
-│ Business Logic               │
-└──────────────┬───────────────┘
-               │
-               ▼
-          SQL Server
-```
-
-The frontend is therefore not dependent on hardcoded application data for its main business workflows.
+The application is designed so that customer-facing content can be presented naturally in both languages.
 
 ---
 
 # 📱 Responsive Design
 
-The application was designed to work across different screen sizes.
+The UI is designed with a mobile-first mindset and adapts across:
 
-The responsive implementation covers:
+* Mobile devices
+* Tablets
+* Laptops
+* Desktop screens
 
-* Desktop
-* Laptop
-* Tablet
-* Mobile
+Responsive behavior is implemented using:
 
-Special attention was given to:
+* SCSS
+* CSS media queries
+* Flexible layouts
+* Responsive components
+* Mobile navigation patterns
 
-* Navigation
-* Hero sections
-* Forms
-* Cards
-* Project galleries
-* Quotation pages
-* Tables / lists
-* Admin interfaces
-
-The goal was to maintain the same overall experience while adapting layouts to smaller screens.
+The customer experience and administration dashboard are both designed to remain usable across different screen sizes.
 
 ---
 
-# 🧩 Reusable Components
+# ⚡ Angular Signals
 
-A major focus of the frontend architecture is component reusability.
-
-Instead of rebuilding similar UI elements for every page, reusable components are used for common patterns.
+The application uses **Angular Signals** for reactive state management where appropriate.
 
 Examples include:
 
-* Navigation
-* Footer
-* Buttons
-* Forms
-* Cards
-* Modals
-* Loading states
-* Alerts
-* Image-related UI
-* Shared layout elements
+* Loading state
+* Selected car
+* Selected rental plan
+* Rental dates
+* Rental duration
+* Authentication state
+* Admin data
+* UI state
 
-This reduces duplication and makes future changes easier.
+Signals help keep component state explicit and reduce unnecessary complexity.
 
 ---
 
-# 📝 Reactive Forms
+# 🔄 HTTP Interceptors
 
-Angular Reactive Forms are used for interactive application forms.
+The application uses HTTP interceptors to centralize API communication and authentication behavior.
 
-They provide:
+Implemented interceptor responsibilities include:
 
-* Strong form structure
-* Validation
-* Form state management
-* Error handling
-* Dynamic controls
-* Easier integration with API requests
+### Credentials
 
-For example:
+Handles credential-aware HTTP communication with the backend.
 
-```text id="v7s9j1"
-Form
- │
- ├── Validation
- │
- ├── User Input
- │
- ├── Error State
- │
- └── Submit
-       │
-       ▼
-     API
+### Refresh Token
+
+Handles authentication renewal when the access token expires.
+
+### SSR Authentication
+
+Supports authentication-cookie forwarding during server-side rendering requests.
+
+This keeps authentication logic centralized instead of duplicating it across individual services.
+
+---
+
+# 🧩 Component Architecture
+
+The application follows a feature-oriented Angular structure.
+
+```text
+src/
+└── app/
+    │
+    ├── admin/
+    │   ├── layout/
+    │   ├── pages/
+    │   │   ├── dashboard/
+    │   │   ├── cars/
+    │   │   ├── categories/
+    │   │   ├── users/
+    │   │   └── bookings/
+    │   │
+    │   ├── core/
+    │   │   └── services/
+    │   │
+    │   └── shared/
+    │       ├── sidebar/
+    │       ├── topbar/
+    │       ├── stat-card/
+    │       ├── admin-page-header/
+    │       └── confirm-dialog/
+    │
+    ├── core/
+    │   ├── guards/
+    │   ├── interceptors/
+    │   ├── models/
+    │   ├── services/
+    │   └── initializers/
+    │
+    ├── features/
+    │   ├── home/
+    │   ├── cars/
+    │   ├── booking/
+    │   ├── login/
+    │   ├── about-us/
+    │   ├── company-services/
+    │   ├── contact/
+    │   ├── faq/
+    │   └── not-found/
+    │
+    ├── layout/
+    │   └── public/
+    │       ├── customer-layout/
+    │       └── navbar/
+    │
+    └── shared/
+        └── components/
+            └── date-picker/
 ```
 
-This approach keeps form behavior predictable and maintainable.
+This structure separates:
+
+* Application-wide infrastructure
+* Customer features
+* Administration features
+* Layout components
+* Shared reusable components
+
+---
+
+# 🧭 Routing
+
+Angular Router is used with lazy-loaded routes/components.
+
+Main customer routes include:
+
+```text
+/
+/about-us
+/cars
+/cars/:id
+/booking
+/my-bookings
+/faq
+/contact
+/services
+/login
+/admin
+```
+
+Protected customer routes:
+
+```text
+/booking
+/my-bookings
+```
+
+The admin area uses its own layout and route configuration.
+
+Lazy loading helps keep the initial application bundle smaller by loading feature areas when required.
+
+---
+
+# 🖥️ Server-Side Rendering
+
+The application uses **Angular SSR** to render pages on the server before the client application is hydrated.
+
+SSR provides benefits such as:
+
+* Improved initial rendering
+* Better SEO support
+* Search-engine-friendly HTML
+* Better social sharing metadata
+* Improved first-load experience
+
+The application is configured with an Express-based SSR server.
+
+---
+
+# 💧 Hydration
+
+Angular hydration is enabled to allow the browser to take over the server-rendered application.
+
+The project also uses:
+
+* Angular hydration
+* Event replay
+* SSR-aware services
+* SSR authentication handling
+
+This provides a smoother transition from server-rendered HTML to the interactive Angular application.
 
 ---
 
 # 🔎 SEO
 
-Because Khalifa Glass is a public-facing business website, SEO was considered as part of the frontend implementation.
+SEO considerations are integrated into the application.
 
-The application includes page-level metadata and Open Graph information to improve how pages can appear in search engines and social sharing contexts.
+Supported metadata includes:
 
-Key considerations include:
-
-* Page titles
+* Dynamic page titles
 * Meta descriptions
 * Open Graph metadata
-* Semantic HTML
-* Server-side rendering
-* Proper content structure
+* Twitter card metadata
+* Robots metadata
+* Canonical URLs
+
+SEO metadata can be managed according to the current route and page content.
 
 ---
 
-# ⚡ Performance Considerations
+# 🔌 API Integration
 
-The application uses Angular SSR and hydration as part of its rendering strategy.
+The frontend communicates with the ASP.NET Core backend through RESTful APIs.
 
-Other frontend considerations include:
+Main frontend services include:
 
-* Reusable components
-* Centralized services
-* Lazy-loaded application areas where appropriate
-* Optimized asset usage
-* Avoiding unnecessary duplication
-* Structured styling
-
-The goal is to keep the application responsive as the project grows.
-
----
-
-# 🔄 Frontend Data Flow
-
-A typical business request follows this pattern:
-
-```text id="8h7w0s"
-User Interaction
-       │
-       ▼
-Angular Component
-       │
-       ▼
-Angular Service
-       │
-       ▼
-HTTP Interceptor
-       │
-       ▼
-ASP.NET Core API
-       │
-       ▼
-Business Logic
-       │
-       ▼
-Database / External Service
-       │
-       ▼
-API Response
-       │
-       ▼
-Angular Service
-       │
-       ▼
-Component / UI
+```text
+Authentication
+Cars
+Car Categories
+Bookings
+Admin Cars
+Admin Categories
+Admin Users
+Admin Bookings
+Admin Dashboard
 ```
 
-This keeps UI concerns separate from API communication and backend responsibilities.
+The frontend does not contain the core rental business rules.
 
----
+Instead:
 
-# 🧠 What I Focused On
-
-This project was not only about creating attractive pages.
-
-The main focus was building a frontend that behaves like part of a real application.
-
-I worked on:
-
-**Component Architecture**
-
-Reusable UI elements instead of duplicated markup.
-
-**Application Architecture**
-
-Separating core services, shared functionality, and feature-specific pages.
-
-**Authentication**
-
-Connecting Google authentication and JWT-based API authentication.
-
-**API Integration**
-
-Connecting Angular services with a dedicated ASP.NET Core backend.
-
-**Forms**
-
-Building validated reactive forms and multipart requests.
-
-**Internationalization**
-
-Supporting Arabic and English with RTL/LTR layouts.
-
-**Performance**
-
-Using SSR and hydration for better rendering and SEO foundations.
-
-**Responsive UX**
-
-Making the application usable across desktop and mobile devices.
-
----
-
-# 🚀 Deployment
-
-The frontend is deployed on **Vercel**.
-
-### Production
-
-```text id="q4tw9d"
-Angular Application
-        │
-        ▼
-      Vercel
-        │
-        ▼
-Production Website
+```text
+Angular Frontend
+       │
+       │ REST API
+       ▼
+ASP.NET Core Backend
+       │
+       ▼
+PostgreSQL
 ```
 
-### Live Application
-
-https://khalifa-glass.vercel.app/
+This separation keeps the frontend focused on presentation, interaction, and client-side state while the backend remains responsible for business rules and persistence.
 
 ---
 
-# 🔗 Related Repository
+# 🛠️ Technology Stack
 
-The Angular application communicates with the separate Khalifa Glass backend.
-
-### Backend API
-
-https://github.com/Amrnaassar/KhalifaGlassApis
-
-### Frontend
-
-https://github.com/Amrnaassar/khalifa-glass-frontend
+| Technology            | Purpose                          |
+| --------------------- | -------------------------------- |
+| **Angular 20**        | Frontend framework               |
+| **TypeScript**        | Application programming language |
+| **Angular Signals**   | Reactive state management        |
+| **Angular Router**    | Application routing              |
+| **Angular SSR**       | Server-side rendering            |
+| **Angular Hydration** | Client hydration                 |
+| **RxJS**              | Reactive programming             |
+| **Reactive Forms**    | Form management and validation   |
+| **SCSS**              | Styling                          |
+| **ngx-translate**     | Arabic / English localization    |
+| **Font Awesome**      | UI icons                         |
+| **Express**           | SSR server                       |
+| **REST APIs**         | Backend communication            |
 
 ---
 
-# ▶️ Getting Started
+# 🗂️ Project Structure
+
+```text
+MYM-Car-Rental-Frontend/
+│
+├── src/
+│   ├── app/
+│   │   ├── admin/
+│   │   ├── core/
+│   │   ├── features/
+│   │   ├── layout/
+│   │   └── shared/
+│   │
+│   ├── assets/
+│   │   └── i18n/
+│   │       ├── ar.json
+│   │       └── en.json
+│   │
+│   ├── environments/
+│   ├── index.html
+│   └── main.ts
+│
+├── angular.json
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
+---
+
+# 🚀 Getting Started
 
 ## Prerequisites
 
-Make sure you have:
+Make sure the following are installed:
 
 * Node.js
 * npm
 * Angular CLI
 * Git
 
----
-
-## 1. Clone the repository
-
-```bash id="c0e6vp"
-git clone https://github.com/Amrnaassar/khalifa-glass-frontend.git
-```
-
-```bash id="g4b9wl"
-cd khalifa-glass-frontend
-```
+You also need access to the MYM Car Rental backend API.
 
 ---
 
-## 2. Install dependencies
+## Clone the Repository
 
-```bash id="b5w8vx"
+```bash
+git clone https://github.com/Amrnaassar/mym-car-rental-frontend.git
+
+cd mym-car-rental-frontend
+```
+
+---
+
+## Install Dependencies
+
+```bash
 npm install
-```
-
----
-
-## 3. Start the development server
-
-```bash id="p3u5f9"
-ng serve
-```
-
-Then open:
-
-```text id="3i5gko"
-http://localhost:4200
-```
-
----
-
-## 4. Production build
-
-```bash id="f4r7e2"
-ng build
 ```
 
 ---
 
 # ⚙️ Environment Configuration
 
-The frontend communicates with the ASP.NET Core API through environment-specific configuration.
+Configure the backend API URL through the Angular environment configuration.
 
-Typical configuration includes:
+Typical files include:
 
-```text id="2x9q4m"
-API Base URL
-Google Client ID
-Application URLs
-Other public frontend configuration
+```text
+src/environments/environment.ts
+src/environments/environment.development.ts
 ```
 
-Sensitive backend credentials should never be placed in the Angular application.
+Example:
+
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:5145/api'
+};
+```
+
+For production, use the deployed backend API URL.
+
+> Production secrets and private credentials should never be committed to the repository.
 
 ---
 
-# 🔒 Security Notes
+# ▶️ Development
 
-The frontend follows several principles to reduce unnecessary exposure of sensitive information:
+Start the Angular development server:
 
-* Backend secrets remain on the server
-* API authentication is handled through the backend
-* Protected routes use guards
-* HTTP requests pass through centralized interceptors
-* API communication is performed over HTTPS in production
-* Authentication state is handled centrally
+```bash
+npm start
+```
 
-> Frontend applications should never contain database passwords, JWT signing keys, SMTP passwords, Cloudinary secrets, or other backend credentials.
+Then open the local URL displayed by Angular CLI.
 
 ---
 
-# 📌 Key Frontend Features
+# 🏗️ Production Build
 
-| Feature           | Implementation            |
-| ----------------- | ------------------------- |
-| Framework         | Angular                   |
-| Language          | TypeScript                |
-| Styling           | SCSS                      |
-| Rendering         | SSR + Hydration           |
-| Authentication    | JWT + Google              |
-| Route Protection  | Angular Guards            |
-| API Communication | HTTP Client / REST API    |
-| Forms             | Reactive Forms            |
-| Localization      | Arabic + English          |
-| Direction         | RTL + LTR                 |
-| Media Upload      | FormData                  |
-| SEO               | Metadata + Open Graph     |
-| Responsive UI     | Desktop / Tablet / Mobile |
-| Deployment        | Vercel                    |
+Create a production build:
+
+```bash
+ng build --configuration production
+```
+
+The production output is generated under the configured `dist` directory.
 
 ---
 
-# 🎯 Project Goals
+# 🖥️ Run SSR Production Build
 
-The frontend was built around several practical goals:
+Build the application:
 
-* Create a modern and professional company website
-* Provide a smooth customer experience
-* Support both Arabic and English users
-* Build reusable Angular components
-* Keep frontend responsibilities separated
-* Integrate cleanly with the ASP.NET Core API
-* Protect authenticated application areas
-* Provide a complete quotation workflow
-* Build a responsive experience
-* Improve SEO and initial rendering
-* Keep the codebase maintainable for future development
+```bash
+ng build --configuration production
+```
+
+Then run the generated SSR server:
+
+```bash
+node dist/mym-car-rental/server/server.mjs
+```
+
+The SSR server starts using the configured production server settings.
 
 ---
 
-# 🚧 Future Improvements
+# 🧪 Testing
 
-Potential improvements for future versions include:
+The project includes Angular unit tests covering application components and services.
 
-* Expanded automated testing
-* More granular component testing
-* Improved accessibility auditing
-* Additional performance optimization
-* Enhanced caching strategies
-* Advanced admin dashboard functionality
-* More detailed user notifications
-* CI/CD automation
-* Expanded analytics and monitoring
+Run the test suite with:
+
+```bash
+npm test
+```
+
+The project is continuously tested during development to verify:
+
+* Components
+* Services
+* Admin functionality
+* Booking-related logic
+* Application behavior
+
+---
+
+# 📦 Production Readiness
+
+The application has been prepared for production deployment with:
+
+* Production Angular build
+* Angular SSR
+* Hydration
+* Lazy-loaded routes
+* Environment-based API configuration
+* Authentication handling
+* Refresh-token flow
+* Responsive UI
+* SEO metadata
+* Arabic / English localization
+* RTL / LTR support
+
+The production SSR build can be executed successfully using the generated Node server.
+
+---
+
+# ☁️ Deployment
+
+The frontend can be deployed to modern Node-compatible hosting platforms.
+
+The deployment architecture is:
+
+```text
+                    ┌──────────────────────┐
+                    │   MYM Car Rental     │
+                    │       Frontend       │
+                    │   Angular 20 + SSR   │
+                    └──────────┬───────────┘
+                               │
+                               │ HTTPS / REST
+                               ▼
+                    ┌──────────────────────┐
+                    │   MYM Car Rental     │
+                    │       Backend        │
+                    │ ASP.NET Core Web API  │
+                    └──────────┬───────────┘
+                               │
+                               ▼
+                    ┌──────────────────────┐
+                    │      PostgreSQL      │
+                    └──────────────────────┘
+```
+
+For production deployment, make sure the frontend points to the deployed backend API and that the backend allows the production frontend origin through CORS.
+
+---
+
+# 🔗 Backend Repository
+
+The Angular application communicates with the MYM Car Rental ASP.NET Core API.
+
+**MYM Car Rental Backend**
+
+https://github.com/Amrnaassar/mym-car-rental-backend
+
+---
+
+# 🎯 Engineering Principles
+
+The frontend is developed around several engineering principles:
+
+* Feature-based organization
+* Separation of concerns
+* Reusable components
+* Centralized API communication
+* Centralized authentication handling
+* Server-side business validation
+* Lazy loading
+* Reactive state management
+* Responsive design
+* Internationalization
+* SEO readiness
+* SSR compatibility
+* Maintainable SCSS architecture
+
+The goal is to keep the application scalable without introducing unnecessary complexity.
+
+---
+
+# 📌 Project Status
+
+**Frontend:** Production-ready / deployment preparation
+
+Implemented functionality includes:
+
+* Customer-facing rental platform
+* Car browsing
+* Car details
+* Multi-step booking
+* Customer bookings
+* Authentication
+* Google Sign-In
+* Refresh-token flow
+* Admin dashboard
+* Car management
+* Category management
+* User management
+* Booking management
+* Arabic / English localization
+* RTL / LTR support
+* Angular SSR
+* Hydration
+* SEO metadata
+* Responsive design
+* Production build
 
 ---
 
 # 👨‍💻 Author
 
-**Omar Fathi**
+## Omar Fathi Salah
 
-**Full-Stack Angular & .NET Developer**
+**Full-Stack Software Engineer**
 
-Focused on building modern web applications with:
+Specialized in:
 
-**Angular · TypeScript · ASP.NET Core · C# · Entity Framework Core · SQL Server**
-
----
-
-# 🔗 Project Links
-
-### 🌐 Live Application
-
-https://khalifa-glass.vercel.app/
-
-### 💻 Frontend Repository
-
-https://github.com/Amrnaassar/khalifa-glass-frontend
-
-### ⚙️ Backend Repository
-
-https://github.com/Amrnaassar/KhalifaGlassApis
+* Angular
+* TypeScript
+* ASP.NET Core
+* C#
+* Entity Framework Core
+* PostgreSQL
+* RESTful APIs
+* Full-Stack Web Development
 
 ---
 
-## ⭐ Feedback
+# 🔗 Project Repositories
 
-If you find the project interesting, feel free to explore the repository and share your feedback.
+### Frontend
 
-Built with **Angular + ASP.NET Core** ❤️
+https://github.com/Amrnaassar/mym-car-rental-frontend
+
+### Backend
+
+https://github.com/Amrnaassar/mym-car-rental-backend
+
+---
+
+## 📄 License
+
+This project is private and developed for the **MYM Car Rental** platform.
